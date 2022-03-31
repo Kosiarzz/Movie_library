@@ -33,7 +33,7 @@ class Scraper
         {
             $this->results[] = [
                 'title' => $node->filter('.filmPreview__title')->text('Brak tytułu'), //Tytuł filmu
-                'year' => $node->filter('.filmPreview__year')->attr('content'), //Data premiery
+                'year' => $node->filter('.filmPreview__year')->text('Brak daty'), //Data premiery
                 'original_title' => $node->filter('.filmPreview__originalTitle')->text('Brak oryginalnego tytułu'), //Oryginalna nazwa
                 'time' => $node->filter('.filmPreview__filmTime')->text('Brak czasu trwania'), //Czas trwania
                 'rate' => $node->filter('.rateBox__rate')->text('Brak oceny'), //Ocena

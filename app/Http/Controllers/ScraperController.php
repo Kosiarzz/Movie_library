@@ -17,6 +17,6 @@ class ScraperController extends Controller
         $scraper = new Scraper();
         $movies = $scraper->getMovies($name);
 
-        return view('x', ['movies' => $movies]);
+        return view('scrapers.movie', ['movies' => $movies]);
     }
 }
