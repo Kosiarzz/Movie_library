@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="ddd p-0" style="margin-left:72px; width:100%;">
+<div class="ddd p-0" style="width:100%;">
     <div class="d m-0" style="width:100%; height:50px; display:flex; flex-direction:row; border-bottom:solid 1px #d2d2d2; border-top:solid 1px #d2d2d2; background:#202020; padding:8px 20px;">
         <div class="top-category active" style="">
             Wszystkie filmy

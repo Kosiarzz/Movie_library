@@ -269,6 +269,18 @@ body {
     background-color:#fff;
   }
 
+  .movie-card{
+    margin:10px 20px 0 0;
+  }
+
+  .movie-card:first-of-type {
+      margin-left: 0;
+  }
+
+  .movie-card:last-of-type {
+      margin-right: 0;
+  }
+
   .movie-card:hover{
     background-color: rgba(77, 77, 77, 0.1);
   }

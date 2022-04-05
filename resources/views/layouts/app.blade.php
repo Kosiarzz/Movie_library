@@ -333,7 +333,7 @@
               </ul>
             </div>
           </div>
-        <main class="m-0" style="padding-top:3.5rem;">
+        <main class="" style="padding-top:3.5rem; margin-left:72px">
             @yield('content')
         </main>
         @stack('script')
