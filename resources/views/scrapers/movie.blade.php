@@ -3,11 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="row">
+        <div class="row pt-5 pb-4">
             <div class="d-flex justify-content-center">
-              <form method="GET" >
+              <form method="GET" class="flex-row search-movie">
                   <input type="text" name="name" class="inputSearchMovie" placeholder="Nazwa filmu"/>
-                  <input type="submit" class="movieSearchButton" value="Szukaj" />
+                  <Button type="submit" class="movieSearchButton" value="Szukaj">Szukaj</Button>
               </form>
             </div>
         </div>
@@ -30,13 +30,13 @@
                   </div> 
                   <div class="movieStats">
                     <div class="movieYear">
-                        {{ $movie['year'] }}
+                      <svg class="bi" width="16" height="16" role="img" aria-label="Wyszukaj"><use xlink:href="#calendarr"/></svg> {{ $movie['year'] }}
                     </div> 
                     <div class="movieTime">
-                        {{ $movie['time'] }}
+                      <svg class="bi" width="16" height="16" role="img" aria-label="Wyszukaj"><use xlink:href="#timeee"/></svg>  {{ $movie['time'] }} 
                     </div> 
                     <div class="movieRate"> 
-                        {{ $movie['rate'] }}
+                      <svg class="bi" width="20" height="20" role="img" aria-label="Biblioteka"><use xlink:href="#star"/></svg>  {{ $movie['rate'] }}
                     </div> 
                   </div>  
                   <div class="movieDescription">
@@ -51,10 +51,12 @@
                         Aktorzy: {{ $movie['cast'] }}
                       </div>
                     </div>
-                    <div class="movieBottomRight">
-                      <button class="movieSearchButton">+</button>
-                    </div>
                   </div>
+                </div>
+                <div class="buttons-right">
+                    <button class="button-sq"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
+                    <button class="button-sq"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
+                    <button class="button-sq"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
                 </div>
               </div>
                               

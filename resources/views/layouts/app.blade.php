@@ -172,13 +172,37 @@
         <path d="m34,256l26.2,26.2c108,108 283.7,108 391.7,0l26.1-26.2-26.2-26.2c-108-108-283.7-108-391.7,0l-26.1,26.2zm222,126.2c-75.8,0-151.6-28.9-209.3-86.6l-32.9-32.9c-3.7-3.7-3.7-9.7 0-13.5l32.9-32.9c115.4-115.4 303.2-115.4 418.6,0l32.9,32.9c3.7,3.7 3.7,9.7 0,13.5l-32.9,32.9c-57.7,57.7-133.5,86.6-209.3,86.6z"/>
         <path d="m256,183.5c-40,0-72.5,32.5-72.5,72.5s32.5,72.5 72.5,72.5c40,0 72.5-32.5 72.5-72.5s-32.5-72.5-72.5-72.5zm0,164c-50.5,0-91.5-41.1-91.5-91.5 0-50.5 41.1-91.5 91.5-91.5s91.5,41.1 91.5,91.5c0,50.5-41,91.5-91.5,91.5z"/>
     </symbol>
+    <symbol id="star" viewBox="0 0 64 64">
+      <polygon style="fill:#EFCE4A;" points="26.934,1.318 35.256,18.182 53.867,20.887 40.4,34.013 43.579,52.549 26.934,43.798 10.288,52.549 13.467,34.013 0,20.887 18.611,18.182 "/>
+    </symbol>
+    <symbol id="timeee" viewBox="0 0 64 64">
+      <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"/>
+      <path d="M30,6c-0.552,0-1,0.447-1,1v23H14c-0.552,0-1,0.447-1,1s0.448,1,1,1h16c0.552,0,1-0.447,1-1V7C31,6.447,30.552,6,30,6z"/>
+    </symbol>
+
+    <symbol id="calendarr" viewBox="0 0 64 64">
+      <path d="M58.963,44.119c-0.116-0.367-0.434-0.634-0.814-0.688l-7.777-1.089l-3.472-6.78c-0.342-0.668-1.438-0.668-1.779,0
+      l-3.472,6.78l-7.777,1.089c-0.381,0.054-0.698,0.32-0.814,0.688s-0.012,0.768,0.269,1.031l5.605,5.267l-1.321,7.427
+      c-0.066,0.373,0.084,0.752,0.388,0.978c0.305,0.227,0.711,0.262,1.049,0.089l6.964-3.528l6.964,3.528
+      c0.143,0.073,0.298,0.108,0.452,0.108c0.211,0,0.421-0.066,0.597-0.197c0.304-0.226,0.454-0.604,0.388-0.978l-1.321-7.427
+      l5.605-5.267C58.974,44.887,59.079,44.486,58.963,44.119z M51.325,49.33c-0.246,0.231-0.359,0.571-0.3,0.903l1.064,5.987
+      l-5.628-2.852c-0.143-0.072-0.297-0.108-0.452-0.108s-0.31,0.036-0.452,0.108l-5.628,2.852l1.064-5.987
+      c0.06-0.332-0.054-0.672-0.3-0.903l-4.479-4.207l6.225-0.872c0.322-0.045,0.603-0.244,0.751-0.534l2.818-5.504l2.818,5.504
+      c0.148,0.29,0.429,0.489,0.751,0.534l6.225,0.872L51.325,49.33z"/>
+    <path d="M36.01,32h9V21h-9h-2h-7h-2h-7h-2h-9v9v2v7v2v9h9h2h9v-9h9V32z M36.01,23h7v7h-7V23z M27.01,23h7v7h-7V23z M18.01,23h7v7
+      h-7V23z M25.01,39h-7v-7h7V39z M9.01,23h7v7h-7V23z M9.01,32h7v7h-7V32z M16.01,48h-7v-7h7V48z M25.01,48h-7v-7h7V48z M34.01,39h-7
+      v-7h7V39z"/>
+    <path d="M26.01,55h-24V16h48v17c0,0.553,0.447,1,1,1s1-0.447,1-1V15V5c0-0.553-0.447-1-1-1h-5V1c0-0.553-0.447-1-1-1h-7
+      c-0.553,0-1,0.447-1,1v3h-22V1c0-0.553-0.447-1-1-1h-7c-0.553,0-1,0.447-1,1v3h-5c-0.553,0-1,0.447-1,1v10v41c0,0.553,0.447,1,1,1
+      h25c0.553,0,1-0.447,1-1S26.562,55,26.01,55z M39.01,2h5v3v3h-5V5V2z M8.01,2h5v3v3h-5V5V2z M2.01,6h4v3c0,0.553,0.447,1,1,1h7
+      c0.553,0,1-0.447,1-1V6h22v3c0,0.553,0.447,1,1,1h7c0.553,0,1-0.447,1-1V6h4v8h-48V6z"/>
+    </symbol>
   </svg>
-  
 
 <body>
     <div id="app">
         
-        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background:#202020;">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top" style="background:rgba(33, 33, 33, 0.99);">
                 <button id="hamburger-button" class="hamburger" style="border:0; background:transparent; margin-left:15px;"><svg class="bi" width="28" height="28" role="img" aria-label="Products"><use xlink:href="#hamburger"/></svg></button>
                 <a class="navbar-brand text-white" style="margin-left:30px;" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -213,11 +237,11 @@
                                         <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
                                     @endif
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background:rgba(33, 33, 33, 0.99);">
+                                    <a class="dropdown-item" style="color:#fff!important;" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Wyloguj
                                     </a>
                                     
 
@@ -231,7 +255,7 @@
                 </div>
         </nav>
 
-        <div id="small-left-menu" class="d-flex flex-column flex-shrink-0" style="width: 4.5rem; height:100.0vh; position:fixed; background:#212121;">
+        <div id="small-left-menu" class="d-flex flex-column flex-shrink-0" style="width: 4.5rem; padding-top:4rem; height:100vh; position:fixed; background:#212121;">
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
               <li>
                 <a href="#" class="nav-link py-3" aria-current="page" title="Główna" data-bs-toggle="tooltip" data-bs-placement="right">
@@ -261,8 +285,7 @@
               </ul>
             </div>
         </div>
-
-        <div id="big-left-menu" class="d-flex flex-column flex-shrink-0 p-3 text-white" style="width: 220px; height:100.0vh; position:fixed; background:#212121; display:none!important;">
+        <div id="big-left-menu" class="d-flex flex-column flex-shrink-0 text-white" style="width: 220px; height:100vh; padding-top:4rem!important; position:fixed; background:rgba(33, 33, 33, 0.99); display:none!important;">
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
                 <a href="#" class="nav-link active nav-left-flex" aria-current="page">
@@ -310,7 +333,7 @@
               </ul>
             </div>
           </div>
-        <main class="p-0 m-0">
+        <main class="m-0" style="padding-top:3.5rem;">
             @yield('content')
         </main>
         @stack('script')
