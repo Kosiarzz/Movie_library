@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
+use App\Models\{User, Group};
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,10 +64,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        Group::create([
+            'name' => 'Wszystkie filmy',
+            'type' => 'default',
+            'status' => false,
+            'user_id' => $user->id,
+        ]);
+
+        Group::create([
+            'name' => 'Do obejrzenia',
+            'type' => 'default',
+            'status' => false,
+            'user_id' => $user->id,
+        ]);
+
+        Group::create([
+            'name' => 'Historia',
+            'type' => 'default',
+            'status' => false,
+            'user_id' => $user->id,
+        ]);
+        
+        return $user;
     }
 }
