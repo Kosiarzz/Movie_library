@@ -13,7 +13,8 @@
         </div>
 
         <div class="row p-0 m-0 mt-4">
-            @foreach ( $movies as $movie)
+            @foreach ( $movies as $key => $movie)
+              
               <div class="movieBox">
                 <div class="movieImage">
                   <img src="{{ $movie['img'] }}" alt="Zdjęcie" />
@@ -54,9 +55,9 @@
                   </div>
                 </div>
                 <div class="buttons-right">
-                    <button class="button-sq"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
-                    <button class="button-sq"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
-                    <button class="button-sq"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
+                  <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}"><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
+                  <button class="button-sq addToWatch" ><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
+                  <button class="button-sq btn-submit" ><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
                 </div>
               </div>
                               
@@ -65,10 +66,3 @@
     </div>
 </div>
 @endsection
-
-
-@push('script')
-<script>
-  
-</script>
-@endpush

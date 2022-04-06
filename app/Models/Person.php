@@ -10,6 +10,7 @@ class Person extends Model
     use HasFactory;
 
     public $timestamps = false;
+    public $table = "persons";
 
     /**
      * The attributes that are mass assignable.
