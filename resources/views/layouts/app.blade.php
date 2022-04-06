@@ -258,22 +258,22 @@
         <div id="small-left-menu" class="d-flex flex-column flex-shrink-0" style="width: 4.5rem; padding-top:4rem; height:100vh; position:fixed; background:#212121;">
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
               <li>
-                <a href="#" class="nav-link py-3" aria-current="page" title="Główna" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('home') }}" class="nav-link py-3" aria-current="page" title="Główna" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="24" height="24" role="img" aria-label="Główna"><use xlink:href="#home"/></svg>
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link py-3" title="Wyszukaj" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('scrapMovies', ['name' => 'obecność']) }}" class="nav-link py-3" title="Wyszukaj" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="28" height="28" role="img" aria-label="Wyszukaj"><use xlink:href="#search-video"/></svg>
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('library') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="28" height="28" role="img" aria-label="Biblioteka"><use xlink:href="#video"/></svg>
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('library') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="28" height="28" role="img" aria-label="Obejrzane"><use xlink:href="#watched"/></svg>
                 </a>
               </li>
@@ -288,20 +288,20 @@
         <div id="big-left-menu" class="d-flex flex-column flex-shrink-0 text-white" style="width: 220px; height:100vh; padding-top:4rem!important; position:fixed; background:rgba(33, 33, 33, 0.99); display:none!important;">
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
-                <a href="#" class="nav-link active nav-left-flex" aria-current="page">
+                <a href="{{ route('home') }}" class="nav-link active nav-left-flex" aria-current="page">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#home"/></svg>
                    <span style="margin-top:3px;">Główna</span>
                 </a>
               </li>
               <li style="margin:5px 0 5px 0;">
-                <a href="#" class="nav-link text-white nav-left-flex">
+                <a href="{{ route('scrapMovies', ['name' => 'obecność']) }}" class="nav-link text-white nav-left-flex">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#search-video"/></svg>
                    <span style="margin-top:3px;">Wyszukaj</span>
                 </a>
               </li>
               <hr>
               <li>
-                <a href="#" class="nav-link text-white nav-left-flex">
+                <a href="{{ route('library') }}" class="nav-link text-white nav-left-flex">
                   <svg class="bi me-2" width="28" height="28"><use xlink:href="#video"/></svg>
                    <span style="margin-top:3px;">Biblioteka</span>
                 </a>

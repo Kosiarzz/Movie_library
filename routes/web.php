@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\{HomeController, ScraperController, GroupController};
 
 use Illuminate\Support\Facades\Route;
 
@@ -13,11 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/home');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scrapMovies');
+Route::get('/biblioteka', [GroupController::class, 'index'])->name('library');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/filmy/{name}', [App\Http\Controllers\ScraperController::class, 'getMovies'])->name('scrapMovies');
