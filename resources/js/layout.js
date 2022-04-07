@@ -13,6 +13,7 @@ $(document).ready(function(){
         
         e.preventDefault();
         var data = $(this).attr("data-array");
+        var type = $(this).attr("data-type")
         console.log(data);
         $.ajax({
             type:'POST',
@@ -20,7 +21,7 @@ $(document).ready(function(){
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data:{data:data},
+            data:{data:data, type:type},
             success:function(data){
                 alert(data.success);
             }

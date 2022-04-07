@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\{Movie, Genre, Country, Person, MovieCast};
+use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie};
 
 class MovieController extends Controller
 {
@@ -36,16 +36,35 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
+            
+        $nameGroup = "Wszystkie filmy";
+
+        if($request->type == "addMovie")
+        {
+            $nameGroup = "Wszystkie filmy";
+        }
+        else if($request->type == "addWatch")
+        {
+            $nameGroup = "Do obejrzenia";
+        }
+        else
+        {
+            $nameGroup = "Wszystkie filmy";
+        }
+        //Decode json data from sraped movie
         $data = json_decode($request->data, TRUE);
 
+        //Add a movie genre
         $genre = Genre::firstOrCreate([
             'name' => $data['genres'],
         ]);
 
+        //Add the country of production movie
         $country = Country::firstOrCreate([
             'name' => $data['country'],
         ]);
 
+        //Save movie information
         $movie = new Movie;
         $movie->title = $data['title'];
         $movie->description = $data['description'];
@@ -61,15 +80,18 @@ class MovieController extends Controller
         $movie->user_id = 1;
         $movie->save();
 
+        //Separation of people (actors)
         $cast = preg_replace('/([a-z])([A-Z])/', '$1 $2', $data['cast']);
         $castExplode = explode(" ", $cast, 10);
 
         for($i = 0; $i < count($castExplode); $i+=2)
         {
+            //Save separated people
             $person = Person::firstOrCreate([
                 'person' => $castExplode[$i].' '.$castExplode[$i+1],
             ]);
 
+            //Assing a cast to a movie
             $movieCast = new MovieCast;
             $movieCast->role = "actor";
             $movieCast->person_id = $person->id;
@@ -77,15 +99,18 @@ class MovieController extends Controller
             $movieCast->save();
         }
 
+        //Separation of people (directors)
         $directors = preg_replace('/([a-z])([A-Z])/', '$1 $2', $data['directors']);
         $directorsExplode = explode(" ", $directors, 10);
 
         for($i = 0; $i < count($directorsExplode); $i+=2)
         {
+            //Save separated people
             $person = Person::firstOrCreate([
                 'person' => $directorsExplode[$i].' '.$directorsExplode[$i+1],
             ]);
 
+            //Assing a cast to a movie
             $movieCast = new MovieCast;
             $movieCast->role = "director";
             $movieCast->person_id = $person->id;
@@ -93,7 +118,20 @@ class MovieController extends Controller
             $movieCast->save();
         }
 
-        return response()->json(['success'=>'Film został dodany']);
+        //Get the id of the default group
+        $group = Group::firstOrCreate([
+            'name' => $nameGroup,
+            'type' => 'default',
+            'user_id' => $request->user()->id,
+        ]);
+
+        //Add the movie to the default group
+        GroupMovie::create([
+            'movie_id' => $movie->id,
+            'group_id' => $group->id,
+        ]);
+
+        return response()->json(['success' => 'Film został dodany']);
     }
 
     /**

@@ -197,6 +197,10 @@
       h25c0.553,0,1-0.447,1-1S26.562,55,26.01,55z M39.01,2h5v3v3h-5V5V2z M8.01,2h5v3v3h-5V5V2z M2.01,6h4v3c0,0.553,0.447,1,1,1h7
       c0.553,0,1-0.447,1-1V6h22v3c0,0.553,0.447,1,1,1h7c0.553,0,1-0.447,1-1V6h4v8h-48V6z"/>
     </symbol>
+    <symbol id="plus" viewBox="0 0 64 64">
+      <path d="M24.0607 10L24.024 38" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M10 24L38 24" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
   </svg>
 
 <body>
