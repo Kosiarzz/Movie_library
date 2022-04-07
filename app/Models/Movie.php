@@ -28,4 +28,9 @@ class Movie extends Model
         'country_id',
         'user_id',
     ];
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
 }
