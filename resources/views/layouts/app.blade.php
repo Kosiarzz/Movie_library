@@ -314,21 +314,30 @@
                    <span style="margin-top:3px;">Biblioteka</span>
                 </a>
               </li>
-              <li>
-                <a href="#" class="nav-link text-white nav-left-flex">
-                  <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
-                   <span style="margin-top:3px;">Historia</span>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link text-white nav-left-flex">
-                  <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
-                  <span style="margin-top:3px;">Do obejrzenia</span>
-                </a>
-              </li>
               @foreach ($userGroups as $uGroup)
+                @continue($uGroup->type == "user")
+                @continue($uGroup->name == "Do obejrzenia")
                 <li>
-                  <a href="#{{ $uGroup->id }}" class="nav-link text-white nav-left-flex">
+                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex">
+                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
+                    <span style="margin-top:3px;">Historia</span>
+                  </a>
+                </li>
+              @endforeach
+              @foreach ($userGroups as $uGroup)
+                @continue($uGroup->type == "user")
+                @continue($uGroup->name == "Wszystkie filmy")
+                <li>
+                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex">
+                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
+                    <span style="margin-top:3px;">Do obejrzenia</span>
+                  </a>
+                </li>
+              @endforeach
+              @foreach ($userGroups as $uGroup)
+                @continue($uGroup->type == "default")
+                <li>
+                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex">
                     <svg class="bi me-2" width="28" height="28"><use xlink:href="#video-group"/></svg>
                       <span style="margin-top:3px;">{{ $uGroup->name }} </span>
                   </a>

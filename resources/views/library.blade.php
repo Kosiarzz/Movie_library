@@ -4,21 +4,23 @@
 <div class="container mt-4 pb-5">
     <div class="row justify-content-center">
         <div class="d-flex flex-column">
-            <div class="d-flex justify-content-between" style="width:1360px;">
-                <div class="d-flex flex-row" style="font-size:20px; color:#fff;">
-                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg> Historia
-                </div>
-                <div class="" style="font-size:20px; color:#fff;">
-                    Pokaż wszystko
-                </div>
-            </div>
-            <div class="d-flex pb-4" style="width:1360px; border-bottom: 1px solid #fff;">
+            
                 @foreach ($groups as $group)
-                    @continue($group->name == "Wszystkie filmy")
+                    @continue($group->name == "Do obejrzenia")
                     @continue($group->type == "user")
 
+                    <div class="d-flex justify-content-between" style="width:1360px;">
+                        <div class="d-flex flex-row" style="font-size:20px; color:#fff;">
+                            <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg> Historia
+                        </div>
+                        <a class="" href="{{route('groupShow', ['id' => $group->id])}}" style="font-size:20px; color:#fff; text-decoration:none;">
+                            Pokaż wszystko
+                        </a>
+                    </div>
+                    <div class="d-flex pb-4" style="width:1360px; border-bottom: 1px solid #fff;">
+
                     @foreach ($group->groupMovie as $gMovie)
-                        <a class="movie-card" href="#" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
+                        <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
                             <div class="movie-image" style="height:300px; width:100%;">
                                 <img src="{{ $gMovie->movie->img }}" alt="" style="height:300px; width:210px; position:absolute; z-index:-10; border-radius:5px 5px 0 0;">
                                 <div class="movie-info" style="width:100%; display:flex; justify-content:space-between; padding:5px; color:#fff;">
@@ -55,21 +57,22 @@
         </div>
 
         <div class="d-flex flex-column mt-4">
-            <div class="d-flex justify-content-between" style="width:1360px;">
-                <div class="d-flex flex-row" style="font-size:20px; color:#fff;">
-                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg> Do obejrzenia
-                </div>
-                <div class="" style="font-size:20px; color:#fff;">
-                    Pokaż wszystko
-                </div>
-            </div>
-            <div class="d-flex pb-4" style="width:1360px; border-bottom: 1px solid #fff;">
                 @foreach ($groups as $group)
-                    @continue($group->name == "Do obejrzenia")
+                    @continue($group->name == "Wszystkie filmy")
                     @continue($group->type == "user")
 
+                    <div class="d-flex justify-content-between" style="width:1360px;">
+                        <div class="d-flex flex-row" style="font-size:20px; color:#fff;">
+                            <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg> Do obejrzenia
+                        </div>
+                        <a class="" href="{{route('groupShow', ['id' => $group->id])}}" style="font-size:20px; color:#fff; text-decoration:none;">
+                            Pokaż wszystko
+                        </a>
+                    </div>
+                    <div class="d-flex pb-4" style="width:1360px; border-bottom: 1px solid #fff;">
+
                     @foreach ($group->groupMovie as $gMovie)
-                        <a class="movie-card" href="#" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
+                        <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
                             <div class="movie-image" style="height:300px; width:100%;">
                                 <img src="{{ $gMovie->movie->img }}" alt="" style="height:300px; width:210px; position:absolute; z-index:-10; border-radius:5px 5px 0 0;">
                                 <div class="movie-info" style="width:100%; display:flex; justify-content:space-between; padding:5px; color:#fff;">
@@ -112,13 +115,13 @@
                     <div class="d-flex flex-row" style="font-size:20px; color:#fff;">
                         <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg> {{ $group->name }}
                     </div>
-                    <div class="" style="font-size:20px; color:#fff;">
+                    <a class="" href="{{route('groupShow', ['id' => $group->id])}}" style="font-size:20px; color:#fff; text-decoration:none;">
                         Pokaż wszystko
-                    </div>
+                    </a>
                 </div>
                 <div class="d-flex pb-4" style="width:1360px; border-bottom: 1px solid #fff;">
                     @forelse ($group->groupMovie as $gMovie)  
-                        <a class="movie-card" href="#" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
+                        <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
                             <div class="movie-image" style="height:300px; width:100%;">
                                 <img src="{{ $gMovie->movie->img }}" alt="" style="height:300px; width:210px; position:absolute; z-index:-10; border-radius:5px 5px 0 0;">
                                 <div class="movie-info" style="width:100%; display:flex; justify-content:space-between; padding:5px; color:#fff;">

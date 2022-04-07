@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Group;
 
 class GroupController extends Controller
@@ -59,7 +59,19 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        //Download groups movies with the main category
+        $group = Group::with(['groupMovie' => function($q) 
+            {
+                $q->with(['movie' => function($q) 
+                    {
+                        $q->with('genre');
+                    }
+                ])->orderByDesc('movie_id');
+            }
+            ])->where('id', $id)->where('user_id', Auth::id())->get();
+
+        
+        return view('groups.show', ['group' => $group]);
     }
 
     /**

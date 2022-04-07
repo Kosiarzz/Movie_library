@@ -22,5 +22,5 @@ Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovi
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
 Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGroup');
 Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
-
+Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('groupShow');
 Auth::routes();
