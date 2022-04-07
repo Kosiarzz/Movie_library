@@ -21,4 +21,9 @@ class MovieCast extends Model
         'person_id',
         'movie_id',
     ];
+
+    public function person()
+    {
+        return $this->belongsTo(Person::class);
+    }
 }

@@ -21,4 +21,6 @@ Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scra
 Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovie');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
 Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGroup');
+Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
+
 Auth::routes();

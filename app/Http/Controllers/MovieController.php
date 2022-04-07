@@ -142,7 +142,9 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        //
+        $movie = Movie::with(['genre','movieCast.person'])->where('id', $id)->get();
+
+        return view('movies.show', ['movie' => $movie]);
     }
 
     /**
