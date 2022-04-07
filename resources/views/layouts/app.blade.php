@@ -247,6 +247,10 @@
                                                      document.getElementById('logout-form').submit();">
                                         Wyloguj
                                     </a>
+                                      <!-- Button trigger add group modal -->
+                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Dodaj grupę
+                                      </button>
                                     
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -337,9 +341,36 @@
               </ul>
             </div>
           </div>
+
+          <!-- Add group modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Nowa grupa</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{{ route('addGroup') }}">
+                  @csrf
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="name-group" class="form-label">Nazwa grupy</label>
+                      <input type="text" name="name" class="form-control" id="name-group" placeholder="Filmy akcji">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" class="btn btn-primary">Dodaj grupę</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
         <main class="" style="padding-top:3.5rem; margin-left:72px">
             @yield('content')
         </main>
+         
         @stack('script')
     </div>
 </body>

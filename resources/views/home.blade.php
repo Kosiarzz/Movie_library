@@ -12,7 +12,6 @@
             </div> 
         @endforeach
     </div>
-  
     <div class="dd" style="width:1800px; min-height:500px; margin-left:25px; margin-top:35px; background:gre; display:flex; flex-wrap: wrap; border-radius:5px;">
         @foreach ($movies as $movie)
             <a class="movie-card" href="#" style="width:210px; margin:10px 22px 40px 22px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">

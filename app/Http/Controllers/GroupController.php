@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Group;
+
 class GroupController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +41,14 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Group::create([
+            'name' => $request->name,
+            'type' => 'user',
+            'status' => false,
+            'user_id' => $request->user()->id,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

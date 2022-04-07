@@ -44,7 +44,7 @@ class HomeController extends Controller
      */
     public function libraryView()
     {
-        //Download movies with the main category
+        //Download groups movies with the main category
         $groups = Group::with(['groupMovie' => function($q) 
             {
                 $q->with(['movie' => function($q) 

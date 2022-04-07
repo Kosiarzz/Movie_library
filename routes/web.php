@@ -20,5 +20,5 @@ Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scrapMovies');
 Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovie');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
-
+Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGroup');
 Auth::routes();
