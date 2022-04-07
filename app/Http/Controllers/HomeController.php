@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Movie,Genre};
+use App\Models\{Movie, Genre, Group};
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -45,14 +45,19 @@ class HomeController extends Controller
     public function libraryView()
     {
         //Download movies with the main category
-        $groups = Group::with([''])->where('user_id', Auth::id())->get();
+        $groups = Group::with(['groupMovie' => function($q) 
+            {
+                $q->with(['movie' => function($q) 
+                    {
+                        $q->with('genre');
+                    }
+                ])->orderByDesc('movie_id');
+            }
+            ])->where('user_id', Auth::id())->get();
 
-        //Download all main categories
-        $genres = Genre::all();
-
-        return view('home', [
-            'movies' => $movies,
-            'genres' => $genres,
+        
+        return view('library', [
+            'groups' => $groups
         ]);
     }
 }

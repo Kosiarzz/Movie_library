@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scrapMovies');
 Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovie');
-Route::get('/biblioteka', [GroupController::class, 'index'])->name('library');
+Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
 
 Auth::routes();

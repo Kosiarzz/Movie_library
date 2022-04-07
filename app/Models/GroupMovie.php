@@ -20,4 +20,9 @@ class GroupMovie extends Model
         'movie_id',
         'group_id',
     ];
+
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
+    }
 }

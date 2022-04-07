@@ -20,4 +20,9 @@ class Group extends Model
         'status',
         'user_id',
     ];
+
+    public function groupMovie()
+    {
+        return $this->hasMany(GroupMovie::class);
+    }
 }
