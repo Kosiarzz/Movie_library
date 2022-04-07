@@ -326,14 +326,14 @@
                   <span style="margin-top:3px;">Do obejrzenia</span>
                 </a>
               </li>
-              @for($i = 1; $i <10; $i++ )
-              <li>
-                <a href="#" class="nav-link text-white nav-left-flex">
-                  <svg class="bi me-2" width="28" height="28"><use xlink:href="#video-group"/></svg>
-                    <span style="margin-top:3px;">Grupa {{ $i }} </span>
-                </a>
-              </li>
-              @endfor
+              @foreach ($userGroups as $uGroup)
+                <li>
+                  <a href="#{{ $uGroup->id }}" class="nav-link text-white nav-left-flex">
+                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#video-group"/></svg>
+                      <span style="margin-top:3px;">{{ $uGroup->name }} </span>
+                  </a>
+                </li>
+              @endforeach
             </ul>
             <div class="dropdown">
               <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
