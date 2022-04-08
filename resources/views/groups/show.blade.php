@@ -9,7 +9,8 @@
                     <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg> {{ $group[0]->name }} {{ count($group[0]->groupMovie) }} filmów, Zaktualizowano {{ $group[0]->updated_at }}
                 </div>
                 <div class="" style="font-size:20px; color:#fff;">
-                    Menu grupy
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">E</button>
+                    <a href="{{ route('groupDestroy', ['id' => $group[0]->id]) }}">D</a>
                 </div>
             </div>
             <div class="d-flex flex-wrap pb-4"  style="width:1360px;">
@@ -48,6 +49,32 @@
             @endforelse
             </div>
         </div>
+
+
+         <!-- Edit group modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Ustawienia grupy</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="#">
+                  @csrf
+                  <div class="modal-body">
+                    <div class="mb-3">
+                      <label for="name-group" class="form-label">Nazwa grupy</label>
+                      <input type="text" name="name" class="form-control" id="name-group" placeholder="Filmy akcji">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
     </div>
 </div>
 @endsection

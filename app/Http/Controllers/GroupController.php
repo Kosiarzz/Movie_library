@@ -105,6 +105,9 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $group = Group::find($id);
+        $group->delete();
+        
+        return redirect(route('library'));
     }
 }

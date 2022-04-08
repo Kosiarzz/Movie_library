@@ -23,4 +23,6 @@ Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library
 Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGroup');
 Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
 Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('groupShow');
+Route::get('/grupa/usuwanie/{id}', [GroupController::class, 'destroy'])->name('groupDestroy');
+
 Auth::routes();
