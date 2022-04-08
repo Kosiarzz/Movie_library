@@ -24,5 +24,6 @@ Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGro
 Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
 Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('groupShow');
 Route::get('/grupa/usuwanie/{id}', [GroupController::class, 'destroy'])->name('groupDestroy');
+Route::post('/grupa/update', [GroupController::class, 'update'])->name('groupUpdate');
 
 Auth::routes();

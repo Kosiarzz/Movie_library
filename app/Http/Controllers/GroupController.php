@@ -92,9 +92,13 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        Group::where('id', $request->id)->where('user_id', $request->user()->id)->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -107,7 +111,7 @@ class GroupController extends Controller
     {
         $group = Group::find($id);
         $group->delete();
-        
+
         return redirect(route('library'));
     }
 }
