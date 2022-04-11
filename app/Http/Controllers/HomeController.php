@@ -31,9 +31,10 @@ class HomeController extends Controller
         //Download all main categories
         $genres = Genre::all();
 
-        return view('home', [
+        return view('main.home', [
             'movies' => $movies,
             'genres' => $genres,
+            'selectGenre' => 0,
         ]);
     }
 
@@ -56,7 +57,7 @@ class HomeController extends Controller
             ])->where('user_id', Auth::id())->get();
 
         
-        return view('library', [
+        return view('main.library', [
             'groups' => $groups
         ]);
     }

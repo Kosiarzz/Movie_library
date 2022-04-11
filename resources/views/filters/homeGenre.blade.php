@@ -3,11 +3,11 @@
 @section('content')
 <div class="ddd p-0" style="width:100%;">
     <div class="d m-0" style="width:100%; height:50px; display:flex; flex-direction:row; border-bottom:solid 1px #d2d2d2; border-top:solid 1px #d2d2d2; background:#202020; padding:8px 20px;">
-        <div class="top-category active" style="">
+        <div class="top-category" style="">
             Wszystkie filmy
         </div>   
         @foreach ($genres as $genre)
-            <div class="top-category" style="">
+            <div class="top-category @if($genre->name == $selectGenre) active @endif" style="">
                 {{ $genre->name }}
             </div> 
         @endforeach

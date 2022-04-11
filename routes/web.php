@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\{HomeController, ScraperController, GroupController, MovieController};
+use App\Http\Controllers\{HomeController, ScraperController, GroupController, MovieController, FilterController};
 
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +33,7 @@ Route::post('/film/update', [MovieController::class, 'update'])->name('updateMov
 Route::get('/film/usun/{id}', [MovieController::class, 'destroy'])->name('deleteMovie');
 Route::get('/film/nowy', [MovieController::class, 'create'])->name('createMovie');
 Route::post('/film/dodawanie/niestandardowy', [MovieController::class, 'storeCustomMovie'])->name('storeCustomMovie');
+
+Route::get('/home/{id}', [FilterController::class, 'genreFilter'])->name('genreFilter');
+
 Auth::routes();

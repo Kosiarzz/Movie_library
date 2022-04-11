@@ -342,6 +342,6 @@ class MovieController extends Controller
     {
         Movie::find($id)->delete();
 
-        return redirect(route('home'));
+        return redirect(route('main.home'));
     }
 }
