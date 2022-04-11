@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie};
+use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie, MovieCategory, Category};
 
 class MovieController extends Controller
 {
@@ -155,7 +155,15 @@ class MovieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movie = Movie::with(['genre', 'movieCast.person', 'country'])->where('id', $id)->get();
+        $groups = GroupMovie::where('movie_id', $id)->get();
+        $categories = MovieCategory::with('category')->where('movie_id', $id)->get();
+
+        return view('movies.edit', [
+            'movie' => $movie,
+            'groups' => $groups,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -165,9 +173,82 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $genre = Genre::firstOrCreate([
+            'name' => $request->genre,
+        ]);
+
+        $country = Country::firstOrCreate([
+            'name' => $request->country,
+        ]);
+
+
+        Movie::where('id', $request->movie_id)->where('user_id', $request->user()->id)->update([
+            "title" =>  $request->title,
+            "original_title" =>  $request->original_title,
+            "year" =>  $request->year,
+            "time" =>  $request->time,
+            "rate" =>  $request->rate,
+            "description" =>  $request->description,
+            "genre_id" => $genre->id,
+            "country_id" => $country->id,
+            "watched" => $request->watched ? true : false,
+        ]);
+
+        MovieCast::where('movie_id', $request->movie_id)->delete();
+
+        foreach($request->directors as $director)
+        {
+            $person = Person::firstOrCreate([
+                'person' => $director,
+            ]);  
+
+            MovieCast::create([
+                'movie_id' => $request->movie_id,
+                'person_id' => $person->id,
+                'role' => 'director',
+            ]);
+        }
+
+        foreach($request->actors as $actor)
+        {
+            $person = Person::firstOrCreate([
+                'person' => $actor,
+            ]);  
+
+            MovieCast::create([
+                'movie_id' => $request->movie_id,
+                'person_id' => $person->id,
+                'role' => 'actor',
+            ]);
+        }
+
+        MovieCategory::where('movie_id', $request->movie_id)->delete();
+
+        foreach($request->categories as $category)
+        {
+            $fCategory = Category::firstOrCreate([
+                'name' => $category,
+            ]);  
+
+            MovieCategory::create([
+                'movie_id' => $request->movie_id,
+                'category_id' => $fCategory->id,
+            ]);
+        }
+
+        GroupMovie::where('movie_id', $request->movie_id)->delete();
+       
+        foreach($request->groups as $group)
+        {
+            GroupMovie::create([
+                'movie_id' => $request->movie_id,
+                'group_id' => $group,
+            ]);
+        }
+
+        return redirect(route('movieShow', ['id' => $request->movie_id]));
     }
 
     /**

@@ -17,13 +17,19 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/home');
 
 Route::get('/home', [HomeController::class, 'homeView'])->name('home');
-Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scrapMovies');
-Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovie');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
+
+Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scrapMovies');
+
 Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGroup');
-Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
 Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('groupShow');
 Route::get('/grupa/usuwanie/{id}', [GroupController::class, 'destroy'])->name('groupDestroy');
 Route::post('/grupa/update', [GroupController::class, 'update'])->name('groupUpdate');
+
+Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovie');
+Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
+Route::get('/film/edycja/{id}', [MovieController::class, 'edit'])->name('editMovie');
+Route::post('/film/update', [MovieController::class, 'update'])->name('updateMovie');
+
 
 Auth::routes();

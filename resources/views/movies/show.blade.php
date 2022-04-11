@@ -3,6 +3,7 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
+      <a href="{{ route('editMovie', ['id' => $movie[0]->id]) }}">Edycja</a>
       <div class="movieBox">
         <div class="movieImage">
           <img src="{{ $movie[0]->img }}" alt="Zdjęcie" />
