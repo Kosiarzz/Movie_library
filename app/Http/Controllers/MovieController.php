@@ -25,7 +25,88 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCustomMovie(Request $request)
+    {
+        $genre = Genre::firstOrCreate([
+            'name' => $request->genre,
+        ]);
+
+        $country = Country::firstOrCreate([
+            'name' => $request->country,
+        ]);
+
+
+        $movie = Movie::create([
+            "title" =>  $request->title,
+            "original_title" =>  $request->original_title,
+            "year" =>  $request->year,
+            "time" =>  $request->time,
+            "rate" =>  $request->rate,
+            "description" =>  $request->description,
+            "genre_id" => $genre->id,
+            "country_id" => $country->id,
+            "watched" => $request->watched ? true : false,
+            "user_id" => $request->user()->id,
+            "img" => 'none',
+            "votes" => 'prop. delete',
+        ]);
+
+        foreach($request->directors as $director)
+        {
+            $person = Person::firstOrCreate([
+                'person' => $director,
+            ]);  
+
+            MovieCast::create([
+                'movie_id' => $movie->id,
+                'person_id' => $person->id,
+                'role' => 'director',
+            ]);
+        }
+
+        foreach($request->actors as $actor)
+        {
+            $person = Person::firstOrCreate([
+                'person' => $actor,
+            ]);  
+
+            MovieCast::create([
+                'movie_id' => $movie->id,
+                'person_id' => $person->id,
+                'role' => 'actor',
+            ]);
+        }
+
+        foreach($request->categories as $category)
+        {
+            $fCategory = Category::firstOrCreate([
+                'name' => $category,
+            ]);  
+
+            MovieCategory::create([
+                'movie_id' => $movie->id,
+                'category_id' => $fCategory->id,
+            ]);
+        }
+
+        foreach($request->groups as $group)
+        {
+            GroupMovie::create([
+                'movie_id' => $movie->id,
+                'group_id' => $group,
+            ]);
+        }
+
+        return redirect(route('movieShow', ['id' => $movie->id]));
     }
 
     /**

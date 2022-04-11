@@ -251,7 +251,7 @@
                                       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         Dodaj grupę
                                       </button>
-                                    
+                                      <a class="btn btn-primary" href="{{ route('createMovie') }}">Dodaj film</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

@@ -31,5 +31,6 @@ Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movi
 Route::get('/film/edycja/{id}', [MovieController::class, 'edit'])->name('editMovie');
 Route::post('/film/update', [MovieController::class, 'update'])->name('updateMovie');
 Route::get('/film/usun/{id}', [MovieController::class, 'destroy'])->name('deleteMovie');
-
+Route::get('/film/nowy', [MovieController::class, 'create'])->name('createMovie');
+Route::post('/film/dodawanie/niestandardowy', [MovieController::class, 'storeCustomMovie'])->name('storeCustomMovie');
 Auth::routes();
