@@ -30,6 +30,6 @@ Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovi
 Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
 Route::get('/film/edycja/{id}', [MovieController::class, 'edit'])->name('editMovie');
 Route::post('/film/update', [MovieController::class, 'update'])->name('updateMovie');
-
+Route::get('/film/usun/{id}', [MovieController::class, 'destroy'])->name('deleteMovie');
 
 Auth::routes();
