@@ -271,7 +271,7 @@
                 </a>
               </li>
               <li>
-                <a href="{{ route('scrapMovies', ['name' => 'obecność']) }}" class="nav-link py-3" title="Wyszukaj" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('viewScrapMovies') }}" class="nav-link py-3" title="Wyszukaj" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="28" height="28" role="img" aria-label="Wyszukaj"><use xlink:href="#search-video"/></svg>
                 </a>
               </li>
@@ -302,7 +302,7 @@
                 </a>
               </li>
               <li style="margin:5px 0 5px 0;">
-                <a href="{{ route('scrapMovies', ['name' => 'obecność']) }}" class="nav-link text-white nav-left-flex">
+                <a href="{{ route('viewScrapMovies') }}" class="nav-link text-white nav-left-flex">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#search-video"/></svg>
                    <span style="margin-top:3px;">Wyszukaj</span>
                 </a>

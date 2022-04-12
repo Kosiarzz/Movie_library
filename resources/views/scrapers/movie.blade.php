@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="row pt-5 pb-4">
             <div class="d-flex justify-content-center">
-              <form method="GET" class="flex-row search-movie">
+              <form method="GET" action="{{ route('scrapMovies') }}" class="flex-row search-movie">
                   <input type="text" name="name" class="inputSearchMovie" placeholder="Nazwa filmu"/>
                   <Button type="submit" class="movieSearchButton" value="Szukaj">Szukaj</Button>
               </form>
@@ -13,7 +13,8 @@
         </div>
 
         <div class="row p-0 m-0 mt-4">
-            @foreach ( $movies as $key => $movie)
+          @if(isset($movies))
+            @forelse ( $movies as $key => $movie)
               
               <div class="movieBox">
                 <div class="movieImage">
@@ -60,8 +61,10 @@
                   <button class="button-sq groups" ><svg class="bi me-2" width="26" height="26"><use xlink:href="#will-view"/></svg></button>
                 </div>
               </div>
-                              
-            @endforeach
+            @empty
+              <p>Brak wyników wyszukiwania</p>              
+            @endforelse
+          @endif
         </div>
     </div>
 </div>

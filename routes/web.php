@@ -19,7 +19,8 @@ Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
 
-Route::get('/filmy/{name}', [ScraperController::class, 'getMovies'])->name('scrapMovies');
+Route::get('/filmy', [ScraperController::class, 'index'])->name('viewScrapMovies');
+Route::get('/filmy/wyszukiwanie', [ScraperController::class, 'getMovies'])->name('scrapMovies');
 
 Route::post('/grupa/dodawanie', [GroupController::class, 'store'])->name('addGroup');
 Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('groupShow');
