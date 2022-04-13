@@ -61,4 +61,14 @@ class HomeController extends Controller
             'groups' => $groups
         ]);
     }
+
+    /**
+     * Show the filters
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function filtersView()
+    {
+        return view('main.filters');
+    }
 }

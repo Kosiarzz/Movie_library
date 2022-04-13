@@ -18,6 +18,7 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
+Route::get('/filtry', [HomeController::class, 'filtersView'])->name('filters');
 
 Route::get('/filmy', [ScraperController::class, 'index'])->name('viewScrapMovies');
 Route::get('/filmy/wyszukiwanie', [ScraperController::class, 'getMovies'])->name('scrapMovies');

@@ -281,7 +281,7 @@
                 </a>
               </li>
               <li>
-                <a href="{{ route('library') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('filters') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="28" height="28" role="img" aria-label="Obejrzane"><use xlink:href="#watched"/></svg>
                 </a>
               </li>
