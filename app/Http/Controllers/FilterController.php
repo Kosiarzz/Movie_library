@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{Movie, Genre, Group};
+use App\Models\{Movie, Genre, Group, Person};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,7 +10,7 @@ class FilterController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function genreFilter($id)
     {
@@ -27,4 +27,47 @@ class FilterController extends Controller
         ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return View
+     */
+    public function filters(Request $request)
+    {
+        $genres = Genre::orderBy('name', 'ASC')->get();
+
+        $query = Movie::query();
+        $query = $query->with(['genre']);
+
+        if(!is_null($request->title))
+        {
+            $query = $query->where('title', 'LIKE', '%'.$request->title.'%');
+        }
+
+        if(!is_null($request->genre))
+        {
+            $query = $query->where('genre_id', $request->genre);
+        }
+
+        if(!is_null($request->year))
+        {
+            $query = $query->where('year', $request->year);
+        }
+
+        if(!is_null($request->watched))
+        {
+            $query = $query->where('watched', ($request->watched == "yes") ? true : false);
+        }
+
+        if(!is_null($request->sort))
+        {
+            $query = $query->orderBy($request->sort, 'DESC');
+        }
+
+        return view('main.filters', [
+            'genres' => $genres,
+            'movies' => $query->paginate(100),
+            'oldValues' => $request,
+        ]);
+    }
 }

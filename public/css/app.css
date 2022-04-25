@@ -11655,6 +11655,11 @@ ul.ks-cboxtags li input[type=checkbox]:focus + label {
   border: 2px solid #e9a1ff;
 }
 
+.form-label {
+  color: #fff;
+  font-size: 19px;
+}
+
 /*!
  * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)

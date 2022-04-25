@@ -18,7 +18,8 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
-Route::get('/filtry', [HomeController::class, 'filtersView'])->name('filters');
+Route::get('/filtry', [HomeController::class, 'filtersView'])->name('filtersView');
+
 
 Route::get('/filmy', [ScraperController::class, 'index'])->name('viewScrapMovies');
 Route::get('/filmy/wyszukiwanie', [ScraperController::class, 'getMovies'])->name('scrapMovies');
@@ -37,5 +38,6 @@ Route::get('/film/nowy', [MovieController::class, 'create'])->name('createMovie'
 Route::post('/film/dodawanie/niestandardowy', [MovieController::class, 'storeCustomMovie'])->name('storeCustomMovie');
 
 Route::get('/home/{id}', [FilterController::class, 'genreFilter'])->name('genreFilter');
+Route::get('/filtryds', [FilterController::class, 'filters'])->name('filters');
 
 Auth::routes();

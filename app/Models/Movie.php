@@ -44,4 +44,9 @@ class Movie extends Model
         return $this->hasMany(MovieCast::class);
     }
 
+    public function movieCategory()
+    {
+        return $this->hasMany(MovieCategory::class);
+    }
+
 }
