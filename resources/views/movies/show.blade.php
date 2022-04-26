@@ -3,8 +3,10 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-center">
-      <a href="{{ route('editMovie', ['id' => $movie[0]->id]) }}">Edycja</a>
-      <a href="{{ route('deleteMovie', ['id' => $movie[0]->id]) }}">Usuń</a>
+      <div class="buttons mb-3">
+        <a class="btn btn-primary" href="{{ route('editMovie', ['id' => $movie[0]->id]) }}">Edycja</a>
+        <a class="btn btn-danger" href="{{ route('deleteMovie', ['id' => $movie[0]->id]) }}">Usuń</a>
+      </div>
       <div class="movieBox">
         <div class="movieImage">
           <img src="{{ $movie[0]->img }}" alt="Zdjęcie" />
@@ -24,7 +26,7 @@
               <svg class="bi" width="16" height="16" role="img" aria-label="Wyszukaj"><use xlink:href="#calendarr"/></svg> {{ $movie[0]->year }}
             </div> 
             <div class="movieTime">
-              <svg class="bi" width="16" height="16" role="img" aria-label="Wyszukaj"><use xlink:href="#timeee"/></svg>  {{ $movie[0]->time }} 
+              <svg class="bi" width="16" height="16" role="img" aria-label="Wyszukaj"><use xlink:href="#timeee"/></svg> &nbsp; {{ $movie[0]->time }} 
             </div> 
             <div class="movieRate"> 
               <svg class="bi" width="20" height="20" role="img" aria-label="Biblioteka"><use xlink:href="#star"/></svg>  {{ $movie[0]->rate }}

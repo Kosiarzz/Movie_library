@@ -1,116 +1,136 @@
 
 .search-movie{
   width:600px;
+  display:flex;
+  flex-direction: row;
 }
 
 .inputSearchMovie{
-    width:500px;
-    font-size:23px;
-    border:1px solid #313131;
-    padding-left:10px;
-    background-color: #121212;
-    color:#727272;
+  width:500px;
+  font-size:23px;
+  border:1px solid #313131;
+  padding-left:10px;
+  background-color: #121212;
+  color:#727272;
+  padding-right:10px;
+  height:40px;
+}
+
+.inputSearchMovie:focus{
+  outline: none;
+  color:#fff;
 }
 
 .movieSearchButton{
-    height:40px;
-    width:90px;
-    background-color: #313131;
-    color:#fff;
-    font-size:18px;
-    border:none;
-    padding:0;
-    margin:0;
-    margin-left:-4px;
+  height:40px;
+  width:90px;
+  background-color: #313131;
+  color:#fff;
+  font-size:18px;
+  border:none;
+  padding:0;
+  margin:0;
+  margin-left:-4px;
 }
 
 .movieSearchButton:hover{
-    cursor: pointer;
-    background-color: #808080;
+  cursor: pointer;
+  background-color: #808080;
 }
 
 .movieBox{
-    background-color: #212121;
-    color:#fff;
-    height: 260px;
-    width:1400px;
-    margin-bottom: 15px;
-    padding: 0 !important;
-    display:flex;
-    flex-direction: row;
+  background-color: #212121;
+  color:#fff;
+  height: 260px;
+  width:1400px;
+  margin-bottom: 25px;
+  padding: 0 !important;
+  display:flex;
+  flex-direction: row;
+}
+
+.movieBox:last-child{
+  margin-bottom:100px;
 }
 
 .movieImage{
-    width: 170px !important;
-    height: 260px !important;
+  width: 170px !important;
+  height: 260px !important;
 }
 
 .movieImage img{
-    width: 170px !important;
-    height: 260px !important;
+  width: 170px !important;
+  height: 260px !important;
 }
 
 .movieInfo{
-    display:flex;
-    flex-direction: column;
-    padding:5px 10px;
-    height: 100%;
-    width:1000px;
+  display:flex;
+  flex-direction: column;
+  padding:5px 10px;
+  height: 100%;
+  width:1000px;
 }
 
 .movieTitle{
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .movieOriginalTitle{
-    font-size:11px;
-    margin-top:-7px;
+  font-size:10px;
+  margin-top:-7px;
 }
 
 .movieGenres{
-    font-size:18px;
+  font-size:18px;
 }
 
 .movieStats{
-    display:flex;
-    flex-direction: row;
-    padding:5px 0;
+  display:flex;
+  flex-direction: row;
+  padding:5px 0;
 }
 
 .movieYear{
-    font-size:13px;
+  font-size:13px;
 }
 
 .movieTime{
   display:flex;
   flex-direction: row;
-    font-size:13px;
-    padding:0 10px;
+  font-size:13px;
+  padding:0 10px;
 }
 
 .movieRate{
   display:flex;
   flex-direction: row;
-    font-size:13px;
+  font-size:13px;
 }
 
 .movieDescription{
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .movieBottom{
-    width:100%;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
+  width:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.movieDirectors{
-
+.no-movies{
+  font-size:20px;
+  color:#fff;
+  text-align: center;
 }
 
-.movieActors{
-    
+.no-movies-library{
+  height:350px;
+  font-size:20px;
+  color:#fff;
+  text-align: center;
+  width:100%;
+  padding-top:150px;
 }
 
 .buttons-right{
@@ -126,7 +146,7 @@
   height: 25px;
   margin-right: 10px;
   background: transparent;
-  border:1px solid #808080;
+  border:0;
   padding:0;
 }
 
@@ -140,6 +160,27 @@
     justify-content:flex-end;
 }
 
+//Library
+.library-title{
+  width:1360px;
+  padding-bottom:15px;
+}
+
+.library-title-left{
+  font-size:20px; 
+  color:#fff;
+}
+
+.library-title-right{
+  font-size:20px; 
+  color:#fff; 
+  text-decoration:none;
+}
+
+.library-movie-contener{
+  width:1360px; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
 body {
     margin:0;
@@ -246,6 +287,39 @@ body {
     flex-direction: row;
   }
 
+  .top-category-contener{
+    width:100%; 
+    height:50px; 
+    display:flex; 
+    flex-direction:row; 
+    border-bottom:solid 1px #d2d2d2; 
+    border-top:solid 1px #d2d2d2; 
+    background:#202020; 
+    padding:8px 20px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .top-category-contener {
+    scrollbar-width: auto;
+    scrollbar-color: #cccccc #cccccc;
+  }
+
+  .top-category-contener::-webkit-scrollbar {
+    width: 9px;
+    height: 6px;
+  }
+
+  .top-category-contener::-webkit-scrollbar-track {
+    background: #212121;
+  }
+
+  .top-category-contener::-webkit-scrollbar-thumb {
+    background-color: #cccccc;
+    border-radius: 8px;
+    border: 1px solid #000000;
+  }
+
   .top-category{
     padding:0px 20px; 
     background:rgba(255, 255, 255, 0.1); 
@@ -256,12 +330,15 @@ body {
     margin-right:15px; 
     cursor:pointer; 
     color:#fff; 
-    font-size:17px;
+    font-size:15px;
     font-weight: 400;
+    text-decoration:none;
+    white-space: nowrap;
   }
 
   .top-category:hover{
     background-color: #4d4d4d;
+    color:#fff;
   }
 
   .top-category.active{
@@ -269,29 +346,88 @@ body {
     background-color:#fff;
   }
 
+  //Movies box
+  .movies-contener{
+    min-width:1800px; 
+    min-height:500px; 
+    margin-left:25px; 
+    margin-top:35px; 
+    display:flex; 
+    flex-wrap: wrap; 
+    border-radius:5px;
+  }
+
   .movie-card{
-    margin:10px 20px 0 0;
-  }
-
-  .movie-card:first-of-type {
-      margin-left: 0;
-  }
-
-  .movie-card:last-of-type {
-      margin-right: 0;
+    margin:10px 22px 40px 22px;
+    width:210px; 
+    display:flex; 
+    flex-direction:column; 
+    cursor:pointer; 
+    text-decoration:none;
   }
 
   .movie-card:hover{
     background-color: rgba(77, 77, 77, 0.1);
   }
 
-  .dropdown-item:hover{
-    background-color: #4d4d4d!important;
+  .movie-image{
+    height:300px; 
+    width:100%;
+  }
+
+  .movie-image img{
+    height:300px; 
+    width:210px; 
+    position:absolute; 
+    z-index:-10; 
+    border-radius:5px 5px 0 0;
+  }
+
+  .movie-info{
+    width:100%; 
+    display:flex; 
+    justify-content:space-between; 
+    padding:5px; 
+    color:#fff;
+  }
+
+  .movie-time, .movie-rate{
+    background:rgb(22,22,22,0.8); 
+    padding:3px;
+  }
+
+  .watched{
+    margin-top:245px; 
+    float:right; 
+    margin-right:5px;
+  }
+
+  .movie-info{
+    width:100%; 
+    display:flex; 
+    justify-content:space-between; 
+    padding:3px 3px 0 3px; 
+    color:#fff; 
+    font-size:12px;
   }
 
   .movie-title{
     font-weight: 600;
+    font-size:16px; 
+    padding:0 0 0 0; 
+    text-align:center; 
+    color:#f7f5f4;
   }
+
+
+
+
+
+  .dropdown-item:hover{
+    background-color: #4d4d4d!important;
+  }
+
+
 
 
   ul.ks-cboxtags {

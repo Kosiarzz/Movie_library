@@ -201,66 +201,90 @@
       <path d="M24.0607 10L24.024 38" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M10 24L38 24" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+    <symbol id="plus-scrap" viewBox="0 0 20 20">
+      <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+    </symbol>
+    <symbol id="watch-later-scrap" viewBox="0 0 100 100">
+      <path d="M41.5,0C18.617,0,0.001,18.617,0.001,41.5c0,22.884,18.616,41.501,41.499,41.501C64.383,83.001,83,64.384,83,41.5
+      C83,18.617,64.382,0,41.5,0z M41.5,77.001C21.926,77.001,6,61.075,6,41.5S21.925,6,41.5,6C61.075,6,77,21.925,77,41.5
+      S61.075,77.001,41.5,77.001z"/>
+      <path d="M53.508,45.32c-0.016,0-0.03,0-0.046,0L44.5,45.454V22c0-1.657-1.343-3-3-3s-3,1.343-3,3v26.5
+        c0,0.006,0.002,0.012,0.002,0.018c0,0.01-0.002,0.019-0.002,0.027c0.002,0.122,0.025,0.237,0.041,0.354
+        c0.01,0.073,0.011,0.148,0.025,0.22c0.027,0.129,0.072,0.249,0.115,0.37c0.022,0.063,0.036,0.129,0.062,0.189
+        c0.052,0.123,0.122,0.235,0.189,0.35c0.031,0.051,0.054,0.107,0.087,0.157c0.076,0.111,0.167,0.21,0.257,0.311
+        c0.038,0.042,0.069,0.09,0.109,0.131c0.097,0.096,0.206,0.177,0.315,0.26c0.044,0.033,0.083,0.073,0.128,0.104
+        c0.118,0.08,0.247,0.143,0.376,0.205c0.045,0.021,0.085,0.051,0.131,0.07c0.15,0.063,0.31,0.107,0.472,0.146
+        c0.03,0.007,0.058,0.021,0.089,0.027c0.194,0.039,0.395,0.061,0.601,0.061c0.015,0,0.031,0,0.046,0l12.008-0.18
+        c1.656-0.025,2.979-1.389,2.955-3.045C56.483,46.634,55.144,45.32,53.508,45.32z"/>
+    </symbol>
+    <symbol id="group-scrap" viewBox="0 0 36 36">
+      <path class="clr-i-outline clr-i-outline-path-1" d="M31,34H13a1,1,0,0,1-1-1V11a1,1,0,0,1,1-1H31a1,1,0,0,1,1,1V33A1,1,0,0,1,31,34ZM14,32H30V12H14Z"></path><rect class="clr-i-outline clr-i-outline-path-2" x="16" y="16" width="12" height="2"></rect><rect class="clr-i-outline clr-i-outline-path-3" x="16" y="20" width="12" height="2"></rect><rect class="clr-i-outline clr-i-outline-path-4" x="16" y="24" width="12" height="2"></rect><path class="clr-i-outline clr-i-outline-path-5" d="M6,24V4H24V3a1,1,0,0,0-1-1H5A1,1,0,0,0,4,3V25a1,1,0,0,0,1,1H6Z"></path><path class="clr-i-outline clr-i-outline-path-6" d="M10,28V8H28V7a1,1,0,0,0-1-1H9A1,1,0,0,0,8,7V29a1,1,0,0,0,1,1h1Z"></path>
+    </symbol>
+    <symbol id="history" viewBox="0 0 18 18">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M13.507 12.324a7 7 0 0 0 .065-8.56A7 7 0 0 0 2 4.393V2H1v3.5l.5.5H5V5H2.811a6.008 6.008 0 1 1-.135 5.77l-.887.462a7 7 0 0 0 11.718 1.092zm-3.361-.97l.708-.707L8 7.792V4H7v4l.146.354 3 3z"/>
+    </symbol>
+    <symbol id="filters" viewBox="0 0 24 24">
+      <path d="M9 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM6.17 5a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-7.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 0 1 0-2h1.17zM15 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2.83 0a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-1.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 1 1 0-2h7.17zM9 17a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2.83 0a3.001 3.001 0 0 1 5.66 0H19a1 1 0 1 1 0 2h-7.17a3.001 3.001 0 0 1-5.66 0H5a1 1 0 1 1 0-2h1.17z" fill="#fff"/>
+    </symbol>
   </svg>
 
 <body>
     <div id="app">
-        
         <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top" style="background:rgba(33, 33, 33, 0.99);">
-                <button id="hamburger-button" class="hamburger" style="border:0; background:transparent; margin-left:15px;"><svg class="bi" width="28" height="28" role="img" aria-label="Products"><use xlink:href="#hamburger"/></svg></button>
-                <a class="navbar-brand text-white" style="margin-left:30px;" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+          <button id="hamburger-button" class="hamburger" style="border:0; background:transparent; margin-left:15px;"><svg class="bi" width="28" height="28" role="img" aria-label="Products"><use xlink:href="#hamburger"/></svg></button>
+          <a class="navbar-brand text-white" style="margin-left:30px;" href="{{ url('/') }}">
+              {{ config('app.name', 'Laravel') }}
+          </a>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <!-- Left Side Of Navbar -->
+              <ul class="navbar-nav me-auto">
 
-                    </ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+              </ul>
+              <!-- Right Side Of Navbar -->
+              <ul class="navbar-nav ms-auto">
+                  <!-- Authentication Links -->
+                  @guest
+                      @if (Route::has('login'))
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                          </li>
+                      @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown" style="margin-right:35px;">
-                                <a href="#" class="d-flex align-items-center text-white text-decoration-none avatar" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="width:40px; height:40px; border-radius:50%;">
-                                    @if(true)
-                                        <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:42px; background:brown; font-size:20px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
-                                    @else
-                                        <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
-                                    @endif
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background:rgba(33, 33, 33, 0.99);">
-                                    <a class="dropdown-item" style="color:#fff!important;" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Wyloguj
-                                    </a>
-                                      <!-- Button trigger add group modal -->
-                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Dodaj grupę
-                                      </button>
-                                      <a class="btn btn-primary" href="{{ route('createMovie') }}">Dodaj film</a>
+                      @if (Route::has('register'))
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                          </li>
+                      @endif
+                  @else
+                      <li class="nav-item dropdown" style="margin-right:35px;">
+                          <a href="#" class="d-flex align-items-center text-white text-decoration-none avatar" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="width:40px; height:40px; border-radius:50%;">
+                              @if(true)
+                                  <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:42px; background:brown; font-size:20px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                              @else
+                                  <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
+                              @endif
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background:rgba(33, 33, 33, 0.99);">
+                              <a class="dropdown-item" style="color:#fff!important;" href="{{ route('logout') }}"
+                                  onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                  Wyloguj
+                              </a>
+                                <!-- Button trigger add group modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  Dodaj grupę
+                                </button>
+                                <a class="btn btn-primary" href="{{ route('createMovie') }}">Dodaj film</a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                  @csrf
+                              </form>
+                          </div>
+                      </li>
+                  @endguest
+              </ul>
+          </div>
         </nav>
 
         <div id="small-left-menu" class="d-flex flex-column flex-shrink-0" style="width: 4.5rem; padding-top:4rem; height:100vh; position:fixed; background:#212121;">
@@ -281,8 +305,8 @@
                 </a>
               </li>
               <li>
-                <a href="{{ route('filters') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
-                    <svg class="bi" width="28" height="28" role="img" aria-label="Obejrzane"><use xlink:href="#watched"/></svg>
+                <a href="{{ route('filters') }}" class="nav-link py-3" title="FIltry" data-bs-toggle="tooltip" data-bs-placement="right">
+                    <svg class="bi" width="32" height="32" role="img" aria-label="Filtry"><use xlink:href="#filters"/></svg>
                 </a>
               </li>
               

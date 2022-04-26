@@ -94,7 +94,6 @@
           <ul class="ks-cboxtags">
             @foreach ($userGroups as $uGroup)
               @continue($uGroup->name == "Wszystkie filmy")
-
               @forelse($groups as $group)
                 <li><input type="checkbox" name="groups[]" id="{{ $uGroup->name }}" value="{{ $uGroup->id }}" @if($group->group_id == $uGroup->id) checked @endif><label for="{{ $uGroup->name }}">{{ $uGroup->name }}</label></li>
               @empty
