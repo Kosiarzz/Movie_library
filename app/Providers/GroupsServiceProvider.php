@@ -26,7 +26,7 @@ class GroupsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('*', function ($view) {
+        View::composer('layouts.app', function ($view) {
             $view->with('userGroups', Group::where('user_id', request()->user()->id)->get());
         });
     }

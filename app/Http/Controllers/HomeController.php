@@ -70,6 +70,7 @@ class HomeController extends Controller
     public function filtersView()
     {
         $genres = Genre::orderBy('name', 'ASC')->get();
+        
         return view('main.filters', ['genres' => $genres]);
     }
 }
