@@ -300,16 +300,15 @@
                 </a>
               </li>
               <li>
-                <a href="{{ route('library') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
-                  <svg class="bi" width="28" height="28" role="img" aria-label="Biblioteka"><use xlink:href="#video"/></svg>
-                </a>
-              </li>
-              <li>
                 <a href="{{ route('filters') }}" class="nav-link py-3" title="FIltry" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="32" height="32" role="img" aria-label="Filtry"><use xlink:href="#filters"/></svg>
                 </a>
               </li>
-              
+              <li>
+                <a href="{{ route('library') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
+                  <svg class="bi" width="28" height="28" role="img" aria-label="Biblioteka"><use xlink:href="#video"/></svg>
+                </a>
+              </li>
             </ul>
             <div class="dropdown">
               <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
@@ -325,10 +324,16 @@
                    <span style="margin-top:3px;">Główna</span>
                 </a>
               </li>
-              <li style="margin:5px 0 5px 0;">
+              <li class="nav-item" style="margin:5px 0 0 0;">
                 <a href="{{ route('viewScrapMovies') }}" class="nav-link text-white nav-left-flex">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#search-video"/></svg>
                    <span style="margin-top:3px;">Wyszukaj</span>
+                </a>
+              </li>
+              <li style="margin:5px 0 5px 0;">
+                <a href="{{ route('filters') }}" class="nav-link text-white nav-left-flex">
+                  <svg class="bi me-2" width="26" height="26"><use xlink:href="#filters"/></svg>
+                   <span style="margin-top:3px;">Filtry</span>
                 </a>
               </li>
               <hr>
