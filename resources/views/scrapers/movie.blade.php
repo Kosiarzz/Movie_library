@@ -12,6 +12,10 @@
             </div>
         </div>
 
+        @foreach ($errors->all() as $error)
+            <li style="color:red;">{{ $error }}</li>
+        @endforeach
+
         <div class="row p-0 m-0 mt-4">
           @if(isset($movies))
             @forelse ( $movies as $key => $movie)
@@ -82,30 +86,37 @@
                   <label for="inputTitle">Tytuł filmu</label>
                   <input type="text" class="form-control" name="title" id="inputTitle" aria-describedby="tytuł filmu" placeholder="Tytuł filmu">
                 </div>
+                
                 <div class="form-group">
                   <label for="inputOriginalTitle">Oryginalny tytuł filmu</label>
                   <input type="text" class="form-control" name="original_title" id="inputOriginalTitle" aria-describedby="oryginalny tytuł filmu" placeholder="Oryginalny tytuł filmu">
                 </div>
+
                 <div class="form-group">
                   <label for="inputGenre">Gatunek filmu</label>
                   <input type="text" class="form-control" name="genre" id="inputGenre" aria-describedby="gatunek" placeholder="Gatunek">
                 </div>
+
                 <div class="form-group">
                   <label for="inputCountry">Kraj filmu</label>
                   <input type="text" class="form-control" name="country" id="inputCountry" aria-describedby="Kraj" placeholder="Kraj">
                 </div>
+
                 <div class="form-group">
                   <label for="inputDate">Data premiery</label>
                   <input type="text" class="form-control" name="year" id="inputDate" aria-describedby="data premiery" placeholder="Data premiery ">
                 </div>
+
                 <div class="form-group">
                   <label for="inputTime">Czas trwania</label>
                   <input type="text" class="form-control" name="time" id="inputTime" aria-describedby="Czas trwania" placeholder="Czas trwania">
                 </div>
+
                 <div class="form-group">
                   <label for="inputRate">Ocena filmu</label>
-                  <input type="text" class="form-control" name="rate" id="inputRate" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
+                  <input type="number" class="form-control" name="rate" id="inputRate" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
                 </div>
+
                 <div class="form-group">
                   <label for="textareaDescription">Opis filmu</label>
                   <textarea class="form-control" name="description" id="textareaDescription" rows="3"></textarea>
@@ -146,7 +157,6 @@
 
                   </ul>
                 </div>
-        
         
                 Grupy
                 <div class="groups">

@@ -29,7 +29,7 @@ Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('gro
 Route::get('/grupa/usuwanie/{id}', [GroupController::class, 'destroy'])->name('groupDestroy');
 Route::post('/grupa/update', [GroupController::class, 'update'])->name('groupUpdate');
 
-Route::post('/film/dodawanie', [MovieController::class, 'storeAjax'])->name('addMovie');
+Route::post('/film/dodawanie', [MovieController::class, 'storeAjaxMovie'])->name('addMovie');
 Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
 Route::get('/film/edycja/{id}', [MovieController::class, 'edit'])->name('editMovie');
 Route::post('/film/update', [MovieController::class, 'update'])->name('updateMovie');

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\{StoreCustomMovieRequest, StoreAjaxMovieRequest};
 
 use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie, MovieCategory, Category};
 use App\Extensions\Movies;
+
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 class MovieController extends Controller
 {
@@ -32,78 +35,89 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreCustomMovieRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCustomMovie(Request $request)
+    public function storeCustomMovie(StoreCustomMovieRequest $request)
     {
+        $dataMovie = $request->validated();
+
         $genre = Genre::firstOrCreate([
-            'name' => $request->genre,
+            'name' => $dataMovie['genre'],
         ]);
 
         $country = Country::firstOrCreate([
-            'name' => $request->country,
+            'name' => $dataMovie['country'],
         ]);
 
         $movie = Movie::create([
-            "title" =>  $request->title,
-            "original_title" =>  $request->original_title,
-            "year" =>  $request->year,
-            "time" =>  $request->time,
-            "rate" =>  $request->rate,
-            "description" =>  $request->description,
+            "title" =>  $dataMovie['title'],
+            "original_title" =>  $dataMovie['original_title'],
+            "year" =>  $dataMovie['year'],
+            "time" =>  $dataMovie['time'],
+            "rate" =>  $dataMovie['rate'],
+            "description" => $dataMovie['description'],
             "genre_id" => $genre->id,
             "country_id" => $country->id,
-            "watched" => $request->watched ? true : false,
+            "watched" => $dataMovie['watched'] ? true : false,
             "user_id" => $request->user()->id,
-            "img" => $request->img ?? 'none',
-            "votes" => $request->votes ?? 0,
+            "img" => $dataMovie['img'] ?? 'none',
+            "votes" => $dataMovie['votes'],
         ]);
 
-        foreach($request->directors as $director)
-        {
-            $person = Person::firstOrCreate([
-                'person' => $director,
-            ]);  
 
-            MovieCast::create([
-                'movie_id' => $movie->id,
-                'person_id' => $person->id,
-                'role' => 'director',
-            ]);
+        if(isset($dataMovie['directors'])){
+            foreach($dataMovie['directors'] as $director)
+            {
+                $person = Person::firstOrCreate([
+                    'person' => $director,
+                ]);  
+
+                MovieCast::create([
+                    'movie_id' => $movie->id,
+                    'person_id' => $person->id,
+                    'role' => 'director',
+                ]);
+            }
         }
 
-        foreach($request->actors as $actor)
-        {
-            $person = Person::firstOrCreate([
-                'person' => $actor,
-            ]);  
+        if(isset($dataMovie['actors'])){
+            foreach($dataMovie['actors'] as $actor)
+            {
+                $person = Person::firstOrCreate([
+                    'person' => $actor,
+                ]);  
 
-            MovieCast::create([
-                'movie_id' => $movie->id,
-                'person_id' => $person->id,
-                'role' => 'actor',
-            ]);
+                MovieCast::create([
+                    'movie_id' => $movie->id,
+                    'person_id' => $person->id,
+                    'role' => 'actor',
+                ]);
+            }
         }
 
-        foreach($request->categories as $category)
-        {
-            $fCategory = Category::firstOrCreate([
-                'name' => $category,
-            ]);  
+        if(isset($dataMovie['categories'])){
+            foreach($dataMovie['categories'] as $category)
+            {
+                $fCategory = Category::firstOrCreate([
+                    'name' => $category,
+                ]);  
 
-            MovieCategory::create([
-                'movie_id' => $movie->id,
-                'category_id' => $fCategory->id,
-            ]);
+                MovieCategory::create([
+                    'movie_id' => $movie->id,
+                    'category_id' => $fCategory->id,
+                ]);
+            }
         }
 
-        foreach($request->groups as $group)
-        {
-            GroupMovie::create([
-                'movie_id' => $movie->id,
-                'group_id' => $group,
-            ]);
+        if(isset($dataMovie['groups'])){
+            foreach($dataMovie['groups'] as $group)
+            {
+                GroupMovie::create([
+                    'movie_id' => $movie->id,
+                    'group_id' => $group,
+                ]);
+            }
         }
         
         if ($request->routeIs('storeScrapCustomMovie')) {
@@ -120,31 +134,32 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeAjax(Request $request)
+    public function storeAjaxMovie(Request $request)
     {  
         //Decode json data from sraped movie
-        $data = json_decode($request->data, TRUE);
-
+        $dataMovie = json_decode($request->data, TRUE);
+        
         //Add a movie genre
         $genre = Genre::firstOrCreate([
-            'name' => $data['genres'],
+            'name' => $dataMovie['genres'],
         ]);
 
-        //Add the country of production movie
+        //Add the country of dataMovieion movie
         $country = Country::firstOrCreate([
-            'name' => $data['country'],
+            'name' => $dataMovie['country'],
         ]);
-
+       
+        
         //Save movie information
         $movie = new Movie;
-        $movie->title = $data['title'];
-        $movie->description = $data['description'];
-        $movie->year = $data['year'];
-        $movie->original_title = $data['original_title'];
-        $movie->time = $data['time'];
-        $movie->rate = $data['rate'];
-        $movie->votes = $data['votes'];
-        $movie->img = $data['img'];
+        $movie->title = $dataMovie['title'];
+        $movie->description = $dataMovie['description'];
+        $movie->year = $dataMovie['year'];
+        $movie->original_title = $dataMovie['original_title'];
+        $movie->time = $dataMovie['time'];
+        $movie->rate = $dataMovie['rate'];
+        $movie->votes = $dataMovie['votes'];
+        $movie->img = $dataMovie['img'];
         $movie->watched = false;
         $movie->genre_id = $genre->id;
         $movie->country_id = $country->id;
@@ -153,7 +168,7 @@ class MovieController extends Controller
 
         //Separation of people (actors)
         $movies = new Movies();
-        $castExplode = $movies->getCastWithoutSpaces($data['cast']);
+        $castExplode = $movies->getCastWithoutSpaces($dataMovie['cast']);
 
         for($i = 0; $i < count($castExplode); $i++)
         {
@@ -171,7 +186,7 @@ class MovieController extends Controller
         }
 
         //Separation of people (directors)
-        $directorsExplode = $movies->getCastWithoutSpaces($data['directors']);
+        $directorsExplode = $movies->getCastWithoutSpaces($dataMovie['directors']);
 
         for($i = 0; $i < count($directorsExplode); $i+=2)
         {
