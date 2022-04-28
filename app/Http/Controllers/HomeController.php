@@ -26,15 +26,15 @@ class HomeController extends Controller
     public function homeView()
     {
         //Download movies with the main category
-        $movies = Movie::with(['genre'])->where('user_id', Auth::id())->get();
+        $movies = Movie::with(['genre'])->where('user_id', Auth::id())->orderByDesc('id')->get();
 
-        //Download all main categories
+        //Download all genres
         $genres = Genre::all();
 
         return view('main.home', [
             'movies' => $movies,
             'genres' => $genres,
-            'selectGenre' => 0,
+            'selectGenre' => 0, //default select all genres
         ]);
     }
 

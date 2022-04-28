@@ -26,7 +26,7 @@ class GroupsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['layouts.app', 'main.filters', 'movies.create', 'movies.edit'], function ($view) {
+        View::composer(['layouts.app', 'main.filters', 'movies.create', 'movies.edit', 'scrapers.movie'], function ($view) {
             $view->with('userGroups', Group::where('user_id', request()->user()->id)->get());
         });
     }

@@ -29,13 +29,14 @@ Route::get('/grupa/szczegoly/{id}', [GroupController::class, 'show'])->name('gro
 Route::get('/grupa/usuwanie/{id}', [GroupController::class, 'destroy'])->name('groupDestroy');
 Route::post('/grupa/update', [GroupController::class, 'update'])->name('groupUpdate');
 
-Route::post('/film/dodawanie', [MovieController::class, 'store'])->name('addMovie');
+Route::post('/film/dodawanie', [MovieController::class, 'storeAjax'])->name('addMovie');
 Route::get('/film/szczegoly/{id}', [MovieController::class, 'show'])->name('movieShow');
 Route::get('/film/edycja/{id}', [MovieController::class, 'edit'])->name('editMovie');
 Route::post('/film/update', [MovieController::class, 'update'])->name('updateMovie');
 Route::get('/film/usun/{id}', [MovieController::class, 'destroy'])->name('deleteMovie');
 Route::get('/film/nowy', [MovieController::class, 'create'])->name('createMovie');
 Route::post('/film/dodawanie/niestandardowy', [MovieController::class, 'storeCustomMovie'])->name('storeCustomMovie');
+Route::post('/film/dodawanie/scrap/niestandardowy', [MovieController::class, 'storeCustomMovie'])->name('storeScrapCustomMovie');
 
 Route::get('/home/{id}', [FilterController::class, 'genreFilter'])->name('genreFilter');
 Route::get('/filtryds', [FilterController::class, 'filters'])->name('filters');

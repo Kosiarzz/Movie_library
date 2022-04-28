@@ -5,16 +5,55 @@ $(document).ready(function(){
           });
     });
 
-    $(".addToWatch").click(function(e){
-        console.log("WATCH")
+
+    $(".editMovie").click(function(e){
+
+        var data = JSON.parse($(this).attr("data-array"));
+        
+        $("#inputTitle").val(data.title);
+        $("#inputOriginalTitle").val(data.original_title);
+        $("#inputGenre").val(data.genres);
+        $("#inputCountry").val(data.country);
+        $("#inputDate").val(data.year);
+        $("#inputTime").val(data.time);
+        $("#inputRate").val(data.rate);
+        $("#textareaDescription").val(data.description);
+        $("#inputVotes").val(data.votes);
+        $("#inputImg").val(data.img);
+
+        //Clear checkbox before add
+        $('#listDirectors').empty();
+        $("#listActors").empty();
+        $("#listCategories").empty();
+
+        //Data separation
+        directors = (data.directors).replace(/(?<=[a-z])(?=[A-Z])/g, '|').split("|");
+        actors = (data.cast).replace(/(?<=[a-z])(?=[A-Z])/g, '|').split("|");
+
+        //Add directors
+        directors.forEach(createCheckboxDirectors);
+
+        function createCheckboxDirectors(item) {
+
+            director = '<li><input type="checkbox" name="directors[]" value="'+ item +'" id="d'+ item +'" checked><label for="d'+ item +'">'+ item +'</label></li>';
+            $('#listDirectors').append(director);
+        }
+
+        //Add actors
+        actors.forEach(createCheckboxActors);
+
+        function createCheckboxActors(item) {
+            
+            actor = '<li><input type="checkbox" name="actors[]" value="'+ item +'" id="d'+ item +'" checked><label for="d'+ item +'">'+ item +'</label></li>';
+            $("#listActors").append(actor);
+        }
     });
 
     $(".addMovie").click(function(e){
         
-        e.preventDefault();
         var data = $(this).attr("data-array");
         var type = $(this).attr("data-type")
-        console.log(data);
+       
         $.ajax({
             type:'POST',
             url:"/film/dodawanie",

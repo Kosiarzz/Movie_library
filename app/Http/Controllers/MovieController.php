@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie, MovieCategory, Category};
+use App\Extensions\Movies;
 
 class MovieController extends Controller
 {
@@ -44,7 +45,6 @@ class MovieController extends Controller
             'name' => $request->country,
         ]);
 
-
         $movie = Movie::create([
             "title" =>  $request->title,
             "original_title" =>  $request->original_title,
@@ -56,8 +56,8 @@ class MovieController extends Controller
             "country_id" => $country->id,
             "watched" => $request->watched ? true : false,
             "user_id" => $request->user()->id,
-            "img" => 'none',
-            "votes" => 'prop. delete',
+            "img" => $request->img ?? 'none',
+            "votes" => $request->votes ?? 0,
         ]);
 
         foreach($request->directors as $director)
@@ -105,6 +105,11 @@ class MovieController extends Controller
                 'group_id' => $group,
             ]);
         }
+        
+        if ($request->routeIs('storeScrapCustomMovie')) {
+
+            return redirect()->back();
+        }
 
         return redirect(route('movieShow', ['id' => $movie->id]));
     }
@@ -115,23 +120,8 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-            
-        $nameGroup = "Wszystkie filmy";
-
-        if($request->type == "addMovie")
-        {
-            $nameGroup = "Wszystkie filmy";
-        }
-        else if($request->type == "addWatch")
-        {
-            $nameGroup = "Do obejrzenia";
-        }
-        else
-        {
-            $nameGroup = "Wszystkie filmy";
-        }
+    public function storeAjax(Request $request)
+    {  
         //Decode json data from sraped movie
         $data = json_decode($request->data, TRUE);
 
@@ -158,18 +148,18 @@ class MovieController extends Controller
         $movie->watched = false;
         $movie->genre_id = $genre->id;
         $movie->country_id = $country->id;
-        $movie->user_id = 1;
+        $movie->user_id = $request->user()->id;
         $movie->save();
 
         //Separation of people (actors)
-        $cast = preg_replace('/([a-z])([A-Z])/', '$1 $2', $data['cast']);
-        $castExplode = explode(" ", $cast, 10);
+        $movies = new Movies();
+        $castExplode = $movies->getCastWithoutSpaces($data['cast']);
 
-        for($i = 0; $i < count($castExplode); $i+=2)
+        for($i = 0; $i < count($castExplode); $i++)
         {
             //Save separated people
             $person = Person::firstOrCreate([
-                'person' => $castExplode[$i].' '.$castExplode[$i+1],
+                'person' => $castExplode[$i],
             ]);
 
             //Assing a cast to a movie
@@ -181,14 +171,13 @@ class MovieController extends Controller
         }
 
         //Separation of people (directors)
-        $directors = preg_replace('/([a-z])([A-Z])/', '$1 $2', $data['directors']);
-        $directorsExplode = explode(" ", $directors, 10);
+        $directorsExplode = $movies->getCastWithoutSpaces($data['directors']);
 
         for($i = 0; $i < count($directorsExplode); $i+=2)
         {
             //Save separated people
             $person = Person::firstOrCreate([
-                'person' => $directorsExplode[$i].' '.$directorsExplode[$i+1],
+                'person' => $directorsExplode[$i],
             ]);
 
             //Assing a cast to a movie
@@ -199,9 +188,24 @@ class MovieController extends Controller
             $movieCast->save();
         }
 
-        //Get the id of the default group
+        if($request->type == "addWatch")
+        {
+            //Get the id of the default group 'Do obejrzenia'
+            $groupWatch = Group::firstOrCreate([
+                'name' => 'Do obejrzenia',
+                'type' => 'default',
+                'user_id' => $request->user()->id,
+            ]);
+
+            GroupMovie::create([
+                'movie_id' => $movie->id,
+                'group_id' => $groupWatch->id,
+            ]);
+        }
+
+        //Get the id of the default group 'Wszystkie filmy'
         $group = Group::firstOrCreate([
-            'name' => $nameGroup,
+            'name' => 'Wszystkie filmy',
             'type' => 'default',
             'user_id' => $request->user()->id,
         ]);
