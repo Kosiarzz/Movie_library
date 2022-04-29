@@ -265,17 +265,21 @@
                                   <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
                               @endif
                           </a>
+                          
                           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background:rgba(33, 33, 33, 0.99);">
-                              <a class="dropdown-item" style="color:#fff!important;" href="{{ route('logout') }}"
+                            <a class="dropdown-item text-white" href="{{ route('createMovie') }}">Dodaj film</a>
+                           <!-- Button trigger add group modal -->
+                           <button type="button" class="dropdown-item text-white" style="border-bottom: 1px solid rgba(255, 255, 255, 0.79)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Dodaj grupę
+                          </button>
+                          
+                              <a class="dropdown-item text-white" href="{{ route('logout') }}"
                                   onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
                                   Wyloguj
                               </a>
-                                <!-- Button trigger add group modal -->
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                  Dodaj grupę
-                                </button>
-                                <a class="btn btn-primary" href="{{ route('createMovie') }}">Dodaj film</a>
+                               
+                                
 
                               <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                   @csrf
@@ -290,22 +294,22 @@
         <div id="small-left-menu" class="d-flex flex-column flex-shrink-0" style="width: 4.5rem; padding-top:4rem; height:100vh; position:fixed; background:#212121;">
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
               <li>
-                <a href="{{ route('home') }}" class="nav-link py-3" aria-current="page" title="Główna" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('home') }}" class="nav-link py-3 {{  request()->routeIs('home') ? 'active' : '' }} {{  (request()->is('home/*')) ? 'active' : '' }}" aria-current="page" title="Główna" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="24" height="24" role="img" aria-label="Główna"><use xlink:href="#home"/></svg>
                 </a>
               </li>
               <li>
-                <a href="{{ route('viewScrapMovies') }}" class="nav-link py-3" title="Wyszukaj" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('viewScrapMovies') }}" class="nav-link py-3 {{  request()->routeIs('viewScrapMovies') ? 'active' : '' }}" title="Wyszukaj" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="28" height="28" role="img" aria-label="Wyszukaj"><use xlink:href="#search-video"/></svg>
                 </a>
               </li>
               <li>
-                <a href="{{ route('filters') }}" class="nav-link py-3" title="FIltry" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('filters') }}" class="nav-link py-3 {{  request()->routeIs('filters') ? 'active' : '' }}" title="FIltry" data-bs-toggle="tooltip" data-bs-placement="right">
                     <svg class="bi" width="32" height="32" role="img" aria-label="Filtry"><use xlink:href="#filters"/></svg>
                 </a>
               </li>
               <li>
-                <a href="{{ route('library') }}" class="nav-link py-3" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
+                <a href="{{ route('library') }}" class="nav-link py-3 {{  request()->routeIs('library') ? 'active' : '' }}" title="Biblioteka" data-bs-toggle="tooltip" data-bs-placement="right">
                   <svg class="bi" width="28" height="28" role="img" aria-label="Biblioteka"><use xlink:href="#video"/></svg>
                 </a>
               </li>
@@ -316,29 +320,33 @@
               </ul>
             </div>
         </div>
-        <div id="big-left-menu" class="d-flex flex-column flex-shrink-0 text-white" style="width: 220px; height:100vh; padding-top:4rem!important; position:fixed; background:rgba(33, 33, 33, 0.99); display:none!important;">
+        <div id="big-left-menu" class="flex-shrink-0 text-white" style="width: 220px; height:100vh; padding-top:4rem!important; position:fixed; background:rgba(33, 33, 33, 0.99); display:none!important;">
             <ul class="nav nav-pills flex-column mb-auto">
               <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link active nav-left-flex" aria-current="page">
+                <a href="{{ route('home') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('home') ? 'active' : '' }}" aria-current="page">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#home"/></svg>
                    <span style="margin-top:3px;">Główna</span>
                 </a>
               </li>
+              {{ (request()->is('admin/cities')) ? 'active' : '' }}
+              <li class="{{ (request()->is('admin/cities*')) ? 'active' : '' }}">  
+
+              
               <li class="nav-item" style="margin:5px 0 0 0;">
-                <a href="{{ route('viewScrapMovies') }}" class="nav-link text-white nav-left-flex">
+                <a href="{{ route('viewScrapMovies') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('viewScrapMovies') ? 'active' : '' }}">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#search-video"/></svg>
                    <span style="margin-top:3px;">Wyszukaj</span>
                 </a>
               </li>
               <li style="margin:5px 0 5px 0;">
-                <a href="{{ route('filters') }}" class="nav-link text-white nav-left-flex">
+                <a href="{{ route('filters') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('filters') ? 'active' : '' }}">
                   <svg class="bi me-2" width="26" height="26"><use xlink:href="#filters"/></svg>
                    <span style="margin-top:3px;">Filtry</span>
                 </a>
               </li>
               <hr>
               <li>
-                <a href="{{ route('library') }}" class="nav-link text-white nav-left-flex">
+                <a href="{{ route('library') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('library') ? 'active' : '' }}">
                   <svg class="bi me-2" width="28" height="28"><use xlink:href="#video"/></svg>
                    <span style="margin-top:3px;">Biblioteka</span>
                 </a>
@@ -347,7 +355,7 @@
                 @continue($uGroup->type == "user")
                 @continue($uGroup->name == "Do obejrzenia")
                 <li>
-                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex">
+                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
                     <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
                     <span style="margin-top:3px;">Historia</span>
                   </a>
@@ -357,7 +365,7 @@
                 @continue($uGroup->type == "user")
                 @continue($uGroup->name == "Wszystkie filmy")
                 <li>
-                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex">
+                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
                     <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
                     <span style="margin-top:3px;">Do obejrzenia</span>
                   </a>
@@ -366,7 +374,7 @@
               @foreach ($userGroups as $uGroup)
                 @continue($uGroup->type == "default")
                 <li>
-                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex">
+                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
                     <svg class="bi me-2" width="28" height="28"><use xlink:href="#video-group"/></svg>
                       <span style="margin-top:3px;">{{ $uGroup->name }} </span>
                   </a>
@@ -379,11 +387,11 @@
               </ul>
             </div>
           </div>
-
+        
           <!-- Add group modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-              <div class="modal-content">
+              <div class="modal-content" style="background: #212121; color:#fff;">
                 <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Nowa grupa</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -393,7 +401,7 @@
                   <div class="modal-body">
                     <div class="mb-3">
                       <label for="name-group" class="form-label">Nazwa grupy</label>
-                      <input type="text" name="name" class="form-control" id="name-group" placeholder="Filmy akcji">
+                      <input type="text" name="name" class="form-control" id="name-group" placeholder="Nazwa grupy">
                     </div>
                   </div>
                   <div class="modal-footer">
