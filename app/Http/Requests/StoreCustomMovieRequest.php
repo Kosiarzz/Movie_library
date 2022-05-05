@@ -17,6 +17,12 @@ class StoreCustomMovieRequest extends FormRequest
         return true;
     }
 
+    public function messages()
+    {
+        return [
+            'title.required' => 'Tytuł filmu jest wymagany!',
+        ];
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,6 +31,8 @@ class StoreCustomMovieRequest extends FormRequest
     public function rules()
     {
         return [
+            'imgLink' => 'nullable|string|max:1000',
+            'imgFile' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:1000',
             'title' => 'required|string|max:100',
             'year' => 'integer|min:0|max:9999',
             "original_title" => "string|max:100",
@@ -41,7 +49,6 @@ class StoreCustomMovieRequest extends FormRequest
             "categories.*" => 'string|max:100',
             "groups" => 'array',
             "votes" => "required|string|max:10",
-            "img" => "string",
             "watched" => Rule::in(['true']),
         ];
     }

@@ -40,6 +40,7 @@ class MovieController extends Controller
      */
     public function storeCustomMovie(StoreCustomMovieRequest $request)
     {
+        
         $dataMovie = $request->validated();
 
         $genre = Genre::firstOrCreate([
@@ -50,6 +51,24 @@ class MovieController extends Controller
             'name' => $dataMovie['country'],
         ]);
 
+        $img = '';
+        
+        if($request->hasFile('imgFile'))
+        {
+            //Image file
+            $img = $request->file('imgFile')->store('movies');
+        }
+        else if(!is_null($dataMovie['imgLink']))
+        {
+            //Image link
+            $img = $dataMovie['imgLink'];
+        }
+        else
+        {
+            //No image
+            $img = null;
+        }
+
         $movie = Movie::create([
             "title" =>  $dataMovie['title'],
             "original_title" =>  $dataMovie['original_title'],
@@ -59,9 +78,9 @@ class MovieController extends Controller
             "description" => $dataMovie['description'],
             "genre_id" => $genre->id,
             "country_id" => $country->id,
-            "watched" => $dataMovie['watched'] ? true : false,
+            "watched" => $dataMovie['watched'] ?? true,
             "user_id" => $request->user()->id,
-            "img" => $dataMovie['img'] ?? 'none',
+            "img" => $img,
             "votes" => $dataMovie['votes'],
         ]);
 
@@ -137,8 +156,13 @@ class MovieController extends Controller
     public function storeAjaxMovie(Request $request)
     {  
         //Decode json data from sraped movie
-        $dataMovie = json_decode($request->data, TRUE);
-        
+        $json_decode = json_decode($request->data, TRUE);
+        Debugbar::info($request);
+        Debugbar::info("test");
+        Debugbar::info($json_decode);
+
+        $dataMovie = $json_decode;
+
         //Add a movie genre
         $genre = Genre::firstOrCreate([
             'name' => $dataMovie['genres'],
@@ -361,6 +385,6 @@ class MovieController extends Controller
     {
         Movie::find($id)->delete();
 
-        return redirect(route('main.home'));
+        return redirect(route('home'));
     }
 }

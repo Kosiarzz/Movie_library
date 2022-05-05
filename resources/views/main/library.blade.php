@@ -20,10 +20,12 @@
                     @foreach ($group->groupMovie as $gMovie)
                         <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}">
                             <div class="movie-image">
-                                @if(is_null($gMovie->movie->img) || $gMovie->movie->img == "none")
+                                @if(is_null($gMovie->movie->img))
                                     <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                                @elseif(substr($gMovie->movie->img, 0, 6) == "movies")
+                                    <img src="{{asset('storage/'.$gMovie->movie->img)}}" alt="Zdjęcie">
                                 @else
-                                    <img src="{{ $gMovie->movie->img }}" alt="Zdjęcie">
+                                    <img src="{{$gMovie->movie->img}}" alt="Zdjęcie">
                                 @endif
                                 <div class="movie-info">
                                     <div class="movie-rate" title="Ocena">
@@ -74,10 +76,12 @@
                     @foreach ($group->groupMovie as $gMovie)
                         <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}">
                             <div class="movie-image">
-                                @if(is_null($gMovie->movie->img) || $gMovie->movie->img == "none")
+                                @if(is_null($gMovie->movie->img))
                                     <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                                @elseif(substr($gMovie->movie->img, 0, 6) == "movies")
+                                    <img src="{{asset('storage/'.$gMovie->movie->img)}}" alt="Zdjęcie">
                                 @else
-                                    <img src="{{ $gMovie->movie->img }}" alt="Zdjęcie">
+                                    <img src="{{$gMovie->movie->img}}" alt="Zdjęcie">
                                 @endif
                                 <div class="movie-info">
                                     <div class="movie-rate" title="Ocena">
@@ -126,10 +130,12 @@
                     @forelse ($group->groupMovie as $gMovie)  
                         <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}">
                             <div class="movie-image">
-                                @if(is_null($gMovie->movie->img) || $gMovie->movie->img == "none")
+                                @if(is_null($gMovie->movie->img))
                                     <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                                @elseif(substr($gMovie->movie->img, 0, 6) == "movies")
+                                    <img src="{{asset('storage/'.$gMovie->movie->img)}}" alt="Zdjęcie">
                                 @else
-                                    <img src="{{ $gMovie->movie->img }}" alt="Zdjęcie">
+                                    <img src="{{$gMovie->movie->img}}" alt="Zdjęcie">
                                 @endif
                                 <div class="movie-info">
                                     <div class="movie-rate" title="Ocena">

@@ -112,6 +112,6 @@ class GroupController extends Controller
         $group = Group::find($id);
         $group->delete();
 
-        return redirect(route('main.library'));
+        return redirect(route('library'));
     }
 }

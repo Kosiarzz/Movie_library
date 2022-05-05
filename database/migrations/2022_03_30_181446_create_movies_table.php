@@ -16,17 +16,17 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('year');
-            $table->string('original_title');
-            $table->string('time');
-            $table->string('rate');
-            $table->string('votes');
-            $table->string('description');
-            $table->string('img');
+            $table->string('year')->nullable();
+            $table->string('original_title')->nullable();
+            $table->string('time')->nullable();
+            $table->string('rate')->nullable();
+            $table->string('votes')->nullable();
+            $table->string('description')->nullable();
+            $table->string('img')->nullable();
             $table->boolean('watched')->default(false);
             $table->timestamps();
-            $table->foreignId('genre_id')->unsigned();
-            $table->foreignId('country_id')->unsigned();
+            $table->foreignId('genre_id')->unsigned()->nullable();
+            $table->foreignId('country_id')->unsigned()->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->unsigned();
         });
     }

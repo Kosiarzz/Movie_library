@@ -16,8 +16,8 @@ class CreateMovieCastsTable extends Migration
         Schema::create('movie_casts', function (Blueprint $table) {
             $table->id();
             $table->string('role'); //actor or director
-            $table->foreignId('person_id')->constrained('persons')->unsigned();
-            $table->foreignId('movie_id')->constrained('movies')->unsigned();
+            $table->foreignId('person_id')->constrained('persons')->unsigned()->onDelete('cascade');
+            $table->foreignId('movie_id')->constrained('movies')->unsigned()->onDelete('cascade');
         });
     }
 

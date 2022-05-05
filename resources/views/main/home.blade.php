@@ -16,10 +16,12 @@
         @foreach ($movies as $movie)
             <a class="movie-card" href="{{route('movieShow', ['id' => $movie->id])}}">
                 <div class="movie-image">
-                    @if(is_null($movie->img) || $movie->img == "none")
+                    @if(is_null($movie->img))
                         <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                    @elseif(substr($movie->img, 0, 6) == "movies")
+                        <img src="{{asset('storage/'.$movie->img)}}" alt="Zdjęcie">
                     @else
-                        <img src="{{ $movie->img }}" alt="Zdjęcie">
+                        <img src="{{$movie->img}}" alt="Zdjęcie">
                     @endif
                     <div class="movie-info">
                         <div class="movie-rate" title="Ocena">

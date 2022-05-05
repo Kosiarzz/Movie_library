@@ -6,14 +6,17 @@ $(document).ready(function(){
     $(".editMovie").click(function(e){
 
         var data = JSON.parse($(this).attr("data-array"));
-        
+
+        data.img == null ? $('#movieImgAttr').attr('src', 'http://localhost:8000/storage/default/default_movie_img.png') : $('#movieImgAttr').attr('src', data.img);
+
+        $("#inputImgLink").val(data.img);
         $("#inputTitle").val(data.title);
         $("#inputOriginalTitle").val(data.original_title);
         $("#inputGenre").val(data.genres);
         $("#inputCountry").val(data.country);
         $("#inputDate").val(data.year);
         $("#inputTime").val(data.time);
-        $("#inputRate").val(data.rate);
+        $("#inputRate").val(parseInt(data.rate));
         $("#textareaDescription").val(data.description);
         $("#inputVotes").val(data.votes);
         $("#inputImg").val(data.img);
@@ -65,31 +68,36 @@ $(document).ready(function(){
 
     });
 
+    numberAdd = 0;
+
     $("#addDirector").click(function(e){
         
-        inputValue = $('#exampleInputDirector').val();
+        inputValue = $('#inputDirector').val();
 
-        item = '<li><input type="checkbox" name="directors[]" value="'+ inputValue +'" id="d'+ inputValue +'" checked><label for="d'+ inputValue +'">'+ inputValue +'</label></li>';
+        item = '<li><input type="checkbox" name="directors[]" value="'+ inputValue +'" id="d'+ inputValue + numberAdd +'" checked><label for="d'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
         $('#listDirectors').append(item);
-        $('#exampleInputDirector').val('');
+        $('#inputDirector').val('');
+        numberAdd++;
     });
 
     $("#addActor").click(function(e){
         
-        inputValue = $('#exampleInputActor').val();
+        inputValue = $('#inputActor').val();
 
-        item = '<li><input type="checkbox" name="actors[]" value="'+ inputValue +'" id="a'+ inputValue +'" checked><label for="a'+ inputValue +'">'+ inputValue +'</label></li>';
+        item = '<li><input type="checkbox" name="actors[]" value="'+ inputValue +'" id="a'+ inputValue + numberAdd +'" checked><label for="a'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
         $('#listActors').append(item);
-        $('#exampleInputActor').val('');
+        $('#inputActor').val('');
+        numberAdd++;
     });
 
     $("#addCategory").click(function(e){
         
-        inputValue = $('#exampleInputCategory').val();
+        inputValue = $('#inputCategory').val();
 
-        item = '<li><input type="checkbox" name="categories[]" value="'+ inputValue +'" id="c'+ inputValue +'" checked><label for="c'+ inputValue +'">'+ inputValue +'</label></li>';
+        item = '<li><input type="checkbox" name="categories[]" value="'+ inputValue +'" id="c'+ inputValue + numberAdd +'" checked><label for="c'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
         $('#listCategories').append(item);
-        $('#exampleInputCategory').val('');
+        $('#inputCategory').val('');
+        numberAdd++;
     });
 
 
