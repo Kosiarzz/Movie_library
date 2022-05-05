@@ -16,7 +16,11 @@
         @foreach ($movies as $movie)
             <a class="movie-card" href="{{route('movieShow', ['id' => $movie->id])}}">
                 <div class="movie-image">
-                    <img src="{{ $movie->img }}" alt="Zdjęcie">
+                    @if(is_null($movie->img) || $movie->img == "none")
+                        <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                    @else
+                        <img src="{{ $movie->img }}" alt="Zdjęcie">
+                    @endif
                     <div class="movie-info">
                         <div class="movie-rate" title="Ocena">
                             {{ $movie->rate }}

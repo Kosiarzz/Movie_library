@@ -38,7 +38,11 @@
                 @forelse ($group[0]->groupMovie as $gMovie)  
                     <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}">
                         <div class="movie-image">
-                            <img src="{{ $gMovie->movie->img }}" alt="Zdjęcie">
+                            @if(is_null($gMovie->movie->img) || $gMovie->movie->img == "none")
+                                <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                            @else
+                                <img src="{{ $gMovie->movie->img }}" alt="Zdjęcie">
+                            @endif
                             <div class="movie-info">
                                 <div class="movie-rate" title="Ocena">
                                     {{ $gMovie->movie->rate }}

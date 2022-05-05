@@ -21,7 +21,11 @@
             @forelse ( $movies as $key => $movie)
               <div class="movieBox">
                 <div class="movieImage">
-                  <img src="{{ $movie['img'] }}" alt="Zdjęcie" />
+                  @if(is_null($movie['img']) || $movie['img'] == "none")
+                    <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                  @else
+                    <img src="{{ $movie['img'] }}" alt="Zdjęcie">
+                  @endif
                 </div>  
                 <div class="movieInfo">
                   <div class="movieTitle">
