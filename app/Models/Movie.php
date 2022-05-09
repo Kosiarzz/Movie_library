@@ -49,4 +49,9 @@ class Movie extends Model
         return $this->hasMany(MovieCategory::class);
     }
 
+    public function movieGroup()
+    {
+        return $this->hasMany(GroupMovie::class);
+    }
+
 }

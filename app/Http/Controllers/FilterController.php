@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\{Movie, Genre, Group, Person};
+use App\Models\{Category, Movie, Genre, Group, Person};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class FilterController extends Controller
 {
@@ -58,6 +60,73 @@ class FilterController extends Controller
         {
             $query = $query->where('watched', ($request->watched == "yes") ? true : false);
         }
+
+        if(!is_null($request->group))
+        {
+            $group_id = $request->group;
+
+            $query = $query->whereHas('movieGroup', function ($query) use($group_id) {
+                $query->where('group_id', $group_id);
+            });
+        }
+
+        if(!is_null($request->director))
+        {
+            try{
+                $director = Person::where('person', 'LIKE', '%'.$request->director.'%')->firstOrFail();
+
+                $query = $query->whereHas('movieCast', function ($query) use($director) {
+                    $query->where('person_id', $director->id);
+                });
+            }
+            catch(ModelNotFoundException $error)
+            {
+                return view('main.filters', [
+                    'genres' => $genres,
+                    'oldValues' => $request,
+                ]);
+            }
+            
+        }
+
+        if(!is_null($request->actor))
+        {
+            try{
+                $actor = Person::where('person', 'LIKE', '%'.$request->actor.'%')->firstOrFail();
+
+                $query = $query->whereHas('movieCast', function ($query) use($actor) {
+                    $query->where('person_id', $actor->id);
+                });
+            }
+            catch(ModelNotFoundException $error)
+            {
+                return view('main.filters', [
+                    'genres' => $genres,
+                    'oldValues' => $request,
+                ]);
+            }
+            
+        }
+
+        if(!is_null($request->category))
+        {
+            try{
+                $category = Category::where('name', 'LIKE', '%'.$request->category.'%')->firstOrFail();
+
+                $query = $query->whereHas('movieCategory', function ($query) use($category) {
+                    $query->where('category_id', $category->id);
+                });
+            }
+            catch(ModelNotFoundException $error)
+            {
+                return view('main.filters', [
+                    'genres' => $genres,
+                    'oldValues' => $request,
+                ]);
+            }
+            
+        }
+
 
         if(!is_null($request->sort))
         {
