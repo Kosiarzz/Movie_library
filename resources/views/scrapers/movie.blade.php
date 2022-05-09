@@ -15,9 +15,10 @@
         @foreach ($errors->all() as $error)
             <li style="color:red;">{{ $error }}</li>
         @endforeach
-
+        
         <div class="row p-0 m-0 mt-4">
           @if(isset($movies))
+         
             @forelse ( $movies as $key => $movie)
               <div class="movieBox">
                 <div class="movieImage">
@@ -63,9 +64,20 @@
                   </div>
                 </div>
                 <div class="buttons-right">
-                  <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addMovie" title="Dodaj do bazy" style="color:#fff;"><svg class="bi me-2" width="25" height="25"><use xlink:href="#plus-scrap"/></svg></button>
-                  <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addWatch" title="Dodaj do obejrzenia"><svg class="bi me-2" width="26" height="26"><use xlink:href="#watch-later-scrap"/></svg></button>
-                  <button class="button-sq editMovie" data-array="{{ json_encode($movie) }}" data-bs-toggle="modal" data-bs-target="#editMovieModal" title="Edytuj przed dodaniem"><svg class="bi me-2" width="24" height="24"><use xlink:href="#group-scrap"/></svg></button>
+                  <div class="buttons">
+                    <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addMovie" title="Dodaj do bazy" style="color:#fff;"><svg class="bi me-2" width="25" height="25"><use xlink:href="#plus-scrap"/></svg></button>
+                    <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addWatch" title="Dodaj do obejrzenia"><svg class="bi me-2" width="26" height="26"><use xlink:href="#watch-later-scrap"/></svg></button>
+                    <button class="button-sq editMovie" data-array="{{ json_encode($movie) }}" data-bs-toggle="modal" data-bs-target="#editMovieModal" title="Edytuj przed dodaniem"><svg class="bi me-2" width="24" height="24"><use xlink:href="#group-scrap"/></svg></button>
+                  </div>
+                  @forelse ($inLibrary as $movieinLibrary)
+                    @if($movieinLibrary->title == $movie['title'])
+                      <div class="info">
+                        Film o tej nazwie znajduje się już w twojej bibliotece! <a href="{{ route('scrapToFilters', ['title' => $movie['title'] ]) }}">Sprawdź</a>
+                      </div>
+                    @endif
+                  @empty
+                    
+                  @endforelse
                 </div>
               </div>
             @empty

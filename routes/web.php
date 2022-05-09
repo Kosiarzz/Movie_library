@@ -40,5 +40,6 @@ Route::post('/film/dodawanie/scrap/niestandardowy', [MovieController::class, 'st
 
 Route::get('/home/{id}', [FilterController::class, 'genreFilter'])->name('genreFilter');
 Route::get('/filtryds', [FilterController::class, 'filters'])->name('filters');
+Route::get('/filtryds/{title}', [FilterController::class, 'filters'])->name('scrapToFilters');
 
 Auth::routes();

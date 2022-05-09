@@ -135,10 +135,21 @@
 
 .buttons-right{
   display:flex;
-  flex-direction: row;
-  justify-content: end;
+  flex-direction: column;
+  justify-content: start;
   width:150px;
   margin-top:10px;
+}
+
+.buttons-right .buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.buttons-right .info{
+  font-size:11px;
+  color:#817f7f;
 }
 
 .button-sq{
