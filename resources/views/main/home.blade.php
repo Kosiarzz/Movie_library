@@ -11,7 +11,7 @@
                 {{ $genre->name }}
             </a> 
         @endforeach
-    </div>
+    </div>  
     <div class="movies-contener">
         @foreach ($movies as $movie)
             <a class="movie-card" href="{{route('movieShow', ['id' => $movie->id])}}">

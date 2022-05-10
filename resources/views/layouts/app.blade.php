@@ -259,19 +259,20 @@
                   @else
                       <li class="nav-item dropdown" style="margin-right:35px;">
                           <a href="#" class="d-flex align-items-center text-white text-decoration-none avatar" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="width:40px; height:40px; border-radius:50%;">
-                              @if(true)
-                                  <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:42px; background:brown; font-size:20px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                              @if(session('avatar'))
+                                <img src="{{asset('storage/'.session('avatar'))}}" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
                               @else
-                                  <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
+                                <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:42px; background:brown; font-size:20px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
                               @endif
                           </a>
                           
                           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background:rgba(33, 33, 33, 0.99);">
                             <a class="dropdown-item text-white" href="{{ route('createMovie') }}">Dodaj film</a>
                            <!-- Button trigger add group modal -->
-                           <button type="button" class="dropdown-item text-white" style="border-bottom: 1px solid rgba(255, 255, 255, 0.79)" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                           <button type="button" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Dodaj grupę
                           </button>
+                          <a class="dropdown-item text-white" href="{{ route('profile') }}" style="border-bottom: 1px solid rgba(255, 255, 255, 0.79)">Profil</a>
                           
                               <a class="dropdown-item text-white" href="{{ route('logout') }}"
                                   onclick="event.preventDefault();
@@ -350,24 +351,22 @@
                   <svg class="bi me-2" width="28" height="28"><use xlink:href="#video"/></svg>
                    <span style="margin-top:3px;">Biblioteka</span>
                 </a>
-              </li>
+              </li> 
               @foreach ($userGroups as $uGroup)
                 @continue($uGroup->type == "user")
-                @continue($uGroup->name == "Do obejrzenia")
                 <li>
                   <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
                     <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
-                    <span style="margin-top:3px;">Historia</span>
-                  </a>
-                </li>
-              @endforeach
-              @foreach ($userGroups as $uGroup)
-                @continue($uGroup->type == "user")
-                @continue($uGroup->name == "Wszystkie filmy")
-                <li>
-                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
-                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
-                    <span style="margin-top:3px;">Do obejrzenia</span>
+                    <span style="margin-top:3px;">
+                    @if ($uGroup->name == "Wszystkie filmy")
+                      Historia
+                    @elseif($uGroup->name == "Do obejrzenia")
+                      Do obejrzenia
+                    @else
+                      
+                    @endif
+                      ({{$uGroup->name }})
+                    </span>
                   </a>
                 </li>
               @endforeach

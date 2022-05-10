@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\{HomeController, ScraperController, GroupController, MovieController, FilterController};
+use App\Http\Controllers\{HomeController, ScraperController, GroupController, MovieController, FilterController, ProfileController};
 
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +20,9 @@ Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
 Route::get('/filtry', [HomeController::class, 'filtersView'])->name('filtersView');
 
+Route::get('/profil', [ProfileController::class, 'profileView'])->name('profile');
+Route::post('/profil/update', [ProfileController::class, 'updateProfileData'])->name('updateProfileData');
+Route::post('/profil/updatePassword', [ProfileController::class, 'updatePassword'])->name('updatePassword');
 
 Route::get('/filmy', [ScraperController::class, 'index'])->name('viewScrapMovies');
 Route::get('/filmy/wyszukiwanie', [ScraperController::class, 'getMovies'])->name('scrapMovies');

@@ -51,6 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'avatar' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:1000',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -64,11 +65,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user =  User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        
+
+        if(isset($data['avatar']))
+        {
+            $user =  User::create([
+                'name' => $data['name'],
+                'avatar' => $data['avatar']->store('photos'),
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+
+            session(['avatar' => $data['avatar']->store('photos')]);
+        }
+        else
+        {
+            $user =  User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
 
         Group::create([
             'name' => 'Wszystkie filmy',

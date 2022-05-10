@@ -127,7 +127,6 @@ class FilterController extends Controller
             
         }
 
-
         if(!is_null($request->sort))
         {
             $query = $query->orderBy($request->sort, 'DESC');
