@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
       <div class="buttons mb-3">
         <a class="btn btn-primary" href="{{ route('editMovie', ['id' => $movie[0]->id]) }}">Edycja</a>
-        <a class="btn btn-danger" href="{{ route('deleteMovie', ['id' => $movie[0]->id]) }}">Usuń</a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMovieModal">Usuń</button>
       </div>
       <div class="movieBox">
         <div class="movieImage">
@@ -56,5 +56,24 @@
         </div>
       </div>
     </div>
+
+    <!-- Confirm delete movie -->
+    <div class="modal fade" id="deleteMovieModal" tabindex="-1" aria-labelledby="deleteMovieModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background: #212121; color:#fff;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteMovieModalLabel">Usuwanie filmu</h5>
+          </div>
+          <div class="modal-body">
+            Czy na pewno chcesz usunąć ten film?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+            <a class="btn btn-danger" href="{{ route('deleteMovie', ['id' => $movie[0]->id]) }}">Usuń</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </div>
 @endsection

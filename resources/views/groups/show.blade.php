@@ -30,7 +30,7 @@
                 @if ($group[0]->name != "Wszystkie filmy" && $group[0]->name != "Do obejrzenia")
                     <div class="pr-5" style="font-size:20px; color:#fff;">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editGroupModal"> Edytuj</button>
-                        <a class="btn btn-danger" href="{{ route('groupDestroy', ['id' => $group[0]->id]) }}">Usuń</a>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGroupModal">Usuń</button>
                     </div>
                 @endif
             </div>
@@ -101,6 +101,24 @@
               </div>
             </div>
           </div>
+
+          <!-- Confirm delete group -->
+        <div class="modal fade" id="deleteGroupModal" tabindex="-1" aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content" style="background: #212121; color:#fff;">
+                <div class="modal-header">
+                <h5 class="modal-title" id="deleteGroupModalLabel">Usuwanie grupy</h5>
+                </div>
+                <div class="modal-body">
+                Czy na pewno chcesz usunąć tą grupe?
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                <a class="btn btn-danger" href="{{ route('groupDestroy', ['id' => $group[0]->id]) }}">Usuń</a>
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection
