@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Group;
 
+use App\Http\Requests\UpsertGroupRequest;
+
 class GroupController extends Controller
 {
     public function __construct()
@@ -39,10 +41,12 @@ class GroupController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UpsertGroupRequest $request)
     {
+        $data = $request->validated();
+
         Group::create([
-            'name' => $request->name,
+            'name' => $data['name'],
             'type' => 'user',
             'status' => false,
             'user_id' => $request->user()->id,
@@ -92,10 +96,12 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpsertGroupRequest $request)
     {
+        $data = $request->validated();
+
         Group::where('id', $request->id)->where('user_id', $request->user()->id)->update([
-            'name' => $request->name,
+            'name' => $data['name'],
         ]);
 
         return redirect()->back();

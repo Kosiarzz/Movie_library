@@ -39,7 +39,7 @@
                 </div>
                 <div class="movie-info">
                     <div class="movie-main-category" title="Gatunek">
-                        {{ $movie->genre->name }}
+                        {{ $movie->genre->name ?? '' }}
                     </div>
                     <div class="movie-year" title="Rok premiery">
                         {{ $movie->year }}

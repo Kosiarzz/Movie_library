@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\{StoreCustomMovieRequest, StoreAjaxMovieRequest};
+use App\Http\Requests\{UpsertCustomMovieRequest, StoreAjaxMovieRequest};
 
 use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie, MovieCategory, Category};
 use App\Extensions\Movies;
@@ -35,23 +35,39 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\StoreCustomMovieRequest $request
+     * @param  \Illuminate\Http\UpsertCustomMovieRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function storeCustomMovie(StoreCustomMovieRequest $request)
+    public function storeCustomMovie(UpsertCustomMovieRequest $request)
     {
-        
+        $img = $genreId = $countryId = '';
         $dataMovie = $request->validated();
 
-        $genre = Genre::firstOrCreate([
-            'name' => $dataMovie['genre'],
-        ]);
+        if($dataMovie['genre'] != null)
+        {
+            $genre = Genre::firstOrCreate([
+                'name' => $dataMovie['genre'],
+            ]);  
+            
+            $genreId = $genre->id;
+        }
+        else
+        {
+            $genreId = null;
+        }
 
-        $country = Country::firstOrCreate([
-            'name' => $dataMovie['country'],
-        ]);
-
-        $img = '';
+        if($dataMovie['country'] != null)
+        {
+            $country = Country::firstOrCreate([
+                'name' => $dataMovie['country'],
+            ]);
+            
+            $countryId = $country->id;
+        }
+        else
+        {
+            $countryId = null;
+        }
         
         if($request->hasFile('imgFile'))
         {
@@ -76,9 +92,9 @@ class MovieController extends Controller
             "time" =>  $dataMovie['time'],
             "rate" =>  $dataMovie['rate'],
             "description" => $dataMovie['description'],
-            "genre_id" => $genre->id,
-            "country_id" => $country->id,
-            "watched" => $dataMovie['watched'] ?? true,
+            "genre_id" => $genreId,
+            "country_id" => $countryId,
+            "watched" =>  ($dataMovie['watched'] ?? false) ? true : false,
             "user_id" => $request->user()->id,
             "img" => $img,
             "votes" => $dataMovie['votes'],
@@ -297,79 +313,124 @@ class MovieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpsertCustomMovieRequest $request)
     {
-        $genre = Genre::firstOrCreate([
-            'name' => $request->genre,
-        ]);
+        $img = $genreId = $countryId = '';
+        $dataMovie = $request->validated();
 
-        $country = Country::firstOrCreate([
-            'name' => $request->country,
-        ]);
-
-
-        Movie::where('id', $request->movie_id)->where('user_id', $request->user()->id)->update([
-            "title" =>  $request->title,
-            "original_title" =>  $request->original_title,
-            "year" =>  $request->year,
-            "time" =>  $request->time,
-            "rate" =>  $request->rate,
-            "description" =>  $request->description,
-            "genre_id" => $genre->id,
-            "country_id" => $country->id,
-            "watched" => $request->watched ? true : false,
-        ]);
-
-        MovieCast::where('movie_id', $request->movie_id)->delete();
-
-        foreach($request->directors as $director)
+        if($dataMovie['genre'] != null)
         {
-            $person = Person::firstOrCreate([
-                'person' => $director,
+            $genre = Genre::firstOrCreate([
+                'name' => $dataMovie['genre'],
             ]);  
-
-            MovieCast::create([
-                'movie_id' => $request->movie_id,
-                'person_id' => $person->id,
-                'role' => 'director',
-            ]);
+            
+            $genreId = $genre->id;
+        }
+        else
+        {
+            $genreId = null;
         }
 
-        foreach($request->actors as $actor)
+        if($dataMovie['country'] != null)
         {
-            $person = Person::firstOrCreate([
-                'person' => $actor,
-            ]);  
-
-            MovieCast::create([
-                'movie_id' => $request->movie_id,
-                'person_id' => $person->id,
-                'role' => 'actor',
+            $country = Country::firstOrCreate([
+                'name' => $dataMovie['country'],
             ]);
+            
+            $countryId = $country->id;
+        }
+        else
+        {
+            $countryId = null;
+        }
+        
+        if($request->hasFile('imgFile'))
+        {
+            //Image file
+            $img = $request->file('imgFile')->store('movies');
+        }
+        else if(!is_null($dataMovie['imgLink']))
+        {
+            //Image link
+            $img = $dataMovie['imgLink'];
+        }
+        else
+        {
+            //No image
+            $img = null;
+        }
+
+        Movie::where('id', $request->movie_id)->where('user_id', $request->user()->id)->update([
+            "title" =>  $dataMovie['title'],
+            "original_title" =>  $dataMovie['country'],
+            "year" =>  $dataMovie['year'],
+            "time" =>  $dataMovie['time'],
+            "rate" =>  $dataMovie['rate'],
+            "description" =>  $dataMovie['description'],
+            "genre_id" => $genreId,
+            "country_id" => $countryId,
+            "img" => $img,
+            "watched" => $request->watched ? true : false,
+        ]);
+        
+        MovieCast::where('movie_id', $request->movie_id)->delete();
+
+        if(isset($dataMovie['directors'])){
+            foreach($dataMovie['directors'] as $director)
+            {
+                $person = Person::firstOrCreate([
+                    'person' => $director,
+                ]);  
+                
+                MovieCast::create([
+                    'movie_id' => $request->movie_id,
+                    'person_id' => $person->id,
+                    'role' => 'director',
+                ]);
+            }
+        }
+
+        if(isset($dataMovie['actors'])){
+            foreach($dataMovie['actors'] as $actor)
+            {
+                $person = Person::firstOrCreate([
+                    'person' => $actor,
+                ]);  
+
+                MovieCast::create([
+                    'movie_id' => $request->movie_id,
+                    'person_id' => $person->id,
+                    'role' => 'actor',
+                ]);
+            }
         }
 
         MovieCategory::where('movie_id', $request->movie_id)->delete();
 
-        foreach($request->categories as $category)
-        {
-            $fCategory = Category::firstOrCreate([
-                'name' => $category,
-            ]);  
+        if(isset($dataMovie['categories'])){
+            foreach($dataMovie['categories'] as $category)
+            {
+                $fCategory = Category::firstOrCreate([
+                    'name' => $category,
+                ]);  
 
-            MovieCategory::create([
-                'movie_id' => $request->movie_id,
-                'category_id' => $fCategory->id,
-            ]);
+                MovieCategory::create([
+                    'movie_id' => $request->movie_id,
+                    'category_id' => $fCategory->id,
+                ]);
+            }
         }
 
         GroupMovie::where('movie_id', $request->movie_id)->delete();
        
-        foreach($request->groups as $group)
-        {
-            GroupMovie::create([
-                'movie_id' => $request->movie_id,
-                'group_id' => $group,
-            ]);
+        if(isset($dataMovie['groups'])){
+            foreach($dataMovie['groups'] as $group)
+            {
+                GroupMovie::create([
+                    'movie_id' => $request->movie_id,
+                    'group_id' => $group,
+                ]);
+            }
         }
 
         return redirect(route('movieShow', ['id' => $request->movie_id]));

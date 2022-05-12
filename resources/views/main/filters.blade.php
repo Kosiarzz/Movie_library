@@ -98,7 +98,7 @@
                         </div>
                         <div class="movie-category" style=" width:100%; display:flex; justify-content:space-between; padding:3px 3px 0 3px; color:#fff; font-size:12px; ">
                             <div class="movie-main-category" title="Gatunek">
-                                {{ $movie->genre->name }}
+                                {{ $movie->genre->name ?? '' }}
                             </div>
                             <div class="movie-main-category" title="Rok premiery">
                                 {{ $movie->year }}

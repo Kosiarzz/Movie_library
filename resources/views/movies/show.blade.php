@@ -19,7 +19,7 @@
             {{ $movie[0]->original_title }}
           </div> 
           <div class="movieGenres">
-            {{ $movie[0]->genre->name }}
+            {{ $movie[0]->genre->name ?? 'Brak kategorii'}}
           </div> 
           <div class="movieStats">
             <div class="movieYear">
