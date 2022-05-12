@@ -20,11 +20,11 @@
             <label for="inputImgLink">Link do zdjęcia</label>
             
             @if(is_null($movie[0]->img))
-              <input type="text" class="form-control" name="imgLink" id="inputImgLink" aria-describedby="Zdjęcie filmu - link">
+              <input type="text" class="form-control" name="imgLink" maxlength="1000" id="inputImgLink" aria-describedby="Zdjęcie filmu - link">
             @elseif(substr($movie[0]->img, 0, 6) == "movies")
-              <input type="text" class="form-control" name="imgLink" id="inputImgLink" aria-describedby="Zdjęcie filmu - link">
+              <input type="text" class="form-control" name="imgLink" maxlength="1000" id="inputImgLink" aria-describedby="Zdjęcie filmu - link">
             @else
-              <input type="text" class="form-control" name="imgLink" id="inputImgLink" value="{{ $movie[0]->img }}" aria-describedby="Zdjęcie filmu - link">
+              <input type="text" class="form-control" name="imgLink" maxlength="1000" id="inputImgLink" value="{{ $movie[0]->img }}" aria-describedby="Zdjęcie filmu - link">
             @endif
           </div>
           lub
@@ -42,49 +42,49 @@
 
           <div class="form-group mb-3">
             <label for="inputTitle">Tytuł filmu</label>
-            <input type="text" class="form-control" name="title" id="inputTitle" value="{{ $movie[0]->title }}" aria-describedby="tytuł filmu" placeholder="Tytuł filmu">
+            <input type="text" class="form-control" name="title" maxlength="100" id="inputTitle" value="{{ $movie[0]->title }}" aria-describedby="tytuł filmu" placeholder="Tytuł filmu" required>
           </div>
           
           <div class="form-group mb-3">
             <label for="inputOriginalTitle">Oryginalny tytuł filmu</label>
-            <input type="text" class="form-control" name="original_title" id="inputOriginalTitle" value="{{ $movie[0]->original_title }}" aria-describedby="oryginalny tytuł filmu" placeholder="Oryginalny tytuł filmu">
+            <input type="text" class="form-control" name="original_title" maxlength="100" id="inputOriginalTitle" value="{{ $movie[0]->original_title }}" aria-describedby="oryginalny tytuł filmu" placeholder="Oryginalny tytuł filmu">
           </div>
 
           <div class="form-group mb-3">
             <label for="inputGenre">Gatunek filmu</label>
-            <input type="text" class="form-control" name="genre" id="inputGenre" value="{{ $movie[0]->genre->name ?? '' }}" aria-describedby="gatunek" placeholder="Gatunek">
+            <input type="text" class="form-control" name="genre" maxlength="50" id="inputGenre" value="{{ $movie[0]->genre->name ?? '' }}" aria-describedby="gatunek" placeholder="Gatunek">
           </div>
 
           <div class="form-group mb-3">
             <label for="inputCountry">Kraj filmu</label>
-            <input type="text" class="form-control" name="country" id="inputCountry" value="{{ $movie[0]->country->name ?? '' }}" aria-describedby="Kraj" placeholder="Kraj">
+            <input type="text" class="form-control" name="country" maxlength="30" id="inputCountry" value="{{ $movie[0]->country->name ?? '' }}" aria-describedby="Kraj" placeholder="Kraj">
           </div>
 
           <div class="form-group mb-3">
             <label for="inputDate">Data premiery</label>
-            <input type="text" class="form-control" name="year" id="inputDate" value="{{ $movie[0]->year }}" aria-describedby="data premiery" placeholder="Data premiery ">
+            <input type="text" class="form-control" name="year" min="0" max="9999" id="inputDate" value="{{ $movie[0]->year }}" aria-describedby="data premiery" placeholder="Data premiery ">
           </div>
 
           <div class="form-group mb-3">
             <label for="inputTime">Czas trwania</label>
-            <input type="text" class="form-control" name="time" id="inputTime" value="{{ $movie[0]->time }}" aria-describedby="Czas trwania" placeholder="Czas trwania">
+            <input type="text" class="form-control" name="time" maxlength="100" id="inputTime" value="{{ $movie[0]->time }}" aria-describedby="Czas trwania" placeholder="Czas trwania">
           </div>
 
           <div class="form-group mb-3">
             <label for="inputRate">Ocena filmu</label>
-            <input type="number" class="form-control" name="rate" id="inputRate" value="{{ $movie[0]->rate }}" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
+            <input type="number" class="form-control" name="rate" min="0" max="10" id="inputRate" value="{{ $movie[0]->rate }}" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
           </div>
 
           <div class="form-group mb-3">
             <label for="textareaDescription">Opis filmu</label>
-            <textarea class="form-control" name="description" id="textareaDescription" rows="3">{{ $movie[0]->description }}</textarea>
+            <textarea class="form-control" name="description" maxlength="500" id="textareaDescription" rows="3">{{ $movie[0]->description }}</textarea>
           </div>
 
           <hr>
           <div class="directors mb-3">
             Reżyserzy 
             <div class="input-group mt-1">
-              <input type="text" id="inputDirector" class="form-control" placeholder="Imię i nazwisko reżysera" aria-label="Imię i nazwisko reżysera" aria-describedby="basic-addon2">
+              <input type="text" id="inputDirector" maxlength="100" class="form-control" placeholder="Imię i nazwisko reżysera" aria-label="Imię i nazwisko reżysera" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button id="addDirector" class="movieSearchButton" type="button">Dodaj</button>
               </div>
@@ -101,7 +101,7 @@
           <div class="actors mb-3">
             Aktorzy
             <div class="input-group mt-1">
-              <input type="text" id="inputActor" class="form-control" placeholder="Imię i nazwisko aktora" aria-label="Imię i nazwisko aktora" aria-describedby="basic-addon2">
+              <input type="text" id="inputActor" maxlength="100" class="form-control" placeholder="Imię i nazwisko aktora" aria-label="Imię i nazwisko aktora" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button id="addActor" class="movieSearchButton" type="button">Dodaj</button>
               </div>
@@ -120,7 +120,7 @@
           <div class="categories mb-3">
             Kategorie
             <div class="input-group mt-1">
-              <input type="text" id="inputCategory" class="form-control" placeholder="Nazwa kategorii" aria-label="Nazwa kategorii" aria-describedby="basic-addon2">
+              <input type="text" id="inputCategory" maxlength="100" class="form-control" placeholder="Nazwa kategorii" aria-label="Nazwa kategorii" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button id="addCategory" class="movieSearchButton" type="button">Dodaj</button>
               </div>
@@ -143,9 +143,9 @@
               @foreach ($userGroups as $uGroup)
                 @continue($uGroup->name == "Wszystkie filmy")
                 @forelse($groups as $group)
-                  1<li><input type="checkbox" name="groups[]" id="{{ $uGroup->name }}" value="{{ $uGroup->id }}" @if($group->group_id == $uGroup->id) checked @endif><label for="{{ $uGroup->name }}">{{ $uGroup->name }}</label></li>
+                  <li><input type="checkbox" name="groups[]" id="{{ $uGroup->name }}" value="{{ $uGroup->id }}" @if($group->group_id == $uGroup->id) checked @endif><label for="{{ $uGroup->name }}">{{ $uGroup->name }}</label></li>
                 @empty
-                  2<li><input type="checkbox" name="groups[]" id="{{ $uGroup->name }}" value="{{ $uGroup->id }}"><label for="{{ $uGroup->name }}">{{ $uGroup->name }}</label></li>
+                  <li><input type="checkbox" name="groups[]" id="{{ $uGroup->name }}" value="{{ $uGroup->id }}"><label for="{{ $uGroup->name }}">{{ $uGroup->name }}</label></li>
                 @endforelse
               @endforeach
             </ul>

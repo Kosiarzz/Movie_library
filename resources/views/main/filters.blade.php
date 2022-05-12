@@ -8,22 +8,22 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="inputTitle" class="form-label ">Nazwa filmu</label>
-                    <input type="text" class="form-control" name="title" id="inputTitle" value="{{ $oldValues['title'] ?? ''}}" aria-describedby="Nazwa filmu">
+                    <input type="text" class="form-control" name="title" id="inputTitle" maxlength="100" value="{{ $oldValues['title'] ?? ''}}" aria-describedby="Nazwa filmu">
                 </div>
 
                 <div class="col-md-2 mb-3">
                     <label for="inputYear" class="form-label">Rok premiery</label>
-                    <input type="number" min="0" max="9999" class="form-control" name="year" id="inputYear" value="{{ $oldValues['year'] ?? ''}}" aria-describedby="Rok premiery">
+                    <input type="number" min="0" max="9999" class="form-control" name="year" min="0" max="9999" id="inputYear" value="{{ $oldValues['year'] ?? ''}}" aria-describedby="Rok premiery">
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="inputDirector" class="form-label">Reżyser</label>
-                    <input type="text" class="form-control" name="director"  id="inputDirector" value="{{ $oldValues['director'] ?? ''}}" aria-describedby="Reżyser">
+                    <input type="text" class="form-control" name="director"  id="inputDirector" maxlength="100" value="{{ $oldValues['director'] ?? ''}}" aria-describedby="Reżyser">
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="inputActor" class="form-label">Aktor</label>
-                    <input type="text" class="form-control" name="actor" id="inputActor" value="{{ $oldValues['actor'] ?? ''}}" aria-describedby="Aktor">
+                    <input type="text" class="form-control" name="actor" id="inputActor" maxlength="100" value="{{ $oldValues['actor'] ?? ''}}" aria-describedby="Aktor">
                 </div>
 
                 <div class="col-md-2 mb-3">
@@ -69,7 +69,7 @@
 
                 <div class="col-md-2 mb-3">
                     <label for="inputCategory" class="form-label">Kategorie</label>
-                    <input type="text" class="form-control" name="category" id="inputCategory">
+                    <input type="text" class="form-control" name="category" maxlength="100" id="inputCategory">
                 </div>
 
                 <button class="btn btn-primary" style="width:150px; height:40px;">Wyszukaj</button>

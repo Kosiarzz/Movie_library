@@ -30,7 +30,7 @@
                     <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
+                        <input id="name" type="text" maxlength="40" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                         @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                     <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                     <div class="col-md-6">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
+                        <input id="email" type="email" maxlength="255" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                     <label for="currentPassword" class="col-md-4 col-form-label text-md-end">Aktualne hasło</label>
 
                     <div class="col-md-6">
-                        <input id="currentPassword" type="password" class="form-control @error('currentPassword') is-invalid @enderror" name="currentPassword" required>
+                        <input id="currentPassword" minlength="8" type="password" class="form-control @error('currentPassword') is-invalid @enderror" name="currentPassword" required>
 
                         @error('currentPassword')
                             <span class="invalid-feedback" role="alert">
@@ -85,7 +85,7 @@
                     <label for="password" class="col-md-4 col-form-label text-md-end">Nowe hasło</label>
 
                     <div class="col-md-6">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                        <input id="password" type="password" minlength="8" class="form-control @error('password') is-invalid @enderror" name="password" required>
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -99,7 +99,7 @@
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Powtórz nowe hasło</label>
 
                     <div class="col-md-6">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                        <input id="password-confirm" type="password" minlength="8" class="form-control" name="password_confirmation" required>
                     </div>
                 </div>
 

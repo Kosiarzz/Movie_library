@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputImgLink">Link do zdjęcia</label>
-                  <input type="text" class="form-control" name="imgLink" id="inputImgLink" aria-describedby="Zdjęcie filmu - link">
+                  <input type="text" class="form-control" name="imgLink" maxlength="1000" id="inputImgLink" aria-describedby="Zdjęcie filmu - link">
                 </div>
                 lub
                 <div class="form-group mb-3">
@@ -31,49 +31,49 @@
 
                 <div class="form-group mb-3">
                   <label for="inputTitle">Tytuł filmu</label>
-                  <input type="text" class="form-control" name="title" id="inputTitle" aria-describedby="tytuł filmu" placeholder="Tytuł filmu">
+                  <input type="text" class="form-control" name="title" maxlength="100" id="inputTitle" aria-describedby="tytuł filmu" placeholder="Tytuł filmu" required>
                 </div>
                 
                 <div class="form-group mb-3">
                   <label for="inputOriginalTitle">Oryginalny tytuł filmu</label>
-                  <input type="text" class="form-control" name="original_title" id="inputOriginalTitle" aria-describedby="oryginalny tytuł filmu" placeholder="Oryginalny tytuł filmu">
+                  <input type="text" class="form-control" name="original_title" maxlength="100" id="inputOriginalTitle" aria-describedby="oryginalny tytuł filmu" placeholder="Oryginalny tytuł filmu">
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="inputGenre">Gatunek filmu</label>
-                  <input type="text" class="form-control" name="genre" id="inputGenre" aria-describedby="gatunek" placeholder="Gatunek">
+                  <input type="text" class="form-control" name="genre" id="inputGenre" maxlength="50" aria-describedby="gatunek" placeholder="Gatunek">
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="inputCountry">Kraj filmu</label>
-                  <input type="text" class="form-control" name="country" id="inputCountry" aria-describedby="Kraj" placeholder="Kraj">
+                  <input type="text" class="form-control" name="country" id="inputCountry" maxlength="30" aria-describedby="Kraj" placeholder="Kraj">
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="inputDate">Data premiery</label>
-                  <input type="text" class="form-control" name="year" id="inputDate" aria-describedby="data premiery" placeholder="Data premiery ">
+                  <input type="text" class="form-control" name="year" id="inputDate" min="0" max="9999" aria-describedby="data premiery" placeholder="Data premiery ">
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="inputTime">Czas trwania</label>
-                  <input type="text" class="form-control" name="time" id="inputTime" aria-describedby="Czas trwania" placeholder="Czas trwania">
+                  <input type="text" class="form-control" name="time" id="inputTime" maxlength="100" aria-describedby="Czas trwania" placeholder="Czas trwania">
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="inputRate">Ocena filmu</label>
-                  <input type="number" class="form-control" name="rate" id="inputRate" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
+                  <input type="number" class="form-control" name="rate" id="inputRate" min="0" max="10" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
                 </div>
 
                 <div class="form-group mb-3">
                   <label for="textareaDescription">Opis filmu</label>
-                  <textarea class="form-control" name="description" id="textareaDescription" rows="3"></textarea>
+                  <textarea class="form-control" name="description" id="textareaDescription" maxlength="500" rows="3"></textarea>
                 </div>
 
                 <hr>
                 <div class="directors mb-3">
                   Reżyserzy 
                   <div class="input-group mt-1">
-                    <input type="text" id="inputDirector" class="form-control" placeholder="Imię i nazwisko reżysera" aria-label="Imię i nazwisko reżysera" aria-describedby="basic-addon2">
+                    <input type="text" id="inputDirector" class="form-control" maxlength="100" placeholder="Imię i nazwisko reżysera" aria-label="Imię i nazwisko reżysera" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button id="addDirector" class="movieSearchButton" type="button">Dodaj</button>
                     </div>
@@ -87,7 +87,7 @@
                 <div class="actors mb-3">
                   Aktorzy
                   <div class="input-group mt-1">
-                    <input type="text" id="inputActor" class="form-control" placeholder="Imię i nazwisko aktora" aria-label="Imię i nazwisko aktora" aria-describedby="basic-addon2">
+                    <input type="text" id="inputActor" class="form-control" maxlength="100" placeholder="Imię i nazwisko aktora" aria-label="Imię i nazwisko aktora" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button id="addActor" class="movieSearchButton" type="button">Dodaj</button>
                     </div>
@@ -103,7 +103,7 @@
                 <div class="categories mb-3">
                   Kategorie
                   <div class="input-group mt-1">
-                    <input type="text" id="inputCategory" class="form-control" placeholder="Nazwa kategorii" aria-label="Nazwa kategorii" aria-describedby="basic-addon2">
+                    <input type="text" id="inputCategory" class="form-control" maxlength="100" placeholder="Nazwa kategorii" aria-label="Nazwa kategorii" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button id="addCategory" class="movieSearchButton" type="button">Dodaj</button>
                     </div>

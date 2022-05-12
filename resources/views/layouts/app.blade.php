@@ -400,7 +400,7 @@
                   <div class="modal-body">
                     <div class="mb-3">
                       <label for="name-group" class="form-label">Nazwa grupy</label>
-                      <input type="text" name="name" class="form-control" id="name-group" placeholder="Nazwa grupy">
+                      <input type="text" name="name" maxlength="50" class="form-control" id="name-group" placeholder="Nazwa grupy" required>
                     </div>
                   </div>
                   <div class="modal-footer">
