@@ -51,6 +51,18 @@
                   {{ $actor->person->person }},
                 @endforeach
               </div>
+              <div class="movieGroups">
+                Grupy: 
+                @foreach ($movie[0]->movieGroup as $mGroup)
+                  {{ $mGroup->group->name }},
+                @endforeach
+              </div>
+              <div class="movieCategories">
+                Kategorie: 
+                @foreach ($movie[0]->movieCategory as $mCategory)
+                  {{ $mCategory->category->name }},
+                @endforeach
+              </div>
             </div>
           </div>
         </div>

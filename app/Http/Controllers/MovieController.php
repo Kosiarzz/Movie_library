@@ -154,6 +154,20 @@ class MovieController extends Controller
                 ]);
             }
         }
+
+        //Get the id of the default group 'Wszystkie filmy'
+        $group = Group::firstOrCreate([
+            'name' => 'Wszystkie filmy',
+            'type' => 'default',
+            'user_id' => $request->user()->id,
+        ]);
+
+        //Add the movie to the default group
+        GroupMovie::create([
+            'movie_id' => $movie->id,
+            'group_id' => $group->id,
+        ]);
+
         
         if ($request->routeIs('storeScrapCustomMovie')) {
 
@@ -282,7 +296,7 @@ class MovieController extends Controller
      */
     public function show($id)
     {
-        $movie = Movie::with(['genre','movieCast.person'])->where('id', $id)->get();
+        $movie = Movie::with(['genre','movieCast.person', 'movieGroup.group', 'movieCategory.category'])->where('id', $id)->get();
 
         return view('movies.show', ['movie' => $movie]);
     }

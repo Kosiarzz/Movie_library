@@ -362,10 +362,7 @@
                       Historia
                     @elseif($uGroup->name == "Do obejrzenia")
                       Do obejrzenia
-                    @else
-                      
                     @endif
-                      ({{$uGroup->name }})
                     </span>
                   </a>
                 </li>

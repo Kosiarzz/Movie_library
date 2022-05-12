@@ -100,13 +100,6 @@ class RegisterController extends Controller
             'status' => false,
             'user_id' => $user->id,
         ]);
-
-        Group::create([
-            'name' => 'Historia',
-            'type' => 'default',
-            'status' => false,
-            'user_id' => $user->id,
-        ]);
         
         return $user;
     }
