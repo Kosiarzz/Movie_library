@@ -74,6 +74,7 @@
                       <div class="info">
                         Film o tej nazwie znajduje się już w twojej bibliotece! <a href="{{ route('scrapToFilters', ['title' => $movie['title'] ]) }}">Sprawdź</a>
                       </div>
+                    @break
                     @endif
                   @empty
                     

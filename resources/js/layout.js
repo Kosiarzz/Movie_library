@@ -53,17 +53,26 @@ $(document).ready(function(){
         
         var data = $(this).attr("data-array");
         var type = $(this).attr("data-type")
-       
+        
+        decode_json = JSON.parse(data)
+
         $.ajax({
             type:'POST',
             url:"/film/dodawanie",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            data:{data:data, type:type},
+            data:{
+                data:decode_json, 
+                type:type
+            },
             success:function(data){
                 alert(data.success);
-            }
+            },
+            error:function(data){
+                alert("error");
+            },
+            
         });
 
     });

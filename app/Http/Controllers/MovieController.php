@@ -183,15 +183,12 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeAjaxMovie(Request $request)
+    public function storeAjaxMovie(StoreAjaxMovieRequest $request)
     {  
-        //Decode json data from sraped movie
-        $json_decode = json_decode($request->data, TRUE);
-        Debugbar::info($request);
-        Debugbar::info("test");
-        Debugbar::info($json_decode);
-
-        $dataMovie = $json_decode;
+        //Validate
+        $validated = $request->validated();
+        $dataMovie = $validated['data'];
+        Debugbar::info($dataMovie);
 
         //Add a movie genre
         $genre = Genre::firstOrCreate([
@@ -203,7 +200,6 @@ class MovieController extends Controller
             'name' => $dataMovie['country'],
         ]);
        
-        
         //Save movie information
         $movie = new Movie;
         $movie->title = $dataMovie['title'];
