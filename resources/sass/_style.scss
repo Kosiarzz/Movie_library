@@ -432,6 +432,24 @@ body {
 
 
 
+  .image-box{
+    display:flex;
+    flex-direction: row;
+  }
+
+  .image-box-input{
+    flex-direction: column;
+    margin-left:20px;
+    margin-top:40px;
+    width:600px;
+  }
+
+  .image-box-input span{
+    display:block;
+    font-size:22px;
+    width:600px;
+    text-align: center;
+  }
 
 
   .dropdown-item:hover{

@@ -9,7 +9,13 @@
       </div>
       <div class="movieBox">
         <div class="movieImage">
-          <img src="{{ $movie[0]->img }}" alt="Zdjęcie" />
+          @if(is_null($movie[0]->img))
+              <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+          @elseif(substr($movie[0]->img, 0, 6) == "movies")
+              <img src="{{asset('storage/'.$movie[0]->img)}}" alt="Zdjęcie">
+          @else
+              <img src="{{$movie[0]->img}}" alt="Zdjęcie">
+          @endif
         </div>  
         <div class="movieInfo">
           <div class="movieTitle">

@@ -3,6 +3,40 @@ $(document).ready(function(){
         $( "#big-left-menu" ).slideToggle();
     });
 
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+ 
+        if(file){
+            var reader = new FileReader();
+ 
+            reader.onload = function(){
+                $("#movieImgAttr").attr("src", reader.result);
+            }
+ 
+            reader.readAsDataURL(file);
+        }
+    }
+
+    $('#inputImgFile').change(function(){
+        const file = this.files[0];
+
+        if (file){
+          let reader = new FileReader();
+
+          reader.onload = function(event){
+            $('#movieImgAttr').attr('src', event.target.result);
+          }
+
+          reader.readAsDataURL(file);
+        }
+    });
+
+    $('#inputImgLink').change(function(){
+        const link = $( "#inputImgLink" ).val();
+        $('#movieImgAttr').attr('src', link);
+    });
+
+
     $(".editMovie").click(function(e){
 
         var data = JSON.parse($(this).attr("data-array"));
@@ -78,42 +112,74 @@ $(document).ready(function(){
     });
 
     numberAdd = 0;
+    currentDirectors = 0;
+    currentActors = 0;
+    currentCategories = 0;
 
     $("#addDirector").click(function(e){
         
+        limitDirector = 20;
+        limitCharacter = 100;
+        currentDirector = 0;
+
         inputValue = $('#inputDirector').val();
 
-        item = '<li><input type="checkbox" name="directors[]" value="'+ inputValue +'" id="d'+ inputValue + numberAdd +'" checked><label for="d'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
-        $('#listDirectors').append(item);
-        $('#inputDirector').val('');
-        numberAdd++;
+        if (inputValue && inputValue.length < limitCharacter) {
+            item = '<li><input type="checkbox" name="directors[]" value="'+ inputValue +'" id="d'+ inputValue + numberAdd +'" checked><label for="d'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
+            $('#listDirectors').append(item);
+            $('#inputDirector').val('');
+            numberAdd++;
+            currentDirectors++;
+        }
+
+        if(currentDirectors >= limitDirector){
+            this.disabled = true;
+        }
     });
 
     $("#addActor").click(function(e){
         
+        limitActors = 20;
+        limitCharacter = 100;
+
         inputValue = $('#inputActor').val();
 
-        item = '<li><input type="checkbox" name="actors[]" value="'+ inputValue +'" id="a'+ inputValue + numberAdd +'" checked><label for="a'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
-        $('#listActors').append(item);
-        $('#inputActor').val('');
-        numberAdd++;
+        if (inputValue && inputValue.length < limitCharacter) {
+            item = '<li><input type="checkbox" name="actors[]" value="'+ inputValue +'" id="a'+ inputValue + numberAdd +'" checked><label for="a'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
+            $('#listActors').append(item);
+            $('#inputActor').val('');
+            numberAdd++;
+            currentActors++;
+        }
+
+        if(currentActors >= limitActors){
+            this.disabled = true;
+        }
     });
 
     $("#addCategory").click(function(e){
         
+        limitCategories = 50;
+        limitCharacter = 100;
+
         inputValue = $('#inputCategory').val();
 
-        item = '<li><input type="checkbox" name="categories[]" value="'+ inputValue +'" id="c'+ inputValue + numberAdd +'" checked><label for="c'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
-        $('#listCategories').append(item);
-        $('#inputCategory').val('');
-        numberAdd++;
+        if (inputValue && inputValue.length < limitCharacter) {
+            item = '<li><input type="checkbox" name="categories[]" value="'+ inputValue +'" id="c'+ inputValue + numberAdd +'" checked><label for="c'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
+            $('#listCategories').append(item);
+            $('#inputCategory').val('');
+            numberAdd++;
+            currentCategories++;
+        }
+
+        if(currentCategories >= limitCategories){
+            this.disabled = true;
+        }
     });
 
 
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })
-
-
 
 });
