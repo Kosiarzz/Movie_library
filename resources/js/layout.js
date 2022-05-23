@@ -3,19 +3,9 @@ $(document).ready(function(){
         $( "#big-left-menu" ).slideToggle();
     });
 
-    function previewFile(input){
-        var file = $("input[type=file]").get(0).files[0];
- 
-        if(file){
-            var reader = new FileReader();
- 
-            reader.onload = function(){
-                $("#movieImgAttr").attr("src", reader.result);
-            }
- 
-            reader.readAsDataURL(file);
-        }
-    }
+    $(".alert-delete").click(function(e){
+        $(this).parent('div').remove();
+    });
 
     $('#inputImgFile').change(function(){
         const file = this.files[0];
@@ -83,13 +73,15 @@ $(document).ready(function(){
         }
     });
 
+    alertNumber = 0;
+
     $(".addMovie").click(function(e){
         
         var data = $(this).attr("data-array");
         var type = $(this).attr("data-type")
         
         decode_json = JSON.parse(data)
-
+        
         $.ajax({
             type:'POST',
             url:"/film/dodawanie",
@@ -101,10 +93,24 @@ $(document).ready(function(){
                 type:type
             },
             success:function(data){
-                alert(data.success);
+                item = '<div id="alert" class="scrap-alert-message success">Film został dodany! </div>';
+                $('#scrap-box-alert').append(item);
+
+                setTimeout(function(){
+                    $('#alert').remove();
+                }, 3000);
+
+                alertNumber++;
             },
             error:function(data){
-                alert("error");
+                item = '<div id="alert" class="scrap-alert-message error">Błąd podczas dodawania filmu! </div>';
+                $('#scrap-box-alert').append(item);
+
+                setTimeout(function(){
+                    $('#alert').remove();
+                }, 3000);
+
+                alertNumber++;
             },
             
         });
@@ -164,13 +170,13 @@ $(document).ready(function(){
 
         inputValue = $('#inputCategory').val();
 
-        if (inputValue && inputValue.length < limitCharacter) {
+    
             item = '<li><input type="checkbox" name="categories[]" value="'+ inputValue +'" id="c'+ inputValue + numberAdd +'" checked><label for="c'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
             $('#listCategories').append(item);
             $('#inputCategory').val('');
             numberAdd++;
             currentCategories++;
-        }
+        
 
         if(currentCategories >= limitCategories){
             this.disabled = true;

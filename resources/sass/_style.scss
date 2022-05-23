@@ -451,6 +451,36 @@ body {
     text-align: center;
   }
 
+  .scrap-box-alert{
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    width: 250px;
+    height: 40px;
+  }
+
+  .scrap-alert-message{
+    padding:5px 3px; 
+    margin-bottom:5px; 
+    border-radius:5px; 
+    color:#121212;
+  }
+
+  .scrap-box-alert button{
+    border:0;
+    background: transparent;
+    font-weight: 600;
+    float:right;
+  }
+  
+  .scrap-alert-message.error{
+    background: red!important;
+  }
+
+  .scrap-alert-message.success{
+    background: green;
+  }
+
 
   .dropdown-item:hover{
     background-color: #4d4d4d!important;

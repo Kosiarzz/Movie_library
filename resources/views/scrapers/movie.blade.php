@@ -11,11 +11,6 @@
               </form>
             </div>
         </div>
-
-        @foreach ($errors->all() as $error)
-            <li style="color:red;">{{ $error }}</li>
-        @endforeach
-        
         <div class="row p-0 m-0 mt-4">
           @if(isset($movies))
          
@@ -167,6 +162,7 @@
                       <button id="addDirector" class="movieSearchButton" type="button">Dodaj</button>
                     </div>
                   </div>
+                  <div class="form-text">Maksymalnie 20 osób</div>
                   <ul id="listDirectors" class="ks-cboxtags">
                   
                   </ul>
@@ -181,6 +177,7 @@
                       <button id="addActor" class="movieSearchButton" type="button">Dodaj</button>
                     </div>
                   </div>
+                  <div class="form-text">Maksymalnie 20 osób</div>
                   <div class="actors">
                     <ul id="listActors" class="ks-cboxtags">
 
@@ -197,6 +194,7 @@
                       <button id="addCategory" class="movieSearchButton" type="button">Dodaj</button>
                     </div>
                   </div>
+                  <div class="form-text">Maksymalnie 50 kategorii</div>
                   <div class="categories">
                     <ul id="listCategories" class="ks-cboxtags">
 
@@ -226,6 +224,15 @@
             </div>
           </div>
         </div>
+
+        <!-- Alerts -->
+        <div id="scrap-box-alert" class="scrap-box-alert">
+          @foreach ($errors->all() as $error)
+            <div class="scrap-alert-message error">{{ $error }}<button class="alert-delete">x</button></div>
+          @endforeach
+        </div>
+
+
     </div>
 </div>
 @endsection
