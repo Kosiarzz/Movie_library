@@ -64,16 +64,16 @@
                     <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addWatch" title="Dodaj do obejrzenia"><svg class="bi me-2" width="26" height="26"><use xlink:href="#watch-later-scrap"/></svg></button>
                     <button class="button-sq editMovie" data-array="{{ json_encode($movie) }}" data-bs-toggle="modal" data-bs-target="#editMovieModal" title="Edytuj przed dodaniem"><svg class="bi me-2" width="24" height="24"><use xlink:href="#group-scrap"/></svg></button>
                   </div>
-                  @forelse ($inLibrary as $movieinLibrary)
-                    @if($movieinLibrary->title == $movie['title'])
-                      <div class="info">
+                  <div class="info">
+                    @forelse ($inLibrary as $movieinLibrary)
+                      @if($movieinLibrary->title == $movie['title'])
                         Film o tej nazwie znajduje się już w twojej bibliotece! <a href="{{ route('scrapToFilters', ['title' => $movie['title'] ]) }}">Sprawdź</a>
-                      </div>
-                    @break
-                    @endif
-                  @empty
-                    
-                  @endforelse
+                      @break
+                      @endif
+                    @empty
+                      
+                    @endforelse
+                  </div>
                 </div>
               </div>
             @empty

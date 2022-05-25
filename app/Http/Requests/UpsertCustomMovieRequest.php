@@ -50,6 +50,7 @@ class UpsertCustomMovieRequest extends FormRequest
             "groups" => 'nullable|array',
             "votes" => "nullable|string|max:10",
             "watched" => Rule::in(['true']),
+            "imgDelete" => Rule::in(['true']),
         ];
     }
 }

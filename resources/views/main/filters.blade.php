@@ -4,7 +4,7 @@
 <div class="container mt-4 pb-5">
     <div class="row justify-content-center">
         <div class="filters mb-4 mt-3" style="">
-            <form method="GET" action="{{ route('filters') }}" class="row pt-2" style="border:1px solid #fff;">
+            <form method="GET" action="{{ route('filters') }}" class="row pt-2" style="background: #212121; border-radius:10px; ">
 
                 <div class="col-md-3 mb-3">
                     <label for="inputTitle" class="form-label ">Nazwa filmu</label>
@@ -81,7 +81,13 @@
                 @forelse ($movies as $movie)
                     <a class="movie-card" href="{{route('movieShow', ['id' => $movie->id])}}" style="width:210px; margin:10px 22px 40px 22px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
                         <div class="movie-image" style="height:300px; width:100%;">
-                            <img src="{{ $movie->img }}" alt="Zdjęcie" style="height:300px; width:210px; position:absolute; z-index:-10; border-radius:5px 5px 0 0;">
+                            @if(is_null($movie->img))
+                                <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                            @elseif(substr($movie->img, 0, 6) == "movies")
+                                <img src="{{asset('storage/'.$movie->img)}}" alt="Zdjęcie">
+                            @else
+                                <img src="{{$movie->img}}" alt="Zdjęcie">
+                            @endif
                             <div class="movie-info" style="width:100%; display:flex; justify-content:space-between; padding:5px; color:#fff;">
                                 <div class="movie-time" style="background:rgb(22,22,22,0.8); padding:3px;" title="Ocena">
                                     {{ $movie->rate }}

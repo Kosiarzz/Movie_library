@@ -8,6 +8,7 @@ use App\Http\Requests\{UpsertCustomMovieRequest, StoreAjaxMovieRequest};
 use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie, MovieCategory, Category};
 use App\Extensions\Movies;
 
+use Illuminate\Support\Facades\Storage;
 use Barryvdh\Debugbar\Facades\Debugbar;
 
 class MovieController extends Controller
@@ -354,7 +355,14 @@ class MovieController extends Controller
             $countryId = null;
         }
         
-        if($request->hasFile('imgFile'))
+        $oldImg = Movie::where('id', $request->movie_id)->where('user_id', $request->user()->id)->get('img');
+
+        if(isset($dataMovie['imgDelete']))
+        {
+            //Delete image
+            $img = null;
+        }
+        else if($request->hasFile('imgFile'))
         {
             //Image file
             $img = $request->file('imgFile')->store('movies');
@@ -366,9 +374,18 @@ class MovieController extends Controller
         }
         else
         {
-            //No image
-            $img = null;
+            $img = $oldImg[0]->img;
         }
+        
+
+        if(!is_null($dataMovie['imgLink']) || isset($dataMovie['imgDelete']) || $request->hasFile('imgFile'))
+        {
+            if(Storage::exists($oldImg[0]->img))
+            {
+                Storage::delete($oldImg[0]->img);
+            }
+        }
+
 
         Movie::where('id', $request->movie_id)->where('user_id', $request->user()->id)->update([
             "title" =>  $dataMovie['title'],
@@ -454,7 +471,14 @@ class MovieController extends Controller
      */
     public function destroy($id)
     {
-        Movie::find($id)->delete();
+        $movie = Movie::find($id);
+
+        if(Storage::exists($movie->img))
+        {
+            Storage::delete($movie->img);
+        }
+
+        $movie->delete();
 
         return redirect(route('home'));
     }

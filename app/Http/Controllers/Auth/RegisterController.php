@@ -71,12 +71,12 @@ class RegisterController extends Controller
         {
             $user =  User::create([
                 'name' => $data['name'],
-                'avatar' => $data['avatar']->store('photos'),
+                'avatar' => $data['avatar']->store('profile'),
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
 
-            session(['avatar' => $data['avatar']->store('photos')]);
+            session(['avatar' => $data['avatar']->store('profile')]);
         }
         else
         {

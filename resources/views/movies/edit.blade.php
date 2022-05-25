@@ -32,17 +32,26 @@
                       <strong>{{ $message }}</strong>
                   </span>
                 @enderror
-              </div>
+              </div>  
               <span>lub</span>
               <div class="form-group mb-3">
                 <label for="inputImgFile">Dodaj zdjęcie z komputera</label>
-                <input type="file" class="form-control @error('imgFile') is-invalid @enderror" name="imgFile" id="inputImgFile" onchange="previewFile(this);" aria-describedby="Zdjęcie filmu - plik">
+                <input type="file" class="form-control @error('imgFile') is-invalid @enderror" name="imgFile" id="inputImgFile" value="{{asset('storage/default/default_movie_img.png')}}" onchange="previewFile(this);" aria-describedby="Zdjęcie filmu - plik">
                   @error('imgFile')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                   @enderror
                 <div class="form-text"> Zalecany format zdjęcia 1920 x 1080</div>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="imgDelete" value="true" id="flexSwitchCheckChecked">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Usuń zdjęcie filmu całkowicie</label>
+                @error('imgDelete')
+                  <span class="" style="color:red;">
+                      {{ $message }}
+                  </span>
+                @enderror
               </div>
             </div>
           </div>

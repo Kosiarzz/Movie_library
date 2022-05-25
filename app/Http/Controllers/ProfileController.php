@@ -21,7 +21,7 @@ class ProfileController extends Controller
     {
         if($request->file('avatar') != null)
         {
-            $path = $request->file('avatar')->store('photos');
+            $path = $request->file('avatar')->store('profile');
             session(['avatar' => $path]);
 
             User::where('id', $request->user()->id)->update([
