@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\{User, Movie, Genre, Group};
+use App\Http\Requests\{UpdateProfileRequest, UpdatePasswordRequest};
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\{Auth,Hash};
+
 
 class ProfileController extends Controller
 {
@@ -17,31 +18,42 @@ class ProfileController extends Controller
         return view('main.profile', ['user' => $user]);
     }
 
-    public function updateProfileData(Request $request)
+    public function updateProfileData(UpdateProfileRequest $request)
     {
+        $data = $request->validated();
+
+        $oldEmail = User::where('id', $request->user()->id)->get('email');
+        if($oldEmail[0]->email != $data['email'])
+        {
+            if(User::where('email', $data['email'])->exists())
+            {
+                return redirect()->back()->with('email', 'Taki email już istnieje!');
+            }
+        }
+        
         if($request->file('avatar') != null)
         {
             $path = $request->file('avatar')->store('profile');
             session(['avatar' => $path]);
 
             User::where('id', $request->user()->id)->update([
-                'name' => $request->name,
+                'name' => $data['name'],
                 'avatar' => $path,
-                'email' => $request->email,
+                'email' => $data['email'],
             ]);
         }
         else
         {
             User::where('id', $request->user()->id)->update([
-                'name' => $request->name,
-                'email' => $request->email,
+                'name' => $data['name'],
+                'email' => $data['email'],
             ]);
         }
         
         return redirect()->back();
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
         $user = User::find($request->user()->id);
 
