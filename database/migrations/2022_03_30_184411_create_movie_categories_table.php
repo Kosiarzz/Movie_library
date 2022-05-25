@@ -15,8 +15,8 @@ class CreateMovieCategoriesTable extends Migration
     {
         Schema::create('movie_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('movie_id')->constrained('movies')->unsigned();
-            $table->foreignId('category_id')->constrained('categories')->unsigned();
+            $table->foreignId('movie_id')->constrained('movies')->unsigned()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('categories')->unsigned()->onDelete('cascade');
         });
     }
 
