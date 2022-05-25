@@ -79,41 +79,44 @@
         <div class="dd" style="width:1800px; min-height:500px; margin-left:25px; margin-top:35px; background:gre; display:flex; flex-wrap: wrap; border-radius:5px;">
             @if(isset($movies))
                 @forelse ($movies as $movie)
-                    <a class="movie-card" href="{{route('movieShow', ['id' => $movie->id])}}" style="width:210px; margin:10px 22px 40px 22px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
-                        <div class="movie-image" style="height:300px; width:100%;">
-                            @if(is_null($movie->img))
-                                <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
-                            @elseif(substr($movie->img, 0, 6) == "movies")
-                                <img src="{{asset('storage/'.$movie->img)}}" alt="Zdjęcie">
-                            @else
-                                <img src="{{$movie->img}}" alt="Zdjęcie">
-                            @endif
-                            <div class="movie-info" style="width:100%; display:flex; justify-content:space-between; padding:5px; color:#fff;">
-                                <div class="movie-time" style="background:rgb(22,22,22,0.8); padding:3px;" title="Ocena">
-                                    {{ $movie->rate }}
-                                </div>
-                                <div class="movie-time" style="background:rgb(22,22,22,0.8); padding:3px;" title="Czas trwania">
-                                    {{ $movie->time }}
-                                </div>
-                            </div>
-                            <div style="margin-top:235px; float:right; margin-right:5px;" title="Obejrzane">
-                                @if ($movie->watched)
-                                    <svg class="bi" width="28" height="28" role="img" aria-label="Obejrzane"><use xlink:href="#watched"/></svg>
+                    <div class="p-0" style="margin:10px 15px 10px 15px; display:flex; flex-direction: column;">
+                        <a class="" style="margin-left: auto; margin-right: 0; width:20px; height:20px; text-align:center; background:silver; text-decoration:none; color:#000; font-weight:600; border-radius:5px 5px 0 0;" href="{{ route('deleteMovieFromFilters', ['id' => $movie->id]) }}">x</a>
+                        <a class="movie-card p-0 m-0" href="{{route('movieShow', ['id' => $movie->id])}}" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
+                            <div class="movie-image" style="height:300px; width:100%;">
+                                @if(is_null($movie->img))
+                                    <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                                @elseif(substr($movie->img, 0, 6) == "movies")
+                                    <img src="{{asset('storage/'.$movie->img)}}" alt="Zdjęcie">
+                                @else
+                                    <img src="{{$movie->img}}" alt="Zdjęcie">
                                 @endif
-                            </div> 
-                        </div>
-                        <div class="movie-category" style=" width:100%; display:flex; justify-content:space-between; padding:3px 3px 0 3px; color:#fff; font-size:12px; ">
-                            <div class="movie-main-category" title="Gatunek">
-                                {{ $movie->genre->name ?? '' }}
+                                <div class="movie-info" style="width:100%; display:flex; justify-content:space-between; padding:5px; color:#fff;">
+                                    <div class="movie-time" style="background:rgb(22,22,22,0.8); padding:3px;" title="Ocena">
+                                        {{ $movie->rate }}
+                                    </div>
+                                    <div class="movie-time" style="background:rgb(22,22,22,0.8); padding:3px;" title="Czas trwania">
+                                        {{ $movie->time }}
+                                    </div>
+                                </div>
+                                <div style="margin-top:235px; float:right; margin-right:5px;" title="Obejrzane">
+                                    @if ($movie->watched)
+                                        <svg class="bi" width="28" height="28" role="img" aria-label="Obejrzane"><use xlink:href="#watched"/></svg>
+                                    @endif
+                                </div> 
                             </div>
-                            <div class="movie-main-category" title="Rok premiery">
-                                {{ $movie->year }}
+                            <div class="movie-category" style=" width:100%; display:flex; justify-content:space-between; padding:3px 3px 0 3px; color:#fff; font-size:12px; ">
+                                <div class="movie-main-category" title="Gatunek">
+                                    {{ $movie->genre->name ?? '' }}
+                                </div>
+                                <div class="movie-main-category" title="Rok premiery">
+                                    {{ $movie->year }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="movie-title" style="font-size:16px; padding:0 0 0 0; text-align:center; color:#f7f5f4;" title="Avengers: Wojna bez granic">
-                            {{ $movie->title }}
-                        </div>
-                    </a>
+                            <div class="movie-title" style="font-size:16px; padding:0 0 0 0; text-align:center; color:#f7f5f4;" title="Avengers: Wojna bez granic">
+                                {{ $movie->title }}
+                            </div>
+                        </a>
+                    </div>
                 @empty
                     <p>Brak wyników wyszukiwania</p>     
                 @endforelse

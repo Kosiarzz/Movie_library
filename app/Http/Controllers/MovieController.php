@@ -482,4 +482,24 @@ class MovieController extends Controller
 
         return redirect(route('home'));
     }
+
+    /**
+     * Remove the movie from filters.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyFromFilters($id)
+    {
+        $movie = Movie::find($id);
+
+        if(Storage::exists($movie->img))
+        {
+            Storage::delete($movie->img);
+        }
+
+        $movie->delete();
+
+        return redirect()->back();
+    }
 }
