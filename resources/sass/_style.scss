@@ -41,7 +41,7 @@
 .movieBox{
   background-color: #212121;
   color:#fff;
-  height: 260px;
+  height: 300px;
   width:1400px;
   margin-bottom: 25px;
   padding: 0 !important;
@@ -54,13 +54,13 @@
 }
 
 .movieImage{
-  width: 170px !important;
-  height: 260px !important;
+  width: 200px !important;
+  height: 300px !important;
 }
 
 .movieImage img{
-  width: 170px !important;
-  height: 260px !important;
+  width: 200px !important;
+  height: 300px !important;
 }
 
 .movieInfo{
@@ -430,7 +430,13 @@ body {
     color:#f7f5f4;
   }
 
+  .movie-group-box{
 
+  }
+
+  .movie-category-box{
+
+  }
 
   .image-box{
     display:flex;

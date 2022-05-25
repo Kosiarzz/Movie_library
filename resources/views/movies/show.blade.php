@@ -57,16 +57,15 @@
                   {{ $actor->person->person }},
                 @endforeach
               </div>
-              <div class="movieGroups">
-                Grupy: 
+              <div class="movieGroups mt-2" style="display:flex; flex-direction: row;">
                 @foreach ($movie[0]->movieGroup as $mGroup)
-                  {{ $mGroup->group->name }},
+                  @continue($mGroup->group->name == "Wszystkie filmy")
+                  <a class="movie-group-box" href="{{ route('searchByGroup', ['group' => $mGroup->group->id ]) }}" style="background: #84B082; padding:1px 10px; margin-right:5px; text-decoration:none; color:#000;">{{ $mGroup->group->name }}</a>
                 @endforeach
               </div>
-              <div class="movieCategories">
-                Kategorie: 
+              <div class="movieCategories mt-2" style="display:flex; flex-direction: row;">
                 @foreach ($movie[0]->movieCategory as $mCategory)
-                  {{ $mCategory->category->name }},
+                  <a class="movie-category-box" href="{{ route('searchByCategory', ['category' => $mCategory->category->name ]) }}" style="background: #72A1E5; border-radius:10px; padding:0px 10px; margin-right:5px; text-decoration:none; color:#000;">{{ $mCategory->category->name }}</a>
                 @endforeach
               </div>
             </div>

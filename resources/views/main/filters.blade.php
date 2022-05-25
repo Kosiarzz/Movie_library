@@ -69,7 +69,7 @@
 
                 <div class="col-md-2 mb-3">
                     <label for="inputCategory" class="form-label">Kategorie</label>
-                    <input type="text" class="form-control" name="category" maxlength="100" id="inputCategory">
+                    <input type="text" class="form-control" name="category" maxlength="100" value="{{ $oldValues['category'] ?? ''}}" id="inputCategory">
                 </div>
 
                 <button class="btn btn-primary" style="width:150px; height:40px;">Wyszukaj</button>

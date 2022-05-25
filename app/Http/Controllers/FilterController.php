@@ -36,6 +36,7 @@ class FilterController extends Controller
      */
     public function filters(Request $request)
     {
+     
         $genres = Genre::orderBy('name', 'ASC')->get();
 
         $query = Movie::query();
