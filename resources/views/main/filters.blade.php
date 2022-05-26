@@ -8,7 +8,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="inputTitle" class="form-label ">Nazwa filmu</label>
-                    <input type="text" class="form-control" name="title" id="inputTitle" maxlength="100" value="{{ $oldValues['title'] ?? ''}}" aria-describedby="Nazwa filmu">
+                    <input type="text" class="form-control" name="title" id="inputTitle" maxlength="100" value="{{ $oldValues['title'] ?? ''}}" aria-describedby="Nazwa filmu" autocomplete="movie">
                 </div>
 
                 <div class="col-md-2 mb-3">

@@ -1,12 +1,15 @@
 $(document).ready(function(){
+    //drop-down menu
     $( "#hamburger-button" ).click(function() {
         $( "#big-left-menu" ).slideToggle();
     });
 
+    //delete alert, scrap view
     $(".alert-delete").click(function(e){
         $(this).parent('div').remove();
     });
 
+    //preview image from input type file
     $('#inputImgFile').change(function(){
         const file = this.files[0];
 
@@ -21,12 +24,13 @@ $(document).ready(function(){
         }
     });
 
+    //preview image from link 
     $('#inputImgLink').change(function(){
         const link = $( "#inputImgLink" ).val();
         $('#movieImgAttr').attr('src', link);
     });
 
-
+    //custom movie - edit movie before add, scrap view
     $(".editMovie").click(function(e){
 
         var data = JSON.parse($(this).attr("data-array"));
@@ -73,8 +77,8 @@ $(document).ready(function(){
         }
     });
 
-    alertNumber = 0;
-
+    //fast add movie to databse
+    alertNumber = 0; //id alerts
     $(".addMovie").click(function(e){
         
         var data = $(this).attr("data-array");
@@ -117,16 +121,17 @@ $(document).ready(function(){
 
     });
 
+    //id added director, actor, categories
     numberAdd = 0;
     currentDirectors = 0;
     currentActors = 0;
     currentCategories = 0;
 
+    //add director
     $("#addDirector").click(function(e){
-        
+    
         limitDirector = 20;
         limitCharacter = 100;
-        currentDirector = 0;
 
         inputValue = $('#inputDirector').val();
 
@@ -138,11 +143,13 @@ $(document).ready(function(){
             currentDirectors++;
         }
 
+        //disbale the adding director button 
         if(currentDirectors >= limitDirector){
             this.disabled = true;
         }
     });
 
+    //add actor
     $("#addActor").click(function(e){
         
         limitActors = 20;
@@ -158,11 +165,13 @@ $(document).ready(function(){
             currentActors++;
         }
 
+        //disbale the adding actor button 
         if(currentActors >= limitActors){
             this.disabled = true;
         }
     });
 
+    //add category
     $("#addCategory").click(function(e){
         
         limitCategories = 50;
@@ -170,20 +179,21 @@ $(document).ready(function(){
 
         inputValue = $('#inputCategory').val();
 
-    
+        if (inputValue && inputValue.length < limitCharacter) {
             item = '<li><input type="checkbox" name="categories[]" value="'+ inputValue +'" id="c'+ inputValue + numberAdd +'" checked><label for="c'+ inputValue + numberAdd +'">'+ inputValue +'</label></li>';
             $('#listCategories').append(item);
             $('#inputCategory').val('');
             numberAdd++;
             currentCategories++;
+        }
         
-
+        //disbale the adding category button 
         if(currentCategories >= limitCategories){
             this.disabled = true;
         }
     });
 
-
+    //show modals
     $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
     })

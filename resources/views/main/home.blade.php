@@ -1,11 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="p-0" style="width:100%;">
+<div class="home-contener">
     <div class="top-category-contener m-0">
         <a href="{{route('home')}}" class="top-category @if($selectGenre == 0) active @endif">
             Wszystkie filmy
         </a>   
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
+        @foreach ($genres as $genre)
+            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
+                {{ $genre->name }}
+            </a> 
+        @endforeach
         @foreach ($genres as $genre)
             <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
                 {{ $genre->name }}
@@ -17,7 +77,7 @@
             <a class="movie-card" href="{{route('movieShow', ['id' => $movie->id])}}">
                 <div class="movie-image">
                     @if(is_null($movie->img))
-                        <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
+                        <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie">
                     @elseif(substr($movie->img, 0, 6) == "movies")
                         <img src="{{asset('storage/'.$movie->img)}}" alt="Zdjęcie">
                     @else
@@ -31,17 +91,17 @@
                             {{ $movie->time }}
                         </div>
                     </div>
-                    <div class="watched" title="Obejrzane">
+                    <div class="movie-watched" title="Obejrzane">
                         @if ($movie->watched)
                             <svg class="bi" width="28" height="28" role="img" aria-label="Obejrzane"><use xlink:href="#watched"/></svg>
                         @endif
                     </div> 
                 </div>
                 <div class="movie-info">
-                    <div class="movie-main-category" title="Gatunek">
+                    <div title="Gatunek">
                         {{ $movie->genre->name ?? '' }}
                     </div>
-                    <div class="movie-year" title="Rok premiery">
+                    <div title="Rok premiery">
                         {{ $movie->year }}
                     </div>
                 </div>

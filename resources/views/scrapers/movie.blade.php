@@ -49,10 +49,10 @@
                   </div> 
                   <div class="movieBottom">
                     <div class="movieBottomLeft">
-                      <div class="movieDirectors mt-2">
+                      <div class="mt-2">
                         Reżyser: {{ $movie['directors'] }}
                       </div>
-                      <div class="movieActors">
+                      <div>
                         Aktorzy: {{ $movie['cast'] }}
                       </div>
                     </div>
@@ -60,9 +60,9 @@
                 </div>
                 <div class="buttons-right">
                   <div class="buttons">
-                    <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addMovie" title="Dodaj do bazy" style="color:#fff;"><svg class="bi me-2" width="25" height="25"><use xlink:href="#plus-scrap"/></svg></button>
-                    <button class="button-sq addMovie" data-array="{{ json_encode($movie) }}" data-type="addWatch" title="Dodaj do obejrzenia"><svg class="bi me-2" width="26" height="26"><use xlink:href="#watch-later-scrap"/></svg></button>
-                    <button class="button-sq editMovie" data-array="{{ json_encode($movie) }}" data-bs-toggle="modal" data-bs-target="#editMovieModal" title="Edytuj przed dodaniem"><svg class="bi me-2" width="24" height="24"><use xlink:href="#group-scrap"/></svg></button>
+                    <button class="button-scrap-action addMovie" data-array="{{ json_encode($movie) }}" data-type="addMovie" title="Dodaj do bazy"><svg class="bi me-2" width="25" height="25"><use xlink:href="#plus-scrap"/></svg></button>
+                    <button class="button-scrap-action addMovie" data-array="{{ json_encode($movie) }}" data-type="addWatch" title="Dodaj do obejrzenia"><svg class="bi me-2" width="26" height="26"><use xlink:href="#watch-later-scrap"/></svg></button>
+                    <button class="button-scrap-action editMovie" data-array="{{ json_encode($movie) }}" data-bs-toggle="modal" data-bs-target="#editMovieModal" title="Edytuj przed dodaniem"><svg class="bi me-2" width="24" height="24"><use xlink:href="#group-scrap"/></svg></button>
                   </div>
                   <div class="info">
                     @forelse ($inLibrary as $movieinLibrary)
@@ -85,7 +85,7 @@
         <!-- Modal for custom movie -->
         <div class="modal fade" id="editMovieModal" tabindex="-1" aria-labelledby="editMovieModalLabel" aria-hidden="true">
           <div class="modal-dialog">
-            <div class="modal-content" style="background: #212121; color:#fff;">
+            <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="editMovieModalLabel">Edycja filmu</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

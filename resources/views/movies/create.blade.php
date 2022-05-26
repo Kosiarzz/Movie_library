@@ -30,7 +30,7 @@
                               <strong>{{ $message }}</strong>
                           </span>
                         @enderror
-                      <div class="form-text"> Zalecany format zdjęcia 1920 x 1080</div>
+                      <div class="form-text"> Zalecany format zdjęcia 1080 x 1920</div>
                     </div>
                   </div>
                 </div>
