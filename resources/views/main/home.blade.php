@@ -11,66 +11,6 @@
                 {{ $genre->name }}
             </a> 
         @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
-        @foreach ($genres as $genre)
-            <a href="{{route('genreFilter', ['id' => $genre->id])}}" class="top-category  @if($genre->id == $selectGenre) active @endif">
-                {{ $genre->name }}
-            </a> 
-        @endforeach
     </div>  
     <div class="movies-contener">
         @foreach ($movies as $movie)
