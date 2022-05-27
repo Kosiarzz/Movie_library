@@ -9,7 +9,6 @@ use App\Models\{Movie, Genre, Country, Person, MovieCast, Group, GroupMovie, Mov
 use App\Extensions\Movies;
 
 use Illuminate\Support\Facades\Storage;
-use Barryvdh\Debugbar\Facades\Debugbar;
 
 class MovieController extends Controller
 {
@@ -189,7 +188,6 @@ class MovieController extends Controller
         //Validate
         $validated = $request->validated();
         $dataMovie = $validated['data'];
-        Debugbar::info($dataMovie);
 
         //Add a movie genre
         $genre = Genre::firstOrCreate([
