@@ -6,15 +6,15 @@
         <div class="card mt-3 p-4" style="background: #212121; color:#fff;">
             <form method="POST" action="{{ route('updateProfileData') }}" enctype="multipart/form-data">
                 @csrf
-                <div class="avatar mt-3 mb-3" style="width:100px; height:100px; border-radius:50%; margin:0 50% 0 %50;">
+                <div class="avatar-profile mt-3 mb-4" style="width:150px; height:150px; border-radius:50%; margin-left:auto; margin-right:auto;">
                     @if(session('avatar'))
                       <img src="{{asset('storage/'.session('avatar'))}}" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
                     @else
-                      <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:100px; background:brown; font-size:42px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                      <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:150px; background:brown; font-size:76px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
                     @endif
                 </div>
                 <div class="row mb-3">
-                    <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
+                    <label for="avatar" class="col-md-4 col-form-label text-md-end">Avatar</label>
                     <div class="col-md-6">
                         <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar" value="{{ old('avatar') }}">
 
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                    <label for="name" class="col-md-4 col-form-label text-md-end">Nazwa</label>
 
                     <div class="col-md-6">
                         <input id="name" type="text" maxlength="40" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus required>
@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                    <label for="email" class="col-md-4 col-form-label text-md-end">Adres email</label>
 
                     <div class="col-md-6">
                         <input id="email" type="email" maxlength="255" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" required>

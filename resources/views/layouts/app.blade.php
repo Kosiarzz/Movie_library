@@ -247,22 +247,22 @@
                   @guest
                       @if (Route::has('login'))
                           <li class="nav-item">
-                              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                              <a class="nav-link" href="{{ route('login') }}">Logowanie</a>
                           </li>
                       @endif
 
                       @if (Route::has('register'))
                           <li class="nav-item">
-                              <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                              <a class="nav-link" href="{{ route('register') }}">Rejestracja</a>
                           </li>
                       @endif
                   @else
                       <li class="nav-item dropdown" style="margin-right:35px;">
-                          <a href="#" class="d-flex align-items-center text-white text-decoration-none avatar" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="width:40px; height:40px; border-radius:50%;">
+                          <a href="#" class="d-flex align-items-center text-white text-decoration-none avatar" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="width:40px; height:40px;">
                               @if(session('avatar'))
                                 <img src="{{asset('storage/'.session('avatar'))}}" alt="" class="rounded-circle me-2" style="width:100%; height:100%;">
                               @else
-                                <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:42px; background:brown; font-size:20px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
+                                <div class="rounded-circle" style="width:100%; height:100%; text-align:center; line-height:40px; background:brown; font-size:20px; font-weight:600;">{{ strtoupper(substr(Auth::user()->name, 0, 1)) }}</div>
                               @endif
                           </a>
                           
@@ -321,68 +321,68 @@
               </ul>
             </div>
         </div>
-        <div id="big-left-menu" class="flex-shrink-0 text-white" style="width: 220px; height:100vh; padding-top:4rem!important; position:fixed; background:rgba(33, 33, 33, 0.99); display:none!important;">
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('home') ? 'active' : '' }}" aria-current="page">
-                  <svg class="bi me-2" width="26" height="26"><use xlink:href="#home"/></svg>
-                   <span style="margin-top:3px;">Główna</span>
-                </a>
-              </li>
-              {{ (request()->is('admin/cities')) ? 'active' : '' }}
-              <li class="{{ (request()->is('admin/cities*')) ? 'active' : '' }}">  
+        <div id="big-left-menu" class="flex-shrink-0 text-white" style="display:none!important;">
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="{{ route('home') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('home') ? 'active' : '' }}" aria-current="page">
+                <svg class="bi me-2" width="26" height="26"><use xlink:href="#home"/></svg>
+                  <span style="margin-top:3px;">Główna</span>
+              </a>
+            </li>
+            {{ (request()->is('admin/cities')) ? 'active' : '' }}
+            <li class="{{ (request()->is('admin/cities*')) ? 'active' : '' }}">  
 
-              
-              <li class="nav-item" style="margin:5px 0 0 0;">
-                <a href="{{ route('viewScrapMovies') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('viewScrapMovies') ? 'active' : '' }}">
-                  <svg class="bi me-2" width="26" height="26"><use xlink:href="#search-video"/></svg>
-                   <span style="margin-top:3px;">Wyszukaj</span>
-                </a>
-              </li>
-              <li style="margin:5px 0 5px 0;">
-                <a href="{{ route('filters') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('filters') ? 'active' : '' }}">
-                  <svg class="bi me-2" width="26" height="26"><use xlink:href="#filters"/></svg>
-                   <span style="margin-top:3px;">Filtry</span>
-                </a>
-              </li>
-              <hr>
+            
+            <li class="nav-item" style="margin:5px 0 0 0;">
+              <a href="{{ route('viewScrapMovies') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('viewScrapMovies') ? 'active' : '' }}">
+                <svg class="bi me-2" width="26" height="26"><use xlink:href="#search-video"/></svg>
+                  <span style="margin-top:3px;">Wyszukaj</span>
+              </a>
+            </li>
+            <li style="margin:5px 0 5px 0;">
+              <a href="{{ route('filters') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('filters') ? 'active' : '' }}">
+                <svg class="bi me-2" width="26" height="26"><use xlink:href="#filters"/></svg>
+                  <span style="margin-top:3px;">Filtry</span>
+              </a>
+            </li>
+            <hr>
+            <li>
+              <a href="{{ route('library') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('library') ? 'active' : '' }}">
+                <svg class="bi me-2" width="28" height="28"><use xlink:href="#video"/></svg>
+                  <span style="margin-top:3px;">Biblioteka</span>
+              </a>
+            </li> 
+            @foreach ($userGroups as $uGroup)
+              @continue($uGroup->type == "user")
               <li>
-                <a href="{{ route('library') }}" class="nav-link text-white nav-left-flex {{  request()->routeIs('library') ? 'active' : '' }}">
-                  <svg class="bi me-2" width="28" height="28"><use xlink:href="#video"/></svg>
-                   <span style="margin-top:3px;">Biblioteka</span>
+                <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
+                  <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
+                  <span style="margin-top:3px;">
+                  @if ($uGroup->name == "Wszystkie filmy")
+                    Historia
+                  @elseif($uGroup->name == "Do obejrzenia")
+                    Do obejrzenia
+                  @endif
+                  </span>
                 </a>
-              </li> 
-              @foreach ($userGroups as $uGroup)
-                @continue($uGroup->type == "user")
-                <li>
-                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
-                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#will-view"/></svg>
-                    <span style="margin-top:3px;">
-                    @if ($uGroup->name == "Wszystkie filmy")
-                      Historia
-                    @elseif($uGroup->name == "Do obejrzenia")
-                      Do obejrzenia
-                    @endif
-                    </span>
-                  </a>
-                </li>
-              @endforeach
-              @foreach ($userGroups as $uGroup)
-                @continue($uGroup->type == "default")
-                <li>
-                  <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
-                    <svg class="bi me-2" width="28" height="28"><use xlink:href="#video-group"/></svg>
-                      <span style="margin-top:3px;">{{ $uGroup->name }} </span>
-                  </a>
-                </li>
-              @endforeach
+              </li>
+            @endforeach
+            @foreach ($userGroups as $uGroup)
+              @continue($uGroup->type == "default")
+              <li>
+                <a href="{{route('groupShow', ['id' => $uGroup->id])}}" class="nav-link text-white nav-left-flex {{ (request()->is('grupa/szczegoly/'.$uGroup->id)) ? 'active' : '' }}">
+                  <svg class="bi me-2" width="28" height="28"><use xlink:href="#video-group"/></svg>
+                    <span style="margin-top:3px;">{{ $uGroup->name }} </span>
+                </a>
+              </li>
+            @endforeach
+          </ul>
+          <div class="dropdown">
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+              
             </ul>
-            <div class="dropdown">
-              <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                
-              </ul>
-            </div>
           </div>
+        </div>
         
           <!-- Add group modal -->
           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -409,7 +409,7 @@
             </div>
           </div>
 
-        <main class="" style="padding-top:3.5rem; margin-left:72px">
+        <main class="global-contener">
             @yield('content')
         </main>
          

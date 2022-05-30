@@ -107,6 +107,14 @@ main {
   background-color: #4d4d4d!important;
 }
 
+#big-left-menu{
+  width: 220px; 
+  height:100vh; 
+  padding-top:4rem!important; 
+  position:fixed; 
+  background:rgba(33, 33, 33, 0.99); 
+}
+
 //scrap view, input search movie
 .search-movie{
   width:600px;
@@ -337,6 +345,10 @@ main {
   padding-top:150px;
 }
 
+.global-contener{
+  padding-top:3.5rem; 
+  margin-left:72px
+}
 
 //home view
 .home-contener{
@@ -442,8 +454,9 @@ main {
   width:100%; 
   display:flex; 
   justify-content:space-between; 
-  padding:5px; 
+  padding:3px 3px 0 3px; 
   color:#fff;
+  font-size:12px;
 }
 
 .movie-time, .movie-rate{
@@ -455,15 +468,6 @@ main {
   margin-top:245px; 
   float:right; 
   margin-right:5px;
-}
-
-.movie-info{
-  width:100%; 
-  display:flex; 
-  justify-content:space-between; 
-  padding:3px 3px 0 3px; 
-  color:#fff; 
-  font-size:12px;
 }
 
 .movie-title{
@@ -571,4 +575,49 @@ ul.ks-cboxtags li input[type="checkbox"]:focus + label {
 .form-label{
   color:#fff;
   font-size:19px;
+}
+
+@media screen and (max-width: 480px) {
+  
+  .movie-card{
+    width:270px; 
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .movie-image{
+    height:400px; 
+  }
+  
+  .movie-image img{
+    height:400px; 
+    width:270px;
+  }
+
+  .movie-info{
+    font-size:20px;
+  }
+  
+  .movie-watched{
+    margin-top:330px; 
+  }
+
+  .movie-title{
+    font-size:24px; 
+  }
+
+  #small-left-menu{
+    display: none !important;
+  }
+
+  .global-contener{
+    margin:0;
+  }
+
+  #big-left-menu{
+    width:100%; 
+    height:100vh; 
+  }
+
+
 }

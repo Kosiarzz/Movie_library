@@ -15,25 +15,25 @@
 
   <body>
       <div id="app">
-          <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top" style="background:rgba(33, 33, 33, 0.99);">
+          <nav class="navbar navbar-expand-md navbar-light shadow-sm fixed-top d-flex justify-content-between" style="background:rgba(33, 33, 33, 0.99);">
             <a class="navbar-brand text-white" style="margin-left:30px;" href="{{ url('/') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
             
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav in-line">
                     <!-- Authentication Links -->
                     @guest
-                        @if (Route::has('login'))
-                            <li class="nav-item" style="margin-right:15px;">
-                                <a class="btn nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        @if (Route::has('login') && request()->routeIs('register'))
+                            <li class="nav-item" style="margin-right:35px;">
+                                <a class="btn nav-link text-white" href="{{ route('login') }}">Logowanie</a>
                             </li>
                         @endif
 
-                        @if (Route::has('register'))
+                        @if (Route::has('register') && request()->routeIs('login'))
                             <li class="nav-item" style="margin-right:35px;">
-                                <a class="btn nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="btn nav-link text-white" href="{{ route('register') }}">Rejestracja</a>
                             </li>
                         @endif
                     @else
