@@ -61,16 +61,4 @@ class HomeController extends Controller
             'groups' => $groups
         ]);
     }
-
-    /**
-     * Show the filters
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function filtersView()
-    {
-        $genres = Genre::orderBy('name', 'ASC')->get();
-        
-        return view('main.filters', ['genres' => $genres]);
-    }
 }

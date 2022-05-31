@@ -145,7 +145,7 @@
 
                 <div class="form-group mb-3">
                   <label for="inputRate">Ocena filmu</label>
-                  <input type="number" class="form-control" name="rate" min="0" max="10" maxlength="255" id="inputRate" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
+                  <input type="number" class="form-control" name="rate" min="0" max="10" step="0.1" id="inputRate" aria-describedby="Ocena filmu" placeholder="Ocena filmu">
                 </div>
 
                 <div class="form-group mb-3">

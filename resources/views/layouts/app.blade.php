@@ -377,10 +377,18 @@
               </li>
             @endforeach
           </ul>
-          <div class="dropdown">
-            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-              
-            </ul>
+          <div class="mobile-right-menu" style="display:none;">
+              <a class="dropdown-item text-white" href="{{ route('createMovie') }}">Dodaj film</a>
+              <!-- Button trigger add group modal -->
+              <button type="button" class="dropdown-item text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Dodaj grupę
+              </button>
+              <a class="dropdown-item text-white" href="{{ route('profile') }}" style="border-bottom: 1px solid rgba(255, 255, 255, 0.79)">Profil</a>
+              <a class="dropdown-item text-white" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                  Wyloguj
+              </a>
           </div>
         </div>
         

@@ -22,7 +22,7 @@
                         Pokaż wszystko
                     </a>
                 </div>
-                <div class="d-flex pb-1 library-movie-contener">
+                <div class="pb-1 library-movie-contener">
                     @foreach ($group->groupMovie as $gMovie)
                         <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}">
                             <div class="movie-image">

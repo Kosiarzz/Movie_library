@@ -34,7 +34,7 @@
                     </div>
                 @endif
             </div>
-            <div class="d-flex flex-wrap pb-4"  style="width:1360px;">
+            <div class="d-flex flex-wrap pb-4"  style="width:100%;">
                 @forelse ($group[0]->groupMovie as $gMovie)  
                     <a class="movie-card" href="{{route('movieShow', ['id' => $gMovie->movie->id])}}">
                         <div class="movie-image">

@@ -129,7 +129,7 @@
 
             <div class="form-group mb-3">
               <label for="inputRate">Ocena filmu</label>
-              <input type="number" class="form-control @error('rate') is-invalid @enderror" name="rate" id="inputRate" min="0" max="10" step="0.1" value="{{ $movie[0]->rate }}" aria-describedby="Ocena filmu">
+              <input type="number" class="form-control @error('rate') is-invalid @enderror" name="rate" id="inputRate" min="0" max="10" step="0.1" value="{{ floatval($movie[0]->rate) }}" aria-describedby="Ocena filmu">
               @error('rate')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

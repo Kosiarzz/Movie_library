@@ -4,7 +4,7 @@
 <div class="container mt-4 pb-5">
     <div class="row justify-content-center">
         <div class="filters mb-4 mt-3" style="">
-            <form method="GET" action="{{ route('filters') }}" class="row pt-2" style="background: #212121; border-radius:10px; ">
+            <form method="GET" action="{{ route('filters') }}" class="row pt-2 filters-box">
 
                 <div class="col-md-3 mb-3">
                     <label for="inputTitle" class="form-label ">Nazwa filmu</label>
@@ -78,13 +78,13 @@
             </form>
         </div>
         
-        <div class="dd" style="width:1800px; min-height:500px; margin-left:25px; margin-top:35px; background:gre; display:flex; flex-wrap: wrap; border-radius:5px;">
+        <div class="contener-filters-movie">
             @if(isset($movies))
                 @forelse ($movies as $movie)
-                    <div class="p-0" style="margin:10px 15px 10px 15px; display:flex; flex-direction: column;">
+                    <div class="filters-movie-box">
                         <a class="" style="margin-left: auto; margin-right: 0; width:20px; height:20px; text-align:center; background:silver; text-decoration:none; color:#000; font-weight:600; border-radius:5px 5px 0 0;" href="{{ route('deleteMovieFromFilters', ['id' => $movie->id]) }}">x</a>
-                        <a class="movie-card p-0 m-0" href="{{route('movieShow', ['id' => $movie->id])}}" style="width:210px; display:flex; flex-direction:column; cursor:pointer; text-decoration:none;">
-                            <div class="movie-image" style="height:300px; width:100%;">
+                        <a class="filters-movie-card p-0 m-0" href="{{route('movieShow', ['id' => $movie->id])}}">
+                            <div class="movie-image">
                                 @if(is_null($movie->img))
                                     <img src="{{asset('storage/default/default_movie_img.png')}}" alt="Zdjęcie"  style="background: silver;">
                                 @elseif(substr($movie->img, 0, 6) == "movies")

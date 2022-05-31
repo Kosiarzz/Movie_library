@@ -18,7 +18,6 @@ Route::redirect('/', '/home');
 
 Route::get('/home', [HomeController::class, 'homeView'])->name('home');
 Route::get('/biblioteka', [HomeController::class, 'libraryView'])->name('library');
-Route::get('/filtry', [HomeController::class, 'filtersView'])->name('filtersView');
 
 Route::get('/profil', [ProfileController::class, 'profileView'])->name('profile');
 Route::post('/profil/update', [ProfileController::class, 'updateProfileData'])->name('updateProfileData');
@@ -43,9 +42,9 @@ Route::post('/film/dodawanie/niestandardowy', [MovieController::class, 'storeCus
 Route::post('/film/dodawanie/scrap/niestandardowy', [MovieController::class, 'storeCustomMovie'])->name('storeScrapCustomMovie');
 
 Route::get('/home/{id}', [FilterController::class, 'genreFilter'])->name('genreFilter');
-Route::get('/filtryds', [FilterController::class, 'filters'])->name('filters');
-Route::get('/filtryds/{title}', [FilterController::class, 'filters'])->name('scrapToFilters');
-Route::get('/filtrydsd/{category}', [FilterController::class, 'filters'])->name('searchByCategory');
-Route::get('/filtrydsw/{group}', [FilterController::class, 'filters'])->name('searchByGroup');
+Route::get('/filtry', [FilterController::class, 'filters'])->name('filters');
+Route::get('/filtry/{title}', [FilterController::class, 'filters'])->name('scrapToFilters');
+Route::get('/filtry/kategoria/{category}', [FilterController::class, 'filters'])->name('searchByCategory');
+Route::get('/filtry/grupa/{group}', [FilterController::class, 'filters'])->name('searchByGroup');
 
 Auth::routes();
