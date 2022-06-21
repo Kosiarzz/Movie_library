@@ -22,7 +22,7 @@ class ScrapTest extends TestCase
             'password' => 'test'
         ]);
 
-        $this->actingAs($user);
+        $this->actingAs($user); //auth
 
         $movieName = "Avengers";
 

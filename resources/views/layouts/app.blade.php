@@ -17,6 +17,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @livewireStyles
 </head>
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -420,7 +422,8 @@
         <main class="global-contener">
             @yield('content')
         </main>
-         
+        
+        @livewireScripts
         @stack('script')
     </div>
 </body>

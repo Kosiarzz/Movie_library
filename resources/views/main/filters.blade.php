@@ -8,7 +8,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="inputTitle" class="form-label ">Nazwa filmu</label>
-                    <input type="text" class="form-control" name="title" id="inputTitle" maxlength="100" value="{{ $oldValues['title'] ?? ''}}" aria-describedby="Nazwa filmu" autocomplete="movie">
+                    @livewire('movies')
                 </div>
 
                 <div class="col-md-2 mb-3">
@@ -18,12 +18,12 @@
 
                 <div class="col-md-3 mb-3">
                     <label for="inputDirector" class="form-label">Reżyser</label>
-                    <input type="text" class="form-control" name="director"  id="inputDirector" maxlength="100" value="{{ $oldValues['director'] ?? ''}}" aria-describedby="Reżyser">
+                    @livewire('directors')
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="inputActor" class="form-label">Aktor</label>
-                    <input type="text" class="form-control" name="actor" id="inputActor" maxlength="100" value="{{ $oldValues['actor'] ?? ''}}" aria-describedby="Aktor">
+                    @livewire('actors')
                 </div>
 
                 <div class="col-md-2 mb-3">
@@ -69,7 +69,7 @@
 
                 <div class="col-md-2 mb-3">
                     <label for="inputCategory" class="form-label">Kategorie</label>
-                    <input type="text" class="form-control" name="category" maxlength="100" value="{{ $oldValues['category'] ?? ''}}" id="inputCategory">
+                    @livewire('categories')
                 </div>
 
                 <div class="text-center mb-3">
