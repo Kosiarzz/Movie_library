@@ -101,7 +101,6 @@ class MovieController extends Controller
             "votes" => $dataMovie['votes'],
         ]);
 
-
         if(isset($dataMovie['directors'])){
             foreach($dataMovie['directors'] as $director)
             {
@@ -200,14 +199,16 @@ class MovieController extends Controller
         $country = Country::firstOrCreate([
             'name' => $dataMovie['country'],
         ]);
-       
+        $movies = new Movies();
+
+        Debugbar::info($movies->getFormatTime($dataMovie['time']));
         //Save movie information
         $movie = new Movie;
         $movie->title = $dataMovie['title'];
         $movie->description = $dataMovie['description'];
         $movie->year = $dataMovie['year'];
         $movie->original_title = $dataMovie['original_title'];
-        $movie->time = $dataMovie['time'];
+        $movie->time = $movies->getFormatTime($dataMovie['time']);
         $movie->rate = $dataMovie['rate'];
         $movie->votes = $dataMovie['votes'];
         $movie->img = $dataMovie['img'];

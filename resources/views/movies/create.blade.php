@@ -97,7 +97,7 @@
 
                 <div class="form-group mb-3">
                   <label for="inputTime">Czas trwania</label>
-                  <input type="text" class="form-control @error('time') is-invalid @enderror" name="time" id="inputTime" maxlength="100" value="{{ old('time') }}" aria-describedby="Czas trwania">
+                  <input type="time" class="form-control @error('time') is-invalid @enderror" step="1" name="time" id="inputTime" maxlength="100" value="{{ old('time') }}" aria-describedby="Czas trwania">
                   @error('time')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>

@@ -59,4 +59,45 @@ class Movies
         
         return $formatCast;
     }
+
+    /** 
+     *  Format time for new coustom movie
+     *  @return array
+     */
+    public function getFormatTime(string $time)
+    {
+        $preg_time = preg_replace('/([0-9])([a-z])/', '$1 $2', $time);
+        $timeExplode = explode(" ", $preg_time, 10);
+        
+        $formatTime = '';
+        $formatTime .= '0'.$timeExplode[0].':'.$timeExplode[2].':00';
+        
+        return $formatTime;
+    }
+
+    /** 
+     *  Format time for input
+     *  @return array
+     */
+    public function getFormatTimed(string $time)
+    {
+        $preg_time = preg_replace('/([0-9])([a-z])/', '$1 $2', $time);
+        $timeExplode = explode(" ", $preg_time, 10);
+        return "CHUJ";
+
+        $formatTime = '';
+
+        foreach($timeExplode as $key => $time)
+        {
+            if ($key === array_key_last($timeExplode))
+            {
+                $formatTime .= $time;
+                break;
+            }
+
+            $formatTime .= $time.'';
+        }
+
+        return $formatTime;
+    }
 }
