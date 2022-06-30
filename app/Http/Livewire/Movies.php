@@ -14,7 +14,7 @@ class Movies extends Component
         if(strlen($this->search) > 1)
         {
             return view('livewire.movies', [
-                'movies' => Movie::where('title', 'LIKE', '%'.$this->search.'%')->get('title'),
+                'movies' => Movie::where('title', 'LIKE', '%'.$this->search.'%')->distinct()->get('title'),
             ]);
         }
 
