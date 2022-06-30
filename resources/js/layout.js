@@ -108,6 +108,7 @@ $(document).ready(function(){
             },
             error:function(data){
                 item = '<div id="alert" class="scrap-alert-message error">Błąd podczas dodawania filmu! </div>';
+                console.log(data);
                 $('#scrap-box-alert').append(item);
 
                 setTimeout(function(){

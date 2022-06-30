@@ -32,17 +32,17 @@ class Scraper
         $crawler->filter('.hits__item')->each(function ($node) 
         {
             $this->results[] = [
-                'title' => $node->filter('.filmPreview__title')->text('Brak tytułu'), //Tytuł filmu
-                'year' => $node->filter('.filmPreview__year')->text('Brak daty'), //Data premiery
-                'original_title' => $node->filter('.filmPreview__originalTitle')->text('Brak oryginalnego tytułu'), //Oryginalna nazwa
-                'time' => $node->filter('.filmPreview__filmTime')->text('Brak czasu trwania'), //Czas trwania
-                'rate' => $node->filter('.rateBox__rate')->text('Brak oceny'), //Ocena
-                'votes' => $node->filter('.rateBox__votes--count')->text('Brak ilości głosów'), //Ilośc głosów
-                'description' => $node->filter('.filmPreview__description p')->text('Brak opisu'), //Krótki opis filmu
-                'genres' => $node->filter('.filmPreview__info--genres a')->text('Brak gatunku'), //Gatunek
-                'country' => $node->filter('.filmPreview__info--countries a')->text('Brak kraju'), //Produkcja
-                'directors' => $node->filter('.filmPreview__info--directors ul')->text('Brak reżysera'), //Reżyser
-                'cast' => $node->filter('.filmPreview__info--cast ul')->text('Brak danych'), //Obsada
+                'title' => $node->filter('.preview__title')->text('Brak tytułu'), //Tytuł filmu (filmPreview__title)
+                'year' => $node->filter('.preview__year')->text('Brak daty'), //Data premiery
+                'original_title' => $node->filter('.preview__originalTitle')->text('Brak oryginalnego tytułu'), //Oryginalna nazwa
+                'time' => $node->filter('.preview__duration')->text('Brak czasu trwania'), //Czas trwania
+                'rate' => $node->filter('.communityRatings__value')->text('Brak oceny'), //Ocena
+                'votes' => $node->filter('span .communityRatings__value')->text('Brak'), //Ilośc głosów
+                'description' => $node->filter('.preview__description p')->text('Brak opisu'), //Krótki opis filmu
+                'genres' => $node->filter('.preview__detail--genres h3 a')->text('Brak gatunku'), //Gatunek
+                'country' => $node->filter('.preview__info--countries a')->text('Brak kraju'), //Produkcja
+                'directors' => $node->filter('.preview__info--directors ul')->text('Brak reżysera'), //Reżyser
+                'cast' => $node->filter('.preview__detail--cast')->text('Brak danych'), //Obsada
                 'img' => $node->filter('.poster__image')->attr('content'), //Zdjęcie
             ];
         });

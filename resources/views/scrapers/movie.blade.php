@@ -3,7 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="row pt-5 pb-4">
+        <h4 class="mt-4 text-white">Strona filmweb.pl zmieniła strukture swojej wyszukiwarki i usunęła niektóre informacje o filmach.</h4>
+        <div class="row pt-2 pb-4">
             <div class="d-flex justify-content-center">
               <form method="GET" action="{{ route('scrapMovies') }}" class="flex-row search-movie">
                   <input type="text" name="name" class="inputSearchMovie" placeholder="Nazwa filmu"/>

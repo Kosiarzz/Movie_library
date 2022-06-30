@@ -189,7 +189,7 @@ class MovieController extends Controller
         $validated = $request->validated();
         $dataMovie = $validated['data'];
         Debugbar::info($dataMovie);
-
+        
         //Add a movie genre
         $genre = Genre::firstOrCreate([
             'name' => $dataMovie['genres'],
@@ -199,9 +199,9 @@ class MovieController extends Controller
         $country = Country::firstOrCreate([
             'name' => $dataMovie['country'],
         ]);
+
         $movies = new Movies();
 
-        Debugbar::info($movies->getFormatTime($dataMovie['time']));
         //Save movie information
         $movie = new Movie;
         $movie->title = $dataMovie['title'];
@@ -209,8 +209,8 @@ class MovieController extends Controller
         $movie->year = $dataMovie['year'];
         $movie->original_title = $dataMovie['original_title'];
         $movie->time = $movies->getFormatTime($dataMovie['time']);
-        $movie->rate = $dataMovie['rate'];
-        $movie->votes = $dataMovie['votes'];
+        $movie->rate = 0; #$dataMovie['rate'];
+        $movie->votes = 0; #$dataMovie['votes'];
         $movie->img = $dataMovie['img'];
         $movie->watched = false;
         $movie->genre_id = $genre->id;
